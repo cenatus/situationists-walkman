@@ -146,16 +146,17 @@ The sample project listens for the location anchor in [`session(didAdd:)`][18] a
 ``` swift
 func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
     for geoAnchor in anchors.compactMap({ $0 as? ARGeoAnchor }) {
-        
-        // Add an AR placemark visualization for the geo anchor.
-        arView.scene.addAnchor(Entity.placemarkEntity(for: geoAnchor))
+        // Effect a spatial-based delay to avoid blocking the main thread.
+        DispatchQueue.main.asyncAfter(deadline: .now() + (distanceFromDevice(geoAnchor.coordinate) / 10)) {
+            // Add an AR placemark visualization for the geo anchor.
+            self.arView.scene.addAnchor(Entity.placemarkEntity(for: geoAnchor))
 ```
 
 To establish visual correspondence in the map view, the sample project adds an [`MKOverlay`][17] that represents the anchor on the map.
 
 ``` swift
 let anchorIndicator = AnchorIndicator(center: geoAnchor.coordinate)
-mapView.addOverlay(anchorIndicator)
+self.mapView.addOverlay(anchorIndicator)
 ```
 
 ## Create an Anchor When the User Taps the AR View

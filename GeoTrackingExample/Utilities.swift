@@ -50,24 +50,13 @@ extension Entity {
     
     static func generateSphereIndicator(radius: Float) -> Entity {
         let indicatorEntity = Entity()
-        let innerSphere = generateSphereModelEntity(size: radius * 0.66, color: #colorLiteral(red: 0, green: 0.3, blue: 1.4, alpha: 1), roughness: 1)
+        
+        let innerSphere = ModelEntity.blueSphere.clone(recursive: true)
         indicatorEntity.addChild(innerSphere)
-        let outerSphere = generateSphereModelEntity(size: radius, color: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.25), roughness: 0.3)
+        let outerSphere = ModelEntity.transparentSphere.clone(recursive: true)
         indicatorEntity.addChild(outerSphere)
         
         return indicatorEntity
-    }
-        
-    static func generateSphereModelEntity(size: Float, color: UIColor, roughness: Float) -> ModelEntity {
-        let sphereMesh = MeshResource.generateSphere(radius: size)
-        let material: Material
-        if roughness < 1 {
-            material = SimpleMaterial(color: color, roughness: MaterialScalarParameter(floatLiteral: roughness), isMetallic: true)
-        } else {
-            material = UnlitMaterial(color: color)
-        }
-        
-        return ModelEntity(mesh: sphereMesh, materials: [material])
     }
     
     func move(by translation: SIMD3<Float>, scale: SIMD3<Float>, after delay: TimeInterval, duration: TimeInterval) {
@@ -78,6 +67,13 @@ extension Entity {
             self.move(to: transform, relativeTo: self.parent, duration: duration, timingFunction: .easeInOut)
         }
     }
+}
+
+extension ModelEntity {
+    static let blueSphere = ModelEntity(mesh: MeshResource.generateSphere(radius: 0.066), materials: [UnlitMaterial(color: #colorLiteral(red: 0, green: 0.3, blue: 1.4, alpha: 1))])
+    static let transparentSphere = ModelEntity(
+        mesh: MeshResource.generateSphere(radius: 0.1),
+        materials: [SimpleMaterial(color: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.25), roughness: 0.3, isMetallic: true)])
 }
 
 extension ViewController {
@@ -138,6 +134,7 @@ extension ARGeoTrackingStatus.StateReason {
         case .devicePointedTooLow: return "Point the camera at a nearby building"
         case .visualLocalizationFailed: return "Point the camera at a building unobstructed by trees or other objects"
         case .waitingForLocation: return "ARKit is waiting for the system to provide a precise coordinate for the user"
+        case .waitingForAvailabilityCheck: return "ARKit is checking Location Anchor availability at your locaiton"
         @unknown default: return "Unknown reason"
         }
     }

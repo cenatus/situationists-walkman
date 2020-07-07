@@ -86,8 +86,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     // MARK: - User Interaction
-    @IBAction func menuButtonTapped(_ sender: UIButton) {
-        presentAdditionalActions(sender)
+    @IBAction func menuButtonTapped(_ sender: Any) {
+        presentAdditionalActions()
     }
     
     // Responds to a user tap on the AR view.
@@ -133,10 +133,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     // MARK: - Methods
     
     // Presents the available actions when the user presses the menu button.
-    func presentAdditionalActions(_ sender: UIButton) {
+    func presentAdditionalActions() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.popoverPresentationController?.sourceView = sender
-        actionSheet.popoverPresentationController?.sourceRect = sender.bounds
         actionSheet.addAction(UIAlertAction(title: "Reset Session", style: .destructive, handler: { (_) in
             self.restartSession()
         }))
@@ -203,7 +201,6 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     func addGeoAnchor(at location: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil) {
-        
         var geoAnchor: ARGeoAnchor!
         if let altitude = altitude {
             geoAnchor = ARGeoAnchor(coordinate: location, altitude: altitude)
@@ -231,16 +228,25 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         return false
     }
     
+    func distanceFromDevice(_ coordinate: CLLocationCoordinate2D) -> Double {
+        if let devicePosition = locationManager.location?.coordinate {
+            return MKMapPoint(coordinate).distance(to: MKMapPoint(devicePosition))
+        } else {
+            return 0
+        }
+    }
+    
     // MARK: - ARSessionDelegate
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for geoAnchor in anchors.compactMap({ $0 as? ARGeoAnchor }) {
-            
-            // Add an AR placemark visualization for the geo anchor.
-            arView.scene.addAnchor(Entity.placemarkEntity(for: geoAnchor))
-
+            // Effect a spatial-based delay to avoid blocking the main thread.
+            DispatchQueue.main.asyncAfter(deadline: .now() + (distanceFromDevice(geoAnchor.coordinate) / 10)) {
+                // Add an AR placemark visualization for the geo anchor.
+                self.arView.scene.addAnchor(Entity.placemarkEntity(for: geoAnchor))
+            }
             // Add a visualization for the geo anchor in the map view.
             let anchorIndicator = AnchorIndicator(center: geoAnchor.coordinate)
-            mapView.addOverlay(anchorIndicator)
+            self.mapView.addOverlay(anchorIndicator)
 
             // Remember the geo anchor we just added
             let anchorInfo = GeoAnchorWithAssociatedData(geoAnchor: geoAnchor, mapOverlay: anchorIndicator)
@@ -312,7 +318,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         if let anchorOverlay = overlay as? AnchorIndicator {
             let anchorOverlayView = MKCircleRenderer(circle: anchorOverlay)
             anchorOverlayView.strokeColor = .white
-            anchorOverlayView.fillColor = .red
+            anchorOverlayView.fillColor = .blue
             anchorOverlayView.lineWidth = 2
             return anchorOverlayView
         }
