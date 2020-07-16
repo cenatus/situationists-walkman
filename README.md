@@ -53,7 +53,7 @@ ARGeoTrackingConfiguration.checkAvailability { (available, error) in
 ARKit requires a network connection to download localization imagery. The [`checkAvailability`][6] function will return `false` if a network connection is unavailable. If geo tracking is available, the sample project runs a session.
 
 ``` swift
-arView.session.run(ARGeoTrackingConfiguration())
+arView.session.run(geoTrackingConfiguration)
 ```
 
 - Note: If geo tracking is unavailable in the user's current location, an app can suggest an alternative area if [`checkAvailability(at:completionHandler:)`][7] returns `true` for a nearby location.
