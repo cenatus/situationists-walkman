@@ -86,8 +86,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     // MARK: - User Interaction
-    @IBAction func menuButtonTapped(_ sender: Any) {
-        presentAdditionalActions()
+    @IBAction func menuButtonTapped(_ sender: UIButton) {
+        presentAdditionalActions(sender)
     }
     
     // Responds to a user tap on the AR view.
@@ -133,8 +133,10 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     // MARK: - Methods
     
     // Presents the available actions when the user presses the menu button.
-    func presentAdditionalActions() {
+    func presentAdditionalActions(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.popoverPresentationController?.sourceView = sender
+        actionSheet.popoverPresentationController?.sourceRect = sender.bounds
         actionSheet.addAction(UIAlertAction(title: "Reset Session", style: .destructive, handler: { (_) in
             self.restartSession()
         }))
@@ -175,9 +177,9 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         }
         
         // Re-run the ARKit session.
-        let geoTrackingConfiguration = ARGeoTrackingConfiguration()
-        geoTrackingConfiguration.planeDetection = [.horizontal]
-        arView.session.run(geoTrackingConfiguration)
+        let geoTrackingConfig = ARGeoTrackingConfiguration()
+        geoTrackingConfig.planeDetection = [.horizontal]
+        arView.session.run(geoTrackingConfig)
         geoAnchors.removeAll()
         
         arView.scene.anchors.removeAll()

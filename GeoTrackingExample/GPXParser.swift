@@ -54,10 +54,11 @@ class GPXParser: NSObject, XMLParserDelegate {
         let tag = elementName.lowercased()
         switch tag {
         case "wpt":
+            // Neither `ARGeoAnchor` nor the GPX file format require `name`, so set to empty string if it's nil.
+            let name = parsedGeoAnchorData["name"] ?? ""
             // If the waypoint contained all required content, initialize the anchor from the collected data.
             if let lat = Double(parsedGeoAnchorData["lat"] ?? ""),
-               let lon = Double(parsedGeoAnchorData["lon"] ?? ""),
-               let name = parsedGeoAnchorData["name"] ?? "" {
+               let lon = Double(parsedGeoAnchorData["lon"] ?? "") {
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 let altitude = Double(parsedGeoAnchorData["ele"] ?? "")
                 let geoAnchor = ARGeoAnchor(name: name, coordinate: coordinate, altitude: altitude)
