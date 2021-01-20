@@ -4,15 +4,21 @@ Track specific geographic areas of interest and render them in an AR experience.
 
 ## Overview
 
-Geo-tracking configuration ([`ARGeoTrackingConfiguration`][1]) combines GPS, the device's compass, and world-tracking features to enable back-camera AR experiences to track specific geographic locations. By giving ARKit a latitude and longitude (and optionally, altitude), an app declares interest in a specific location on the map. ARKit tracks this location in the form of a *location anchor* ([`ARGeoAnchor`][2]), which an app can refer to in an AR experience. ARKit provides the location anchor's coordinates with respect to the scene, which allows an app to render virtual content at its real-world location or trigger other interactions. For example, when the user approaches a location anchor, an app reveals a virtual signpost that explains a historic event that occurred there. Or, an app might render a virtual anchor in a series of location anchors that connect, to form a street route.
+In this sample app, the user marks spots on a map or camera feed to create a collection of anchors they view in augmented reality (AR). By rendering those anchors as virtual content in an AR view, the user can see a nearby anchor through the camera feed, move to its physical location, and continue to move to any subsequent anchors in the collection. If a virtual anchor that the user is moving toward isn't visible in the camera feed, the user can refer to its pin in the map view and advance until the virtual anchor becomes visible.
 
-In this sample app, the user marks spots on a map or camera feed to create a collection of anchors they view in an AR experience. By rendering those anchors as virtual content in an AR view, the user can see a nearby anchor through the camera feed, move to its physical location, and continue to any subsequent anchors in the collection. If a virtual anchor that the user is moving toward isn't visible in the camera feed, the user can refer to its pin in the map view and advance until the virtual anchor becomes visible.
+Geotracking configuration ([`ARGeoTrackingConfiguration`][1]) combines GPS, the device's compass, and world-tracking features in AR to track specific geographic locations. By giving ARKit a latitude and longitude (and optionally, altitude), the sample app declares interest in a specific location on the map. 
 
-![Figure of an AR app showing two views. The upper view displays a camera feed that captures a busy city intersection. A series of floating blue buoys form a path leading the user to turn right. In the lower view, a top-down map provides an alternate view of the same scene. Dots on the map correspond to the buoys seen in the camera feed which appear to lead the user through the city.](Documentation/hero-image.png)
+During a geotracking session, ARKit marks this location in the form of a *location anchor* ([`ARGeoAnchor`][2]) and continually refines its position in the camera feed as the user moves about. ARKit provides the location anchor's coordinates with respect to the scene, which allows the app to render virtual content at its real-world location or trigger other interactions. 
+
+For example, when the user approaches a location anchor, an app may reveal a virtual signpost that explains a historic event that occurred there. Or, to form a street route, an app could render a virtual anchor in a series of location anchors that connect.
+
+![Figure of an AR app showing two views. The upper view displays a camera feed that captures a busy city intersection. A series of floating blue buoys form a path leading the user to turn right. In the lower view, a top-down map provides an alternate view of the same scene. Dots on the map correspond to the buoys seen in the camera feed, which appear to lead the user through the city.](Documentation/hero-image.png)
+
+- Note: ARKit supports geotracking only with the device's rear camera. 
 
 ## Ensure Device Support
 
-Geo tracking requires an iOS/iPadOS 14 device with A12 Bionic chip or later, and cellular (GPS) capability. At the application entry point (see the sample project's `AppDelegate.swift`), the sample app prevents running an unsupported configuration by checking whether the device supports geo tracking.
+Geotracking requires an iOS/iPadOS 14 device with A12 Bionic chip or later, and cellular (GPS) capability. At the application entry point (see the sample project's `AppDelegate.swift`), the sample app prevents running an unsupported configuration by checking whether the device supports geotracking.
 
 ``` swift
 if !ARGeoTrackingConfiguration.isSupported {
@@ -21,7 +27,7 @@ if !ARGeoTrackingConfiguration.isSupported {
 }
 ```
 
-If the device doesn't support geo tracking, the sample project will stop. Optionally, the app presents the user with an error message and continue the experience at a limited capacity without geo tracking.
+If the device doesn't support geotracking, the sample project will stop. Optionally, the app presents the user with an error message and continues the experience at a limited capacity without geotracking.
 
 ## Display an AR View and Map View
 
@@ -29,28 +35,28 @@ As an AR app, the sample project renders location anchors using an [`ARView`][3]
 
 ## Check Availability and Run a Session
 
-To place location anchors with precision, geo tracking requires a better understanding of the user’s geographic location than is possible with GPS alone. Based on a particular GPS coordinate, ARKit downloads batches of imagery that depict the physical environment in that area and assist the session with determining the user’s precise geographic location.
+To place location anchors with precision, geotracking requires a better understanding of the user’s geographic location than is possible with GPS alone. Based on a particular GPS coordinate, ARKit downloads batches of imagery that depict the physical environment in that area and assist the session with determining the user’s precise geographic location.
 
-This *localization imagery* captures the view mostly from public streets and routes accessible by car. As a result, geo tracking doesn’t support areas within the city that are gated or accessible only to pedestrians, as ARKit lacks localization imagery there.
+This *localization imagery* captures the view mostly from public streets and routes accessible by car. As a result, geotracking doesn’t support areas within the city that are gated or accessible only to pedestrians, as ARKit lacks localization imagery there.
 
-Because localization imagery depicts specific regions on the map, geo tracking only supports areas only from which Apple has collected localization imagery in advance. Before starting a session, the sample project checks whether geo-tracking supports the user's location by calling [`checkAvailability(completionHandler:)`][6].
+Because localization imagery depicts specific regions on the map, geotracking only supports areas where Apple has collected localization imagery in advance. Before starting a session, the sample project checks whether geotracking supports the user's location by calling [`checkAvailability(completionHandler:)`][6].
 
 ``` swift
 ARGeoTrackingConfiguration.checkAvailability { (available, error) in
     if !available {
         let errorDescription = error?.localizedDescription ?? ""
-        let recommendation = "Please try again in an area where geo tracking is supported."
+        let recommendation = "Please try again in an area where geotracking is supported."
         let restartSession = UIAlertAction(title: "Restart Session", style: .default) { (_) in
             self.restartSession()
         }
-        self.alertUser(withTitle: "Geo tracking unavailable",
+        self.alertUser(withTitle: "Geotracking unavailable",
                        message: "\(errorDescription)\n\(recommendation)",
                        actions: [restartSession])
     }
 }
 ```
 
-ARKit requires a network connection to download localization imagery. The [`checkAvailability`][6] function will return `false` if a network connection is unavailable. If geo tracking is available, the sample project runs a session.
+ARKit requires a network connection to download localization imagery. The [`checkAvailability`][6] function will return `false` if a network connection is unavailable. If geotracking is available, the sample project runs a session.
 
 ``` swift
 let geoTrackingConfig = ARGeoTrackingConfiguration()
@@ -58,66 +64,115 @@ geoTrackingConfig.planeDetection = [.horizontal]
 arView.session.run(geoTrackingConfig)
 ```
 
-- Note: If geo tracking is unavailable in the user's current location, an app can suggest an alternative area if [`checkAvailability(at:completionHandler:)`][7] returns `true` for a nearby location.
+- Note: If geotracking is unavailable in the user's current location, an app can suggest an alternative area if [`checkAvailability(at:completionHandler:)`][7] returns `true` for a nearby location.
 
-## Monitor and React to Geo-Tracking Status
+## Coach the User as the Session Begins
 
-A geo-tracking session experiences a number of different states. To monitor state changes, the sample project implements the [`session:didChangeGeoTrackingStatus:`][8] callback.
+To begin a geotracking session, the framework undergoes a process composed of several geotracking states. To monitor these state changes, the sample project implements the [`session:didChangeGeoTrackingStatus:`][8] callback.
 
 ``` swift
 func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
-    var text = geoTrackingStatus.state.description
 ```
-[View in Source](x-source-tag://GeoTrackingStatus)
 
-Each phase in the geo-tracking lifecycle requires coordination with the user, so the sample app displays user instructions based on state prominently. 
+When the app first launches, the geotracking status is [`initializing`][22] as the framework ensures the device's location meets geotracking requirements. The session acquires a confident GPS position for the user ([`waitingForLocation`][13]), checks availability at the user's location ([`waitingForAvailabilityCheck`][23]), and downloads localization imagery ([`geoDataNotLoaded`][10]). 
+
+Each phase in the initialization process requires coordination with the user. The sample app implements a geotracking coaching overlay in the `GeoCoachingViewController.swift` file that spans several user instructions. To display user instructions, the coaching overlay calls [`setText`](x-source-tag://SetText).
+
+``` swift
+private func setText(text: String?) {
+    
+    if let unwrappedText = text {
+        DispatchQueue.main.async() {
+            self.setActive(true)
+            self.coachingText.text = unwrappedText
+```
+
+The overlay displays its first user message as the session initializes. The world-tracking subsystem requires the device to move so it can also initialize. The coaching experience guides the user to move the device. 
+
+![Figure of the coaching experience. The camera image is dimmed, which highlights a text label that reads: "Move iPhone to start."](Documentation/move-to-start.png)
+
+To bring attention to this textual guidance, the overlay dims the camera feed by adding a transparent black background. 
+
+``` swift
+private func initializeBackgroundView() {
+    
+    background.translatesAutoresizingMaskIntoConstraints = false
+    coachingParentView.addSubview(background)
+    background.fillParentView()
+    background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: arCoachingBackgroundOpacity)
+```
+
+After the session downloads localization imagery, the geotracking state becomes [`localizing`][12] and the user holds the camera up to capture the view from the street. During this time, ARKit compares the camera's imagery to the localization imagery. When the two match, the framework can align the user's precise geographic location with the scene's local coordinates. For more information, see [`ARGeoTrackingConfiguration`][1]. 
+
+![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: "Look at nearby buildings."](Documentation/look-at-buildings.png)
+
+If the camera isn't capturing the images ARKit needs, such as if the user points the camera downward, the geotracking status reason becomes [`devicePointedTooLow`][24]. The coaching experience asks the user to raise the device.
+
+![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: "Look up."](Documentation/look-up.png)
+
+The localization process may run long if objects, such as cars or trees, block the camera's view. The geotracking state reason becomes [`visualLocalizationFailed`][25] and the experience coaches the user around visual obstructions. 
+
+![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: "Look at nearby buildings and make sure nothing is in the way."](Documentation/look-unobstructed.png)
+
+When ARKit succeeds in matching localization imagery with captures from the camera, the geotracking state moves to [`localized'][11] and the app is free to create location anchors. 
+
+The coaching experience checks for the [`localized`][11] state within the coaching view's update function.
+
+``` swift
+if self.coachingState != .localized {
+    self.transitionToLocalizingState()
+```
+
+If the geotracking state is [`localized`][11], the coaching experience ends. 
+
+``` swift
+private func transitionToLocalizedState() {
+    
+    coachingState = .localized
+    setActive(false)
+```
+
+When the app calls `setActive` with an argument of `false`, the coaching parent view sets [`isHidden`][26] to `true`.
+
+``` swift
+DispatchQueue.main.asyncAfter(deadline: .now() + arCoachingFadeDuration) {
+    self.coachingParentView.isHidden = true
+```
+
+To transition in and out of the coaching experience smoothly, the `setActive` function runs a fade animation using the [`alpha`][31] view property. As a result, the coaching experience ends by fading to transparent, revealing the [`ARView`][3]. 
+
+``` swift
+UIView.animate(withDuration: arCoachingFadeDuration, delay: 0, options: .beginFromCurrentState, animations: {
+    self.coachingParentView.alpha = self.canBeActivated ? 1 : 0
+```
+
+## Coach the User as the Session Runs
+
+After the app has localized and begun a geotracking session, the sample app monitors geotracking state changes and displays any important information in an onscreen label. 
 
 ``` swift
 self.trackingStateLabel.text = text
 ```
 
-As an example, it's possible for the user to cross into an area where geo tracking is unavailable while the session is running. In this situation, ARKit provides the status reason [`.notAvailableAtLocation`][9]. To enable the session to continue, the sample project presents text to guide the user accordingly. 
+As the user moves along a street, the framework continues to download localization imagery as needed to maintain a precise understanding of the user's position in the world. If the [`.geoDataNotLoaded`][10] state reason occurs after the session localized, it may indicate a network issue arose. If this state reason persists for some time, an app may ask the user to check the internet connection.
+
+While the session is running, it’s possible for the user to cross into an area where geotracking is unavailable. In this case, ARKit provides the status reason [`notAvailableAtLocation`][9]. To enable the session to continue, the sample project presents text to guide the user accordingly.
 
 ``` swift
-case .notAvailableAtLocation: return "Geo tracking is unavailable here. Please return to your previous location to continue"
+case .notAvailableAtLocation: return "Geotracking is unavailable here. Please return to your previous location to continue"
 ```
 
-## Assist the User with Visual Localization
+## Coach the User for World-Tracking Status
 
-After the session acquires a confident GPS position for the user (see [`.waitingForLocation`][13]), the session moves to [`.localizing`][12] where the session downloads localization imagery for the user’s geographic location and compares it with captures from the device’s camera. This process is referred to as *visual localization*. When ARKit succeeds in matching this imagery with captures from the camera, the state moves to [`.localized`][11] and the app is free to create location anchors.
-
-As ARKit downloads localization imagery, the session is in state reason [`.geoDataNotLoaded`][10]. The sample project presents text to the user that requests they wait for the download to complete. 
+Because a geotracking session maps the geographic coordinate space to ARKit's world-tracking local space, the app requires basic world-tracking support. Maintaining a world-tracking session requires coordination with the user when the world-tracking status declines. To detect and correct this situation, the sample app uses [ARCoachingOverlayView][29]. 
 
 ``` swift
-case .geoDataNotLoaded: return "Downloading localization imagery. Please wait"
+func setupWorldTrackingCoachingOverlay() {
+    coachingOverlayWorldTracking.delegate = self
+    arView.addSubview(coachingOverlayWorldTracking)
 ```
 
-- Note: If [`.geoDataNotLoaded`][10] persists for too long, it may indicate a network issue. If a reasonable amount of time elapses in this state reason, an app may ask the user to check the internet connection.
-
-To establish visual localization, the user must move the device in ways that acquire the camera captures that ARKit needs. The sample project displays a message to elicit the right user movements. If the session detects the user is pointing the device too low, the sample project asks the user to raise the device and focus on distinct visuals, like structures, or signs.
-
-``` swift
-case .devicePointedTooLow: return "Point the camera at a nearby building"
-```
-
-If visual localization is running longer than usual, the sample project asks the user to avoid pointing the device at objects that are too general, like trees. 
-
-``` swift
-case .visualLocalizationFailed: return "Point the camera at a building unobstructed by trees or other objects"
-```
-
-To expedite visual localization, avoid pointing the device at real-world objects that are transient, like parked cars, or a construction site. Because lighting conditions can affect visual localization, avoid geo tracking at night.
-
-When ARKit confidently matches its localization imagery with captures from the camera, the state moves to [`.localized`][11], and the app is free to use location anchors. Before creating an anchor, the sample project checks to ensure the state is [`.localized`][11].
-
-``` swift
-var isGeoTrackingLocalized: Bool {
-    if let status = arView.session.currentFrame?.geoTrackingStatus, status.state == .localized {
-        return true
-    }
-    return false
-}
-```
+For example, if an object obscures the camera, ARKit's ability to model the physical environment is impacted. The world-tracking status moves to [limited][27] with reason [insufficientFeatures][28]. The coaching overlay detects this status change and displays text asking the user to move the device. When the camera's view becomes unobstructed again, the world-tracking status returns to [normal][30] and the coaching experience ends.
 
 ## Create an Anchor When the User Taps the Map
 
@@ -135,7 +190,7 @@ With the user's latitude and longitude, the sample project creates a location an
 geoAnchor = ARGeoAnchor(coordinate: location)
 ```
 
-Because the map view returns a 2D coordinate with no altitude, the sample calls [`init(coordinate:)`][19] which defaults the location anchor's altitude to ground level.
+Because the map view returns a 2D coordinate with no altitude, the sample calls [`init(coordinate:)`][19], which defaults the location anchor's altitude to ground level.
 
 To begin tracking the anchor, the sample project adds it to the session.
 
@@ -163,7 +218,7 @@ self.mapView.addOverlay(anchorIndicator)
 
 ## Create an Anchor When the User Taps the AR View
 
-When the user taps the camera feed, the sample project casts a ray at the screen tap-location to determine its intersection with a real-world surface. 
+When the user taps the camera feed, the sample project casts a ray at the screen-tap location to determine its intersection with a real-world surface. 
 
 ``` swift
 if let result = arView.raycast(from: point, allowing: .estimatedPlane, alignment: .any).first {
@@ -177,20 +232,22 @@ arView.session.getGeoLocation(forPoint: worldPosition) { (location, altitude, er
 
 Then, the sample project creates a location anchor with the result. Because the result includes altitude, the sample project calls the [`init(coordinate:altitude:)`][20] anchor initializer.
 
-## Assess Geo-Tracking Accuracy
+- Note: For more on raycasting, see [raycasting collection][32].
 
-To ensure the best possible user experience, an app must monitor and react to the geo-tracking [`accuracy`][14]. When possible, the sample project displays the accuracy as part of its state messaging to the user. The session populates accuracy in its [`geoTrackingStatus`][21] in state [`.localized`][11].
+## Assess Geotracking Accuracy
+
+To ensure the best possible user experience, an app must monitor and react to the geotracking [`accuracy`][14]. When possible, the sample project displays the accuracy as part of its state messaging to the user. The session populates accuracy in its [`geoTrackingStatus`][21] in state [`.localized`][11].
 
 ``` swift
 if geoTrackingStatus.state == .localized {
-    text += ", Accuracy: \(geoTrackingStatus.accuracy.description)"
+    text += "Accuracy: \(geoTrackingStatus.accuracy.description)"
 ```
 
-When accuracy is [`.low`][15], an app renders location anchors using an asset that’s more forgiving if ARKit is off by a small distance. For example, the sample app renders a location anchor as a large ball several meters in the air rather than an arrow that rests its point on a real-world surface. 
+An app renders location anchors using an asset that’s less exact if geotracking is off by a small distance, such as when accuracy is [`.low`][15]. For example, the sample app renders a location anchor as a large ball several meters in the air rather than an arrow that rests its point on a real-world surface. 
 
 ## Center the Map as the User Moves
 
-Handling geo-location updates from Core Location isn't necessary for an AR experience, but the sample project does this to center the user in the map view. When the user moves around, Core Location notifies the delegate of any updates in geographic position. The sample project monitors this event by implementing the relevant callback.
+The sample project uses updates from [Core Location][33] to center the user in the map view. When the user moves around, Core Location notifies the delegate of any updates in geographic position. The sample project monitors this event by implementing the relevant callback.
 
 ``` swift
 func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -205,7 +262,6 @@ let camera = MKMapCamera(lookingAtCenter: location.coordinate,
                          heading: mapView.camera.heading)
 mapView.setCamera(camera, animated: false)
 ```
-
 
 [1]:https://developer.apple.com/documentation/arkit/argeotrackingconfiguration
 [2]:https://developer.apple.com/documentation/arkit/argeoanchor
@@ -228,3 +284,15 @@ mapView.setCamera(camera, animated: false)
 [19]:https://developer.apple.com/documentation/arkit/argeoanchor/3551718-initwithcoordinate
 [20]:https://developer.apple.com/documentation/arkit/argeoanchor/3551719-initwithcoordinate
 [21]:https://developer.apple.com/documentation/arkit/arframe/3580861-geotrackingstatus
+[22]:https://developer.apple.com/documentation/arkit/arframe/state/initializing
+[23]:https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason/waitingforavailabilitycheck
+[24]:https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason/devicepointedtoolow
+[25]:https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason/visuallocalizationfailed
+[26]:https://developer.apple.com/documentation/uikit/uiview/1622585-ishidden
+[27]:https://developer.apple.com/documentation/arkit/arcamera/trackingstate/limited
+[28]:https://developer.apple.com/documentation/arkit/arcamera/trackingstate/reason/insufficientfeatures
+[29]:https://developer.apple.com/documentation/arkit/arcoachingoverlayview
+[30]:https://developer.apple.com/documentation/arkit/arcamera/trackingstate/normal
+[31]:https://developer.apple.com/documentation/uikit/uiview/1622417-alpha
+[32]:https://developer.apple.com/documentation/arkit/world_tracking/raycasting_and_hit-testing
+[33]:https://developer.apple.com/documentation/corelocation

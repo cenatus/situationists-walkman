@@ -17,9 +17,12 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var toastLabel: UILabel!
     @IBOutlet weak var undoButton: UIButton!
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var trackingStateLabel: UILabel!
     
-    let coachingOverlay = ARCoachingOverlayView()
+    let coachingOverlayWorldTracking = ARCoachingOverlayView()
+    
+    var geoCoachingController: GeoCoachingViewController!
     
     let locationManager = CLLocationManager()
     
@@ -49,15 +52,17 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         arView.session.delegate = self
         
         // Enable coaching.
-        setupCoachingOverlay()
+        setupWorldTrackingCoachingOverlay()
         
+        geoCoachingController = GeoCoachingViewController(for: arView)
+                
         // Set this view controller as the Core Location manager delegate.
         locationManager.delegate = self
         
         // Set this view controller as the MKMapView delegate.
         mapView.delegate = self
         
-        // Disable automatic configuration and set up geo tracking
+        // Disable automatic configuration and set up geotracking
         arView.automaticallyConfigureSession = false
                 
         // Run a new AR Session.
@@ -86,8 +91,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     
     // MARK: - User Interaction
-    @IBAction func menuButtonTapped(_ sender: UIButton) {
-        presentAdditionalActions(sender)
+    @IBAction func menuButtonTapped(_ sender: Any) {
+        presentAdditionalActions()
     }
     
     // Responds to a user tap on the AR view.
@@ -133,10 +138,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     // MARK: - Methods
     
     // Presents the available actions when the user presses the menu button.
-    func presentAdditionalActions(_ sender: UIButton) {
+    func presentAdditionalActions() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.popoverPresentationController?.sourceView = sender
-        actionSheet.popoverPresentationController?.sourceRect = sender.bounds
         actionSheet.addAction(UIAlertAction(title: "Reset Session", style: .destructive, handler: { (_) in
             self.restartSession()
         }))
@@ -166,11 +169,11 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         ARGeoTrackingConfiguration.checkAvailability { (available, error) in
             if !available {
                 let errorDescription = error?.localizedDescription ?? ""
-                let recommendation = "Please try again in an area where geo tracking is supported."
+                let recommendation = "Please try again in an area where geotracking is supported."
                 let restartSession = UIAlertAction(title: "Restart Session", style: .default) { (_) in
                     self.restartSession()
                 }
-                self.alertUser(withTitle: "Geo tracking unavailable",
+                self.alertUser(withTitle: "Geotracking unavailable",
                                message: "\(errorDescription)\n\(recommendation)",
                                actions: [restartSession])
             }
@@ -219,7 +222,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         
         // Don't add a geo anchor if Core Location isn't sure yet where the user is.
         guard isGeoTrackingLocalized else {
-            alertUser(withTitle: "Cannot add geo anchor", message: "Unable to add geo anchor because geo tracking has not yet localized.")
+            alertUser(withTitle: "Cannot add geo anchor", message: "Unable to add geo anchor because geotracking has not yet localized.")
             return
         }
         arView.session.add(anchor: geoAnchor)
@@ -280,13 +283,16 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     }
     /// - Tag: GeoTrackingStatus
     func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
-        var text = geoTrackingStatus.state.description
-
-        // In localized state, show geo tracking accuracy
+        
+        geoCoachingController.update(for: geoTrackingStatus)
+        configureUIForCoaching(geoTrackingStatus.state != .localized)
+        
+        var text = ""
+        // In localized state, show geotracking accuracy
         if geoTrackingStatus.state == .localized {
-            text += ", Accuracy: \(geoTrackingStatus.accuracy.description)"
+            text += "Accuracy: \(geoTrackingStatus.accuracy.description)"
         } else {
-            // Otherwise show details why geo tracking couldn't localize (yet)
+            // Otherwise show details why geotracking couldn't localize (yet)
             switch geoTrackingStatus.stateReason {
             case .none:
                 break
@@ -301,6 +307,16 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
             }
         }
         self.trackingStateLabel.text = text
+    }
+    
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        // Notify GeoLocation session coaching that the tracking state is stable
+        switch frame.camera.trackingState {
+        case .normal:
+            geoCoachingController.worldTrackingStateIsNormal(true)
+        default:
+            return
+        }
     }
     
     // MARK: - CLLocationManagerDelegate

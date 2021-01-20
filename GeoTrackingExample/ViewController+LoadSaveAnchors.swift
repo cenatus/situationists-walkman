@@ -122,9 +122,9 @@ extension ViewController: GPXParserDelegate {
     
     func parser(_ parser: GPXParser, didFinishParsingFileWithAnchors anchors: [ARGeoAnchor]) {
         
-        // Don't add geo anchors if geo tracking isn't sure yet where the user is.
+        // Don't add geo anchors if geotracking isn't sure yet where the user is.
         guard isGeoTrackingLocalized else {
-            alertUser(withTitle: "Cannot add geo anchor(s)", message: "Unable to add geo anchor(s) because geo tracking has not yet localized.")
+            alertUser(withTitle: "Cannot add geo anchor(s)", message: "Unable to add geo anchor(s) because geotracking has not yet localized.")
             return
         }
         

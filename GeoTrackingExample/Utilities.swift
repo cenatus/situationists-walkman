@@ -111,14 +111,13 @@ extension ViewController {
     }
 }
 
-extension ARGeoTrackingStatus.State {
-    var description: String {
-        switch self {
-        case .notAvailable: return "Not available"
-        case .initializing: return "Initializing"
-        case .localizing: return "Localizing"
-        case .localized: return "Localized"
-        @unknown default: return  "Unknown"
+extension UIView {
+    func fillParentView(withInset inset: CGFloat = 0) {
+        if let parentView = superview {
+            leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: inset).isActive = true
+            trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: -inset).isActive = true
+            topAnchor.constraint(equalTo: parentView.topAnchor).isActive = true
+            bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
         }
     }
 }
@@ -127,7 +126,7 @@ extension ARGeoTrackingStatus.StateReason {
     var description: String {
         switch self {
         case .none: return "None"
-        case .notAvailableAtLocation: return "Geo tracking is unavailable here. Please return to your previous location to continue"
+        case .notAvailableAtLocation: return "Geotracking is unavailable here. Please return to your previous location to continue"
         case .needLocationPermissions: return "App needs location permissions"
         case .worldTrackingUnstable: return "Limited tracking"
         case .geoDataNotLoaded: return "Downloading localization imagery. Please wait"
