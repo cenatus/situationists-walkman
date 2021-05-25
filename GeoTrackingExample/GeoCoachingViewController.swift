@@ -171,16 +171,18 @@ class GeoCoachingViewController {
         internallyActivated = active
         
         // The app only un-hides the view during activation. The app needs to delay hiding in the case of deactivation to accommodate fading.
-        if canBeActivated {
-            coachingParentView.isHidden = false
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + arCoachingFadeDuration) {
-                self.coachingParentView.isHidden = true
+        DispatchQueue.main.async() { [self] in
+            if canBeActivated {
+                coachingParentView.isHidden = false
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + arCoachingFadeDuration) {
+                    coachingParentView.isHidden = true
+                }
             }
+            UIView.animate(withDuration: arCoachingFadeDuration, delay: 0, options: .beginFromCurrentState, animations: {
+                coachingParentView.alpha = canBeActivated ? 1 : 0
+            })
         }
-        UIView.animate(withDuration: arCoachingFadeDuration, delay: 0, options: .beginFromCurrentState, animations: {
-            self.coachingParentView.alpha = self.canBeActivated ? 1 : 0
-        })
     }
     
     private func setLookUpPromptActive(_ active: Bool) {

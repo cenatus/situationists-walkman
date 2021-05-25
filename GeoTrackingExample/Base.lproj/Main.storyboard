@@ -57,7 +57,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" image="line.horizontal.3" catalog="system"/>
+                                <state key="normal" image="line.3.horizontal" catalog="system"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="20"/>
@@ -170,7 +170,7 @@
     </scenes>
     <resources>
         <image name="arrowshape.turn.up.left" catalog="system" width="128" height="104"/>
-        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+        <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

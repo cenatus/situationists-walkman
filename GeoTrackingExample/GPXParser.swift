@@ -7,7 +7,7 @@ Parser to import ARGeoAnchors from GPX files.
 
 import ARKit
 
-protocol GPXParserDelegate: class {
+protocol GPXParserDelegate: AnyObject {
     func parser(_ parser: GPXParser, didFinishParsingFileWithAnchors anchors: [ARGeoAnchor])
 }
 

@@ -136,14 +136,14 @@ When the app calls `setActive` with an argument of `false`, the coaching parent 
 
 ``` swift
 DispatchQueue.main.asyncAfter(deadline: .now() + arCoachingFadeDuration) {
-    self.coachingParentView.isHidden = true
+    coachingParentView.isHidden = true
 ```
 
 To transition in and out of the coaching experience smoothly, the `setActive` function runs a fade animation using the [`alpha`][31] view property. As a result, the coaching experience ends by fading to transparent, revealing the [`ARView`][3]. 
 
 ``` swift
 UIView.animate(withDuration: arCoachingFadeDuration, delay: 0, options: .beginFromCurrentState, animations: {
-    self.coachingParentView.alpha = self.canBeActivated ? 1 : 0
+    coachingParentView.alpha = canBeActivated ? 1 : 0
 ```
 
 ## Coach the User as the Session Runs
@@ -277,7 +277,7 @@ mapView.setCamera(camera, animated: false)
 [12]:https://developer.apple.com/documentation/arkit/arframe/state/localizing
 [13]:https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason/waitingforlocation
 [14]:https://developer.apple.com/documentation/arkit/argeotrackingstatus/3580875-accuracy
-[15]:https://developer.apple.com/documentation/arkit/arframe/accuracy/low
+[15]:https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy/low
 [16]:https://developer.apple.com/documentation/arkit/arsession/3571352-getgeolocation
 [17]:https://developer.apple.com/documentation/mapkit/mkoverlay
 [18]:https://developer.apple.com/documentation/arkit/arsessiondelegate/2865617-session
@@ -294,5 +294,5 @@ mapView.setCamera(camera, animated: false)
 [29]:https://developer.apple.com/documentation/arkit/arcoachingoverlayview
 [30]:https://developer.apple.com/documentation/arkit/arcamera/trackingstate/normal
 [31]:https://developer.apple.com/documentation/uikit/uiview/1622417-alpha
-[32]:https://developer.apple.com/documentation/arkit/world_tracking/raycasting_and_hit-testing
+[32]:https://developer.apple.com/documentation/arkit/environmental_analysis
 [33]:https://developer.apple.com/documentation/corelocation
