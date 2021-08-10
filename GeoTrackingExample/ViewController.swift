@@ -182,7 +182,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         // Re-run the ARKit session.
         let geoTrackingConfig = ARGeoTrackingConfiguration()
         geoTrackingConfig.planeDetection = [.horizontal]
-        arView.session.run(geoTrackingConfig)
+        arView.session.run(geoTrackingConfig, options: .removeExistingAnchors)
         geoAnchors.removeAll()
         
         arView.scene.anchors.removeAll()

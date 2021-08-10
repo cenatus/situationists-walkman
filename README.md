@@ -61,7 +61,7 @@ ARKit requires a network connection to download localization imagery. The [`chec
 ``` swift
 let geoTrackingConfig = ARGeoTrackingConfiguration()
 geoTrackingConfig.planeDetection = [.horizontal]
-arView.session.run(geoTrackingConfig)
+arView.session.run(geoTrackingConfig, options: .removeExistingAnchors)
 ```
 
 - Note: If geotracking is unavailable in the user's current location, an app can suggest an alternative area if [`checkAvailability(at:completionHandler:)`][7] returns `true` for a nearby location.
@@ -89,7 +89,7 @@ private func setText(text: String?) {
 
 The overlay displays its first user message as the session initializes. The world-tracking subsystem requires the device to move so it can also initialize. The coaching experience guides the user to move the device. 
 
-![Figure of the coaching experience. The camera image is dimmed, which highlights a text label that reads: "Move iPhone to start."](Documentation/move-to-start.png)
+![Figure of the coaching experience. The camera image is dimmed, which highlights a text label that reads: Move iPhone to start.](Documentation/move-to-start.png)
 
 To bring attention to this textual guidance, the overlay dims the camera feed by adding a transparent black background. 
 
@@ -104,15 +104,15 @@ private func initializeBackgroundView() {
 
 After the session downloads localization imagery, the geotracking state becomes [`localizing`][12] and the user holds the camera up to capture the view from the street. During this time, ARKit compares the camera's imagery to the localization imagery. When the two match, the framework can align the user's precise geographic location with the scene's local coordinates. For more information, see [`ARGeoTrackingConfiguration`][1]. 
 
-![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: "Look at nearby buildings."](Documentation/look-at-buildings.png)
+![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: Look at nearby buildings.](Documentation/look-at-buildings.png)
 
 If the camera isn't capturing the images ARKit needs, such as if the user points the camera downward, the geotracking status reason becomes [`devicePointedTooLow`][24]. The coaching experience asks the user to raise the device.
 
-![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: "Look up."](Documentation/look-up.png)
+![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: Look up.](Documentation/look-up.png)
 
 The localization process may run long if objects, such as cars or trees, block the camera's view. The geotracking state reason becomes [`visualLocalizationFailed`][25] and the experience coaches the user around visual obstructions. 
 
-![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: "Look at nearby buildings and make sure nothing is in the way."](Documentation/look-unobstructed.png)
+![Figure of the coaching experience. The camera image is dimmed, which highlights a text overlay that reads: Look at nearby buildings and make sure nothing is in the way.](Documentation/look-unobstructed.png)
 
 When ARKit succeeds in matching localization imagery with captures from the camera, the geotracking state moves to [`localized'][11] and the app is free to create location anchors. 
 
