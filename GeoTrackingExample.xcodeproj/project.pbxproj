@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D3C51AB624E49FDC00FFFE6D /* GeoCoachingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C51AB524E49FDC00FFFE6D /* GeoCoachingViewController.swift */; };
 		E110381D24054CD10027DC8A /* GPXExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E110381C24054CD10027DC8A /* GPXExporter.swift */; };
 		E110381F24054D730027DC8A /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E110381E24054D720027DC8A /* GPXParser.swift */; };
 		E1103821240552F20027DC8A /* ViewController+LoadSaveAnchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1103820240552F20027DC8A /* ViewController+LoadSaveAnchors.swift */; };
@@ -25,7 +24,6 @@
 		0095D1F5CE88A3E76098BA28 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0C98B1E08EFB84D67C6C36E6 /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		1A0245E08A44E0A40C55F271 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.txt; sourceTree = "<group>"; };
-		D3C51AB524E49FDC00FFFE6D /* GeoCoachingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCoachingViewController.swift; sourceTree = "<group>"; };
 		E110381C24054CD10027DC8A /* GPXExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPXExporter.swift; sourceTree = "<group>"; };
 		E110381E24054D720027DC8A /* GPXParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
 		E1103820240552F20027DC8A /* ViewController+LoadSaveAnchors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+LoadSaveAnchors.swift"; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 				E16665F823F6986F001B415F /* ViewController.swift */,
 				E182A57623FD88A20052D70C /* ViewController+CoachingOverlay.swift */,
 				E1103820240552F20027DC8A /* ViewController+LoadSaveAnchors.swift */,
-				D3C51AB524E49FDC00FFFE6D /* GeoCoachingViewController.swift */,
 				E182A57823FD8B160052D70C /* Utilities.swift */,
 				E110381C24054CD10027DC8A /* GPXExporter.swift */,
 				E110381E24054D720027DC8A /* GPXParser.swift */,
@@ -191,7 +188,6 @@
 				E1F282982412709F000184D7 /* GeoAnchorWithAssociatedData.swift in Sources */,
 				E182A57723FD88A30052D70C /* ViewController+CoachingOverlay.swift in Sources */,
 				E16665F923F6986F001B415F /* ViewController.swift in Sources */,
-				D3C51AB624E49FDC00FFFE6D /* GeoCoachingViewController.swift in Sources */,
 				E1103821240552F20027DC8A /* ViewController+LoadSaveAnchors.swift in Sources */,
 				E110381F24054D730027DC8A /* GPXParser.swift in Sources */,
 				E182A57923FD8B160052D70C /* Utilities.swift in Sources */,
@@ -352,6 +348,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/GeoTrackingExample/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -376,6 +373,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/GeoTrackingExample/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

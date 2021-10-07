@@ -20,9 +20,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var trackingStateLabel: UILabel!
     
-    let coachingOverlayWorldTracking = ARCoachingOverlayView()
-    
-    var geoCoachingController: GeoCoachingViewController!
+    let coachingOverlay = ARCoachingOverlayView()
     
     let locationManager = CLLocationManager()
     
@@ -52,10 +50,8 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         arView.session.delegate = self
         
         // Enable coaching.
-        setupWorldTrackingCoachingOverlay()
+        setupCoachingOverlay()
         
-        geoCoachingController = GeoCoachingViewController(for: arView)
-                
         // Set this view controller as the Core Location manager delegate.
         locationManager.delegate = self
         
@@ -284,8 +280,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
     /// - Tag: GeoTrackingStatus
     func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
         
-        geoCoachingController.update(for: geoTrackingStatus)
-        configureUIForCoaching(geoTrackingStatus.state != .localized)
+        hideUIForCoaching(geoTrackingStatus.state != .localized)
         
         var text = ""
         // In localized state, show geotracking accuracy
@@ -308,17 +303,7 @@ class ViewController: UIViewController, ARSessionDelegate, CLLocationManagerDele
         }
         self.trackingStateLabel.text = text
     }
-    
-    func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        // Notify GeoLocation session coaching that the tracking state is stable
-        switch frame.camera.trackingState {
-        case .normal:
-            geoCoachingController.worldTrackingStateIsNormal(true)
-        default:
-            return
-        }
-    }
-    
+        
     // MARK: - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Update location indicator with live estimate from Core Location

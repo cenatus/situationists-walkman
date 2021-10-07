@@ -18,15 +18,13 @@ extension ViewController: ARCoachingOverlayViewDelegate {
     func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {
         mapView.isUserInteractionEnabled = false
         undoButton.isEnabled = false
-        geoCoachingController.setBlocked(true)
-        configureUIForCoaching(true)
+        hideUIForCoaching(true)
     }
 
     func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
         mapView.isUserInteractionEnabled = true
         undoButton.isEnabled = true
-        geoCoachingController.setBlocked(false)
-        configureUIForCoaching(false)
+        hideUIForCoaching(false)
     }
 
     func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
@@ -34,21 +32,21 @@ extension ViewController: ARCoachingOverlayViewDelegate {
     }
 
     // Sets up the coaching view.
-    func setupWorldTrackingCoachingOverlay() {
-        coachingOverlayWorldTracking.delegate = self
-        arView.addSubview(coachingOverlayWorldTracking)
-        coachingOverlayWorldTracking.session = arView.session
-        coachingOverlayWorldTracking.translatesAutoresizingMaskIntoConstraints = false
-        
+    func setupCoachingOverlay() {
+        coachingOverlay.delegate = self
+        arView.addSubview(coachingOverlay)
+        coachingOverlay.goal = .geoTracking
+        coachingOverlay.session = arView.session
+        coachingOverlay.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            coachingOverlayWorldTracking.centerXAnchor.constraint(equalTo: arView.centerXAnchor),
-            coachingOverlayWorldTracking.centerYAnchor.constraint(equalTo: arView.centerYAnchor),
-            coachingOverlayWorldTracking.widthAnchor.constraint(equalTo: arView.widthAnchor),
-            coachingOverlayWorldTracking.heightAnchor.constraint(equalTo: arView.heightAnchor)
+            coachingOverlay.centerXAnchor.constraint(equalTo: arView.centerXAnchor),
+            coachingOverlay.centerYAnchor.constraint(equalTo: arView.centerYAnchor),
+            coachingOverlay.widthAnchor.constraint(equalTo: arView.widthAnchor),
+            coachingOverlay.heightAnchor.constraint(equalTo: arView.heightAnchor)
             ])
     }
     
-    func configureUIForCoaching(_ active: Bool) {
+    func hideUIForCoaching(_ active: Bool) {
         undoButton.isHidden = active
         trackingStateLabel.isHidden = active
     }
