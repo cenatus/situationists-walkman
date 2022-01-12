@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import ARKit
 
 @main
 struct SituationistsWalkmanApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if !ARGeoTrackingConfiguration.isSupported {
+               UnsupportedView()
+            } else {
+                ContentView()
+            }
         }
     }
 }
