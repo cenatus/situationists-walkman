@@ -12,7 +12,6 @@
 		228EDA3E278F385600D2838A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA3D278F385600D2838A /* Assets.xcassets */; };
 		228EDA41278F385600D2838A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA40278F385600D2838A /* Preview Assets.xcassets */; };
 		228EDA48278F39FF00D2838A /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA47278F39FF00D2838A /* ARView.swift */; };
-		228EDA4B278F404700D2838A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA4A278F404700D2838A /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +21,6 @@
 		228EDA3D278F385600D2838A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		228EDA40278F385600D2838A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		228EDA47278F39FF00D2838A /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
-		228EDA4A278F404700D2838A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +58,6 @@
 				228EDA3D278F385600D2838A /* Assets.xcassets */,
 				228EDA3F278F385600D2838A /* Preview Content */,
 				228EDA47278F39FF00D2838A /* ARView.swift */,
-				228EDA4A278F404700D2838A /* AppDelegate.swift */,
 			);
 			path = SituationistsWalkman;
 			sourceTree = "<group>";
@@ -143,7 +140,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				228EDA4B278F404700D2838A /* AppDelegate.swift in Sources */,
 				228EDA3C278F385200D2838A /* ContentView.swift in Sources */,
 				228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */,
 				228EDA48278F39FF00D2838A /* ARView.swift in Sources */,
