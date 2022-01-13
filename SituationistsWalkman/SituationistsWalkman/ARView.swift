@@ -9,22 +9,23 @@ import Foundation
 import ARKit
 import SwiftUI
 
-// MARK: - ARViewIndicator
-struct ARViewIndicator: UIViewControllerRepresentable {
-    typealias UIViewControllerType = ARView
+// MARK: - ARView
+
+struct ARView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ARViewController
     
-    func makeUIViewController(context: Context) -> ARView {
-        return ARView()
+    func makeUIViewController(context: Context) -> ARViewController {
+        return ARViewController()
     }
     
     func updateUIViewController(_ uiViewController:
-                                ARViewIndicator.UIViewControllerType, context:
-                                UIViewControllerRepresentableContext<ARViewIndicator>) { }
+                                ARView.UIViewControllerType, context:
+                                UIViewControllerRepresentableContext<ARView>) { }
 }
 
-// MARK: - ARView
+// MARK: - ARViewController
 
-class ARView: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
+class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     let coachingOverlay = ARCoachingOverlayView()
     
@@ -47,15 +48,9 @@ class ARView: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     func restartSession() {
         ARGeoTrackingConfiguration.checkAvailability { (available, error) in
             if !available {
-                let errorDescription = error?.localizedDescription ?? ""
-                let recommendation = "Please try again in an area where geotracking is supported."
-                let restartSession = UIAlertAction(title: "Restart Session", style: .default) { (_) in
-                    self.restartSession()
-                }
-                self.alertUser(withTitle: "Geotracking unavailable",
-                               message: "\(errorDescription)\n\(recommendation)",
-                               actions: [restartSession])
+               // TODO: Go to the not available error page
             }
+        }
     }
     
     // MARK: - Functions for standard AR view handling

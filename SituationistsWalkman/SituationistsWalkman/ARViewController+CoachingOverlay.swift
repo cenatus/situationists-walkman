@@ -8,7 +8,7 @@
 import Foundation
 import ARKit
 
-extension ARView: ARCoachingOverlayViewDelegate {
+extension ARViewController: ARCoachingOverlayViewDelegate {
     func setupCoachingOverlay() {
         coachingOverlay.delegate = self
         arView.addSubview(coachingOverlay)

@@ -7,19 +7,6 @@
 
 import SwiftUI
 
-// MARK: - NavigationIndicator
-struct NavigationIndicator: UIViewControllerRepresentable {
-    typealias UIViewControllerType = ARView
-    
-    func makeUIViewController(context: Context) -> ARView {
-        return ARView()
-    }
-    
-    func updateUIViewController(_ uiViewController:
-                                NavigationIndicator.UIViewControllerType, context:
-                                UIViewControllerRepresentableContext<NavigationIndicator>) { }
-}
-
 // MARK - ContentView
 
 struct ContentView: View {
@@ -33,7 +20,7 @@ struct ContentView: View {
                 }
             } else if page == "ARView" {
                 ZStack {
-                    NavigationIndicator()
+                    ARView()
                     VStack {
                         Spacer()
                         Spacer()
