@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// TODO: integrate CMHeadphoneMotionManager and implement its delegate folowing exmpl in Tim's spike, IFF supported (this could even be made part of the PhasePlayer itself tbh).
+
 struct ExperienceView: View, ARViewContainerDelegate {
     @EnvironmentObject var state : AppState
     
@@ -30,6 +32,9 @@ struct ExperienceView: View, ARViewContainerDelegate {
     func didCompleteARKitGeoCoaching() {
         print("*****LOCALIZED!!!***")
         // TODO: Here we need to add the sounds to PULSE
+        // pulseplayer.setup()
+        // pulseplayer.addAndPlayAllSoundsAtLocations() // TODO write this one.
+        // TODO: something to render the debug spheres
     }
     func didFailARKitGeoCoaching() {
         state.page = .outsideGeoTrackingArea
