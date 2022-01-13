@@ -24,7 +24,9 @@ struct ARViewIndicator: UIViewControllerRepresentable {
 
 // MARK: - ARView
 
-class ARView: UIViewController, ARSCNViewDelegate {
+class ARView: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
+    
+    let coachingOverlay = ARCoachingOverlayView()
     
     var arView: ARSCNView {
         return self.view as! ARSCNView
@@ -37,7 +39,23 @@ class ARView: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         arView.delegate = self
+        arView.session.delegate = self
         arView.scene = SCNScene()
+        setupCoachingOverlay()
+    }
+    
+    func restartSession() {
+        ARGeoTrackingConfiguration.checkAvailability { (available, error) in
+            if !available {
+                let errorDescription = error?.localizedDescription ?? ""
+                let recommendation = "Please try again in an area where geotracking is supported."
+                let restartSession = UIAlertAction(title: "Restart Session", style: .default) { (_) in
+                    self.restartSession()
+                }
+                self.alertUser(withTitle: "Geotracking unavailable",
+                               message: "\(errorDescription)\n\(recommendation)",
+                               actions: [restartSession])
+            }
     }
     
     // MARK: - Functions for standard AR view handling
