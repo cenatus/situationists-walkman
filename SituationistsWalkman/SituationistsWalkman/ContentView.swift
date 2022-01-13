@@ -7,33 +7,26 @@
 
 import SwiftUI
 
+
+
 // MARK - ContentView
 
 struct ContentView: View {
-    @State var page = "Home"
+    @StateObject var state = AppState()
     
     var body: some View {
         VStack {
-            if page == "Home" {
-                Button("Switch to ARView") {
-                    self.page = "ARView"
-                }
-            } else if page == "ARView" {
-                ZStack {
-                    ARView()
-                    VStack {
-                        Spacer()
-                        Spacer()
-                        Button("Home") {
-                            self.page = "Home"
-                        }.padding()
-                            .background(RoundedRectangle(cornerRadius: 10)
-                                            .foregroundColor(Color.white).opacity(0.7))
-                    }
-                }
+            switch state.page {
+            case .intro:
+                IntroView()
+            case .experience:
+                ExperienceView()
+            case .unsupportedDevice:
+                ErrorView(message: "Sorry, your device is not supported!")
+            case .outsideGeoTrackingArea:
+                ErrorView(message: "Sorry, Geographic AR is not supported where you are.")
             }
-            
-        }
+        }.environmentObject(state)
     }
 }
 

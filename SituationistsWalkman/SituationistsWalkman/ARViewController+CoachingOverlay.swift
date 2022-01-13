@@ -10,6 +10,7 @@ import ARKit
 
 extension ARViewController: ARCoachingOverlayViewDelegate {
     func setupCoachingOverlay() {
+        print("***** in the coaching overlay setup");
         coachingOverlay.delegate = self
         arView.addSubview(coachingOverlay)
         coachingOverlay.goal = .geoTracking
@@ -31,7 +32,7 @@ extension ARViewController: ARCoachingOverlayViewDelegate {
     func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
         ARGeoTrackingConfiguration.checkAvailability { (available, error) in
             if available {
-                // TODO: Here we need to load the audios if geotracking localized successfully. This should probably be a single method call to somewhere else.
+                self.delegate.didCompleteARKitGeoCoaching()
             }
             
         }

@@ -12,8 +12,11 @@
 		228EDA3E278F385600D2838A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA3D278F385600D2838A /* Assets.xcassets */; };
 		228EDA41278F385600D2838A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA40278F385600D2838A /* Preview Assets.xcassets */; };
 		228EDA48278F39FF00D2838A /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA47278F39FF00D2838A /* ARView.swift */; };
-		228EDA4F278F43AE00D2838A /* UnsupportedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA4E278F43AE00D2838A /* UnsupportedView.swift */; };
+		228EDA4F278F43AE00D2838A /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA4E278F43AE00D2838A /* ErrorView.swift */; };
 		228EDA51278F4A0200D2838A /* ARViewController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA50278F4A0200D2838A /* ARViewController+CoachingOverlay.swift */; };
+		22D4F50A2790899E00012377 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F5092790899E00012377 /* IntroView.swift */; };
+		22D4F50C27908B7200012377 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50B27908B7200012377 /* AppState.swift */; };
+		22D4F50E27908CFF00012377 /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50D27908CFF00012377 /* ExperienceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +26,11 @@
 		228EDA3D278F385600D2838A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		228EDA40278F385600D2838A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		228EDA47278F39FF00D2838A /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
-		228EDA4E278F43AE00D2838A /* UnsupportedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsupportedView.swift; sourceTree = "<group>"; };
+		228EDA4E278F43AE00D2838A /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		228EDA50278F4A0200D2838A /* ARViewController+CoachingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+CoachingOverlay.swift"; sourceTree = "<group>"; };
+		22D4F5092790899E00012377 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		22D4F50B27908B7200012377 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		22D4F50D27908CFF00012377 /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +67,12 @@
 				228EDA3D278F385600D2838A /* Assets.xcassets */,
 				228EDA3F278F385600D2838A /* Preview Content */,
 				228EDA47278F39FF00D2838A /* ARView.swift */,
+				22D4F5092790899E00012377 /* IntroView.swift */,
+				22D4F50D27908CFF00012377 /* ExperienceView.swift */,
 				228EDA50278F4A0200D2838A /* ARViewController+CoachingOverlay.swift */,
 				228EDA3B278F385200D2838A /* ContentView.swift */,
-				228EDA4E278F43AE00D2838A /* UnsupportedView.swift */,
+				228EDA4E278F43AE00D2838A /* ErrorView.swift */,
+				22D4F50B27908B7200012377 /* AppState.swift */,
 			);
 			path = SituationistsWalkman;
 			sourceTree = "<group>";
@@ -146,11 +155,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				228EDA4F278F43AE00D2838A /* UnsupportedView.swift in Sources */,
+				228EDA4F278F43AE00D2838A /* ErrorView.swift in Sources */,
 				228EDA3C278F385200D2838A /* ContentView.swift in Sources */,
+				22D4F50E27908CFF00012377 /* ExperienceView.swift in Sources */,
+				22D4F50C27908B7200012377 /* AppState.swift in Sources */,
 				228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */,
 				228EDA48278F39FF00D2838A /* ARView.swift in Sources */,
 				228EDA51278F4A0200D2838A /* ARViewController+CoachingOverlay.swift in Sources */,
+				22D4F50A2790899E00012377 /* IntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +297,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -316,6 +329,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

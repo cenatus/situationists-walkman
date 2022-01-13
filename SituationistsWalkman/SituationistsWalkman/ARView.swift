@@ -7,80 +7,81 @@
 
 import Foundation
 import ARKit
+import RealityKit
 import SwiftUI
 
-// MARK: - ARView
+// MARK: - ARViewContainer
 
-struct ARView: UIViewControllerRepresentable {
+struct ARViewContainer: UIViewControllerRepresentable {
+    
+    let delegate: ARViewContainerDelegate
+    
     typealias UIViewControllerType = ARViewController
     
     func makeUIViewController(context: Context) -> ARViewController {
-        return ARViewController()
+        let controller = ARViewController()
+        controller.delegate = delegate
+        return controller
     }
     
     func updateUIViewController(_ uiViewController:
-                                ARView.UIViewControllerType, context:
-                                UIViewControllerRepresentableContext<ARView>) { }
+                                ARViewContainer.UIViewControllerType, context:
+                                UIViewControllerRepresentableContext<ARViewContainer>) { }
 }
 
 // MARK: - ARViewController
 
-class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
+class ARViewController: UIViewController, ARSessionDelegate {
     
     let coachingOverlay = ARCoachingOverlayView()
     
-    var arView: ARSCNView {
-        return self.view as! ARSCNView
+    var delegate : ARViewContainerDelegate!
+    
+    var arView: ARView {
+        return self.view as! ARView
     }
     
     override func loadView() {
-        self.view = ARSCNView(frame: .zero)
+        self.view = ARView(frame: .zero)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        arView.delegate = self
         arView.session.delegate = self
-        arView.scene = SCNScene()
         setupCoachingOverlay()
+        //locationManager.delegate = self
+        arView.automaticallyConfigureSession = false
+        restartSession()
+    }
+            
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.shared.isIdleTimerDisabled = true
+        //locationManager.requestWhenInUseAuthorization()
+        //locationManager.startUpdatingLocation()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        arView.session.pause()
+        //locationManager.stopUpdatingLocation()
     }
     
     func restartSession() {
         ARGeoTrackingConfiguration.checkAvailability { (available, error) in
             if !available {
-               // TODO: Go to the not available error page
+                self.delegate.didFailARKitGeoCoaching()
             }
         }
     }
+
     
-    // MARK: - Functions for standard AR view handling
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let configuration = ARWorldTrackingConfiguration()
-        arView.session.run(configuration)
-        arView.delegate = self
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        arView.session.pause()
-    }
-    
-    // MARK: - ARSCNViewDelegate
-    
-    func sessionWasInterrupted(_ session: ARSession) {}
-    
-    func sessionInterruptionEnded(_ session: ARSession) {}
-    
-    func session(_ session: ARSession, didFailWithError error: Error)
-    {}
-    
-    func session(_ session: ARSession, cameraDidChangeTrackingState
-                 camera: ARCamera) {}
+    // MARK: - ARSessionDelegate
+}
+
+
+// MARK: - ARViewDelegate
+protocol ARViewContainerDelegate {
+    func didCompleteARKitGeoCoaching()
+    func didFailARKitGeoCoaching()
 }
