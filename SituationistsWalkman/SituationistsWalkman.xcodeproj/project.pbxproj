@@ -13,7 +13,6 @@
 		228EDA41278F385600D2838A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA40278F385600D2838A /* Preview Assets.xcassets */; };
 		228EDA48278F39FF00D2838A /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA47278F39FF00D2838A /* ARView.swift */; };
 		228EDA4F278F43AE00D2838A /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA4E278F43AE00D2838A /* ErrorView.swift */; };
-		228EDA51278F4A0200D2838A /* ARViewController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA50278F4A0200D2838A /* ARViewController+CoachingOverlay.swift */; };
 		22D4F50A2790899E00012377 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F5092790899E00012377 /* IntroView.swift */; };
 		22D4F50C27908B7200012377 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50B27908B7200012377 /* AppState.swift */; };
 		22D4F50E27908CFF00012377 /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50D27908CFF00012377 /* ExperienceView.swift */; };
@@ -27,10 +26,10 @@
 		228EDA40278F385600D2838A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		228EDA47278F39FF00D2838A /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		228EDA4E278F43AE00D2838A /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		228EDA50278F4A0200D2838A /* ARViewController+CoachingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARViewController+CoachingOverlay.swift"; sourceTree = "<group>"; };
 		22D4F5092790899E00012377 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		22D4F50B27908B7200012377 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		22D4F50D27908CFF00012377 /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
+		22D4F50F2790965C00012377 /* AR Session 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "AR Session 2.mov"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +46,7 @@
 		228EDA2D278F385200D2838A = {
 			isa = PBXGroup;
 			children = (
+				22D4F50F2790965C00012377 /* AR Session 2.mov */,
 				228EDA38278F385200D2838A /* SituationistsWalkman */,
 				228EDA37278F385200D2838A /* Products */,
 			);
@@ -69,7 +69,6 @@
 				228EDA47278F39FF00D2838A /* ARView.swift */,
 				22D4F5092790899E00012377 /* IntroView.swift */,
 				22D4F50D27908CFF00012377 /* ExperienceView.swift */,
-				228EDA50278F4A0200D2838A /* ARViewController+CoachingOverlay.swift */,
 				228EDA3B278F385200D2838A /* ContentView.swift */,
 				228EDA4E278F43AE00D2838A /* ErrorView.swift */,
 				22D4F50B27908B7200012377 /* AppState.swift */,
@@ -161,7 +160,6 @@
 				22D4F50C27908B7200012377 /* AppState.swift in Sources */,
 				228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */,
 				228EDA48278F39FF00D2838A /* ARView.swift in Sources */,
-				228EDA51278F4A0200D2838A /* ARViewController+CoachingOverlay.swift in Sources */,
 				22D4F50A2790899E00012377 /* IntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

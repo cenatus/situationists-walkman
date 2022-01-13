@@ -28,6 +28,7 @@ struct ExperienceView: View, ARViewContainerDelegate {
     // MARK: - ARViewContainerDelegate
     
     func didCompleteARKitGeoCoaching() {
+        print("*****LOCALIZED!!!***")
         // TODO: Here we need to add the sounds to PULSE
     }
     func didFailARKitGeoCoaching() {
