@@ -23,6 +23,7 @@
 		72D456352792124900AAE2F7 /* drone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456322792124900AAE2F7 /* drone.mp3 */; };
 		72D456362792124900AAE2F7 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456332792124900AAE2F7 /* piano.mp3 */; };
 		72D456372792124900AAE2F7 /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456342792124900AAE2F7 /* guitar.mp3 */; };
+		72D45639279216AC00AAE2F7 /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D45638279216AC00AAE2F7 /* Experience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		72D456322792124900AAE2F7 /* drone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drone.mp3; sourceTree = "<group>"; };
 		72D456332792124900AAE2F7 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
 		72D456342792124900AAE2F7 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
+		72D45638279216AC00AAE2F7 /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				228EDA47278F39FF00D2838A /* ARView.swift */,
 				22D4F5092790899E00012377 /* IntroView.swift */,
 				22D4F50D27908CFF00012377 /* ExperienceView.swift */,
+				72D45638279216AC00AAE2F7 /* Experience.swift */,
 				228EDA3B278F385200D2838A /* ContentView.swift */,
 				228EDA4E278F43AE00D2838A /* ErrorView.swift */,
 				22D4F50B27908B7200012377 /* AppState.swift */,
@@ -188,6 +191,7 @@
 				228EDA48278F39FF00D2838A /* ARView.swift in Sources */,
 				72D4562E2792121B00AAE2F7 /* PHASEPlayer.swift in Sources */,
 				72D4562F2792121B00AAE2F7 /* PHASEPlayerSound.swift in Sources */,
+				72D45639279216AC00AAE2F7 /* Experience.swift in Sources */,
 				22D4F50A2790899E00012377 /* IntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

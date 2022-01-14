@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ExperienceView: View, ARViewContainerDelegate {
     @EnvironmentObject var state : AppState
-    
+ 
     var body: some View {
         ZStack {
             ARViewContainer(delegate: self)
@@ -30,11 +30,10 @@ struct ExperienceView: View, ARViewContainerDelegate {
     // MARK: - ARViewContainerDelegate
     
     func didCompleteARKitGeoCoaching() {
-        print("*****LOCALIZED!!!***")
-        // TODO: Here we need to add the sounds to PULSE
-        // pulseplayer.setup()
-        // pulseplayer.addAndPlayAllSoundsAtLocations() // TODO write this one.
-        // TODO: something to render the debug spheres
+        print("***** LOCALIZED!!! ***")
+        Experience.setup()
+        
+        Experience.start()
     }
     func didFailARKitGeoCoaching() {
         state.page = .outsideGeoTrackingArea
