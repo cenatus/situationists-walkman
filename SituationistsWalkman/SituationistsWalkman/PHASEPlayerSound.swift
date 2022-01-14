@@ -11,6 +11,8 @@ import PHASE
 class PHASEPlayerSound {
     struct Config: Codable {
         let anchor_name: String
+        let lat: Double
+        let lon: Double
         let audio_file: String
         let debug_color: String
         let source_radius: Float
@@ -26,6 +28,8 @@ class PHASEPlayerSound {
     let config : Config!
     
     let anchorName : String!
+    let lat: Double!
+    let lon: Double!
     let audioFile: String!
     let debugColor: String!
     let sourceRadius: Float!
@@ -46,6 +50,8 @@ class PHASEPlayerSound {
         self.config = config
         
         self.anchorName = config.anchor_name
+        self.lat = config.lat
+        self.lon = config.lon
         self.audioFile = config.audio_file
         self.debugColor = config.debug_color
         self.sourceRadius = config.source_radius
