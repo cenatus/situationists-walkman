@@ -8,8 +8,6 @@
 import SwiftUI
 import ARKit
 
-// TODO: integrate CMHeadphoneMotionManager and implement its delegate folowing exmpl in Tim's spike, IFF supported (this could even be made part of the PhasePlayer itself tbh).
-
 struct ExperienceView: View, ARViewContainerDelegate {
     @EnvironmentObject var state : AppState
     

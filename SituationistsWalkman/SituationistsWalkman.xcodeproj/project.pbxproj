@@ -31,6 +31,7 @@
 		2204BA352791A11E001BA93F /* PHASEPlayerSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHASEPlayerSound.swift; sourceTree = "<group>"; };
 		2204BA362791A11E001BA93F /* PHASEPlayerDebugRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHASEPlayerDebugRenderer.swift; sourceTree = "<group>"; };
 		2204BA372791A11F001BA93F /* PHASEPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHASEPlayer.swift; sourceTree = "<group>"; };
+		2204BA402795ABA6001BA93F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		228EDA36278F385200D2838A /* SituationistsWalkman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SituationistsWalkman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SituationistsWalkmanApp.swift; sourceTree = "<group>"; };
 		228EDA3B278F385200D2838A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		228EDA38278F385200D2838A /* SituationistsWalkman */ = {
 			isa = PBXGroup;
 			children = (
+				2204BA402795ABA6001BA93F /* Info.plist */,
 				2204BA372791A11F001BA93F /* PHASEPlayer.swift */,
 				2204BA362791A11E001BA93F /* PHASEPlayerDebugRenderer.swift */,
 				2204BA352791A11E001BA93F /* PHASEPlayerSound.swift */,
@@ -332,8 +334,10 @@
 				DEVELOPMENT_TEAM = 4QU8NPQ536;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SituationistsWalkman/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
+				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to your device motion data to locate you within the experience";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -364,8 +368,10 @@
 				DEVELOPMENT_TEAM = 4QU8NPQ536;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SituationistsWalkman/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
+				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to your device motion data to locate you within the experience";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

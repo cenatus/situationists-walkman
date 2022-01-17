@@ -8,6 +8,7 @@
 import Foundation
 import PHASE
 import ARKit
+import CoreMotion
 
 class PHASEPlayer {
     
@@ -35,6 +36,7 @@ class PHASEPlayer {
     
     let engine: PHASEEngine!
     let listener: PHASEListener!
+    let hmm = CMHeadphoneMotionManager()
     
     var sounds: [String : PHASEPlayerSound] = [:]
     
@@ -84,9 +86,28 @@ class PHASEPlayer {
         for (_, sound) in sounds {
             sound.locateAndStart(session: session)
         }
+        if hmm.isDeviceMotionAvailable {
+            hmm.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: {[weak self] motion, error in
+                 guard let motion = motion, error == nil else { return }
+                 self?.headPosition = motion.attitude.rotationMatrix.toFloat4x4()
+             })
+        }
+        
     }
     
     func teardown() {
         self.engine.stop()
     }
 }
+
+extension CMRotationMatrix {
+    func toFloat4x4() -> float4x4 {
+        let m = self
+        let x = SIMD4(Float(m.m11), Float(m.m21), Float(m.m31), 0)
+        let y = SIMD4(Float(m.m12), Float(m.m22), Float(m.m32), 0)
+        let z = SIMD4(Float(m.m13), Float(m.m23), Float(m.m33), 0)
+        let w = SIMD4(Float(0), Float(0), Float(0), Float(1))
+        return simd_float4x4(columns: (x, y, z, w))
+    }
+}
+

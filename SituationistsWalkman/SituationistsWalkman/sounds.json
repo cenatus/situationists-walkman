@@ -8,7 +8,7 @@
             "debug_color": "yellow",
             "source_radius": 1.0,
             "cull_distance": 25.0,
-            "rolloff_factor": 1.0,
+            "rolloff_factor": 1.2,
             "reverb_send_level": 0.1,
             "reference_level": 12
         },
@@ -20,7 +20,7 @@
             "debug_color": "blue",
             "source_radius": 1.0,
             "cull_distance": 25.0,
-            "rolloff_factor": 1.0,
+            "rolloff_factor": 1.2,
             "reverb_send_level": 0.1,
             "reference_level": 12
         },
@@ -31,7 +31,7 @@
             "debug_color": "cyan",
             "source_radius": 1.0,
             "cull_distance": 25.0,
-            "rolloff_factor": 1.0,
+            "rolloff_factor": 1.2,
             "reverb_send_level": 0.5,
             "reference_level": 12
         }
