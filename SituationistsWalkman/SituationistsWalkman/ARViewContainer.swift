@@ -98,7 +98,7 @@ class ARViewController: UIViewController {
 // MARK: - ARViewDelegate
 
 protocol ARViewContainerDelegate {
-    func didCompleteARKitGeoCoaching(session: ARSession)
+    func didCompleteARKitGeoCoaching(session: ARSession, scene: RealityKit.Scene)
     func didUpdateListenerPosition(position: float4x4)
     func didFailARKitGeoCoaching()
 }
@@ -108,7 +108,10 @@ protocol ARViewContainerDelegate {
 extension ARViewController : ARSessionDelegate {
     func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
         if geoTrackingStatus.state == .localized {
-            DispatchQueue.main.async { self.delegate.didCompleteARKitGeoCoaching(session: self.arView.session) }
+            DispatchQueue.main.async {
+                self.delegate.didCompleteARKitGeoCoaching(
+                    session: self.arView.session,
+                    scene: self.arView.scene) }
         }
     }
     

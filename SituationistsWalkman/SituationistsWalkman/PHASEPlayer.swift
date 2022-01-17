@@ -9,6 +9,7 @@ import Foundation
 import PHASE
 import ARKit
 import CoreMotion
+import RealityKit
 
 class PHASEPlayer {
     
@@ -81,10 +82,10 @@ class PHASEPlayer {
         }
     }
     
-    func setup(_ session : ARSession) {
+    func setup(_ session : ARSession, scene : RealityKit.Scene) {
         try! self.engine.start()
         for (_, sound) in sounds {
-            sound.locateAndStart(session: session)
+            sound.locateAndStart(session: session, scene: scene)
         }
         if hmm.isDeviceMotionAvailable {
             hmm.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: {[weak self] motion, error in

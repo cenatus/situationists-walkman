@@ -8,6 +8,7 @@
 import Foundation
 import PHASE
 import ARKit
+import RealityKit
 
 class PHASEPlayerSound {
     struct LocationConfig: Codable {
@@ -118,13 +119,25 @@ class PHASEPlayerSound {
         )
     }
 
-    func locateAndStart(session: ARSession) {
+    func locateAndStart(session: ARSession, scene: RealityKit.Scene) {
         let geoAnchor = ARGeoAnchor(
             coordinate: CLLocationCoordinate2D(latitude: self.lat, longitude: self.lng),
             altitude: CLLocationDistance(self.ele)
         )
         session.add(anchor: geoAnchor)
         startAtPosition(geoAnchor.transform)
+        
+        // MSP render viz here
+//        let sphereResource = MeshResource.generateSphere(radius: 0.05)
+//        let spehereMaterial = SimpleMaterial(color: .blue, roughness: 0, isMetallic: true)
+//        let sphereEntity = ModelEntity(mesh: sphereResource, materials: [spehereMaterial])
+        
+//        if let anchor = myScene.findEntity(named: "My Anchor Entity") {
+//            anchor.addChild(myEntity)
+//        }
+        
+//        geoAnchor.addChild(sphereEntity)
+        
     }
     
     func startAtPosition(_ position: float4x4) {

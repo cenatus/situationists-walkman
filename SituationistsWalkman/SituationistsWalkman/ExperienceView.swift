@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ARKit
+import RealityKit
 
 struct ExperienceView: View, ARViewContainerDelegate {
     @EnvironmentObject var state : AppState
@@ -39,9 +40,9 @@ struct ExperienceView: View, ARViewContainerDelegate {
     
     // MARK: - ARViewContainerDelegate
     
-    func didCompleteARKitGeoCoaching(session : ARSession) {
+    func didCompleteARKitGeoCoaching(session : ARSession, scene : RealityKit.Scene) {
         print("*****LOCALIZED!!!***")
-        player.setup(session)
+        player.setup(session, scene: scene)
         // TODO: something to render the debug spheres
     }
 
