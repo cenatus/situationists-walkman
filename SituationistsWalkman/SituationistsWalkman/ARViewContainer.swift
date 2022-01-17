@@ -113,7 +113,7 @@ extension ARViewController : ARSessionDelegate {
     }
     
     func session(_ session: ARSession, didUpdate  frame: ARFrame) {
-        DispatchQueue.main.async { self.delegate.didUpdateListenerPosition(position: frame.camera.transform) }
+        self.delegate.didUpdateListenerPosition(position: frame.camera.transform)
     }
 }
 
