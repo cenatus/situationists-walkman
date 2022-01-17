@@ -119,6 +119,13 @@ extension ARViewController : ARSessionDelegate {
         let transform = matrix_multiply(frame.camera.transform, matrix_identity_float4x4) // HACKY way of copying this so we don't tie up the buffer
         DispatchQueue.main.async { self.delegate.didUpdateListenerPosition(position: transform) }
     }
+    
+    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+        for geoAnchor in anchors.compactMap({ $0 as? ARGeoAnchor }) {
+            // Add an AR placemark visualization for the geo anchor.
+            self.arView.scene.addAnchor(PHASESoundVisualiser.mspEntity(for: geoAnchor))
+        }
+    }
 }
 
 // MARK: - ARCoachingOverlayViewDelegate

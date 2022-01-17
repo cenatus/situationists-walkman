@@ -37,6 +37,17 @@ struct PHASESoundVisualiser {
         return placemarkAnchor
     }
     
+    static func mspEntity(for geoAnchor: ARAnchor) -> AnchorEntity {
+        let sphereResource = MeshResource.generateSphere(radius: 5)
+        let spehereMaterial = SimpleMaterial(color: .blue, roughness: 0, isMetallic: true)
+        let sphereEntity = ModelEntity(mesh: sphereResource, materials: [spehereMaterial])
+
+        let anchorEntity = AnchorEntity(anchor: geoAnchor)
+        anchorEntity.addChild(sphereEntity)
+        
+        return anchorEntity
+    }
+    
     static func generateSphereIndicator(radius: Float) -> Entity {
         let indicatorEntity = Entity()
         

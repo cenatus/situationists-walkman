@@ -2,37 +2,14 @@
     "reverb_preset": "largeRoom",
     "sounds": [
         {
-            "anchor_name": "serres_parasite",
-            "location": { "lat": 51.52589, "lng": -0.07552 , "ele": 2.0 },
-            "audio_file": "guitar",
+            "anchor_name": "bandstand_opposite_hocker_st",
+            "location": { "lat": 51.526340, "lng": -0.074786 , "ele": 2.0 },
+            "audio_file": "msp-cb",
             "debug_color": "yellow",
-            "source_radius": 1.0,
-            "cull_distance": 25.0,
+            "source_radius": 0.5,
+            "cull_distance": 0.1,
             "rolloff_factor": 1.2,
             "reverb_send_level": 0.1,
-            "reference_level": 12
-        },
-        {
-            
-            "anchor_name": "douglas_purity_danger",
-            "location": { "lat": 51.52577, "lng": -0.07529, "ele": 2.0 },
-            "audio_file": "drone",
-            "debug_color": "blue",
-            "source_radius": 1.0,
-            "cull_distance": 25.0,
-            "rolloff_factor": 1.2,
-            "reverb_send_level": 0.1,
-            "reference_level": 12
-        },
-        {
-            "anchor_name": "morton_being_ecological",
-            "location": { "lat": 51.52574, "lng": -0.07475 , "ele": 2.0 },
-            "audio_file": "piano",
-            "debug_color": "cyan",
-            "source_radius": 1.0,
-            "cull_distance": 25.0,
-            "rolloff_factor": 1.2,
-            "reverb_send_level": 0.5,
             "reference_level": 12
         }
     ]

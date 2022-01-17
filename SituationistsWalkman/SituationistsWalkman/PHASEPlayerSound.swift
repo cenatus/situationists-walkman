@@ -126,17 +126,8 @@ class PHASEPlayerSound {
         )
         session.add(anchor: geoAnchor)
         startAtPosition(geoAnchor.transform)
-        
-        // MSP render viz here
-//        let sphereResource = MeshResource.generateSphere(radius: 0.05)
-//        let spehereMaterial = SimpleMaterial(color: .blue, roughness: 0, isMetallic: true)
-//        let sphereEntity = ModelEntity(mesh: sphereResource, materials: [spehereMaterial])
-        
-//        if let anchor = myScene.findEntity(named: "My Anchor Entity") {
-//            anchor.addChild(myEntity)
-//        }
-        
-//        geoAnchor.addChild(sphereEntity)
+
+//        scene.addAnchor(PHASESoundVisualiser.mspEntity(for: geoAnchor))
         
     }
     
