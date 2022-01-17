@@ -3,35 +3,35 @@
     "sounds": [
         {
             "anchor_name": "serres_parasite",
-            "location": { "lat": 51.526075, "lng": -0.074916 , "ele": 2.0 },
+            "location": { "lat": 51.52589, "lng": -0.07552 , "ele": 2.0 },
             "audio_file": "guitar",
             "debug_color": "yellow",
-            "source_radius": 0.08,
-            "cull_distance": 5.0,
-            "rolloff_factor": 2.0,
+            "source_radius": 1.0,
+            "cull_distance": 25.0,
+            "rolloff_factor": 1.0,
             "reverb_send_level": 0.1,
             "reference_level": 12
         },
         {
             
             "anchor_name": "douglas_purity_danger",
-            "location": { "lat": 51.526118, "lng": -0.075273, "ele": 2.0 },
+            "location": { "lat": 51.52577, "lng": -0.07529, "ele": 2.0 },
             "audio_file": "drone",
             "debug_color": "blue",
-            "source_radius": 0.2,
-            "cull_distance": 8.0,
-            "rolloff_factor": 2.0,
+            "source_radius": 1.0,
+            "cull_distance": 25.0,
+            "rolloff_factor": 1.0,
             "reverb_send_level": 0.1,
             "reference_level": 12
         },
         {
             "anchor_name": "morton_being_ecological",
-            "location": { "lat": 51.526019, "lng": -0.074581 , "ele": 2.0 },
+            "location": { "lat": 51.52574, "lng": -0.07475 , "ele": 2.0 },
             "audio_file": "piano",
             "debug_color": "cyan",
-            "source_radius": 0.0142,
-            "cull_distance": 1.0,
-            "rolloff_factor": 2.0,
+            "source_radius": 1.0,
+            "cull_distance": 25.0,
+            "rolloff_factor": 1.0,
             "reverb_send_level": 0.5,
             "reference_level": 12
         }

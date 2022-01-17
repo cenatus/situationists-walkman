@@ -17,6 +17,13 @@ struct ExperienceView: View, ARViewContainerDelegate {
     
     var player : PHASEPlayer { return  PHASEPlayer(playerConfig) }
     
+    // If you're thinking of refactoring this so it's inside the player
+    // class and completely transparent here, while I agree that'd be
+    // vastly more aesthetically pleasing, please don't! That brings
+    // back the weird deadlock/livelock/whateverlock errors it was put
+    // here to solve, and i've no idea why.
+    let playerQueue = DispatchQueue(label: "phasePlayer", qos: .userInteractive)
+    
     var body: some View {
         ZStack {
             ARViewContainer(delegate: self)
@@ -41,7 +48,7 @@ struct ExperienceView: View, ARViewContainerDelegate {
     }
 
     func didUpdateListenerPosition(position: float4x4) {
-        player.devicePosition = position
+        playerQueue.async { player.devicePosition = position }
     }
     
     func didFailARKitGeoCoaching() {

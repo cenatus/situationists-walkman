@@ -63,7 +63,6 @@ class PHASEPlayer {
     
     init(_ configFileName : String) {
         self.engine = PHASEEngine(updateMode: .automatic)
-        try! self.engine.start()
         self.listener = PHASEListener(engine: self.engine)
         self.listener.transform = matrix_identity_float4x4
         try! self.engine.rootObject.addChild(self.listener)
@@ -81,7 +80,7 @@ class PHASEPlayer {
     }
     
     func setup(_ session : ARSession) {
-        //try! self.engine.start()
+        try! self.engine.start()
         for (_, sound) in sounds {
             sound.locateAndStart(session: session)
         }
@@ -89,11 +88,5 @@ class PHASEPlayer {
     
     func teardown() {
         self.engine.stop()
-    }
-    
-    func playSampleAtPosition(sample : String, position : float4x4) -> PHASEPlayerSound {
-        let sound = sounds[sample]!
-        sound.startAtPosition(position)
-        return sound
     }
 }
