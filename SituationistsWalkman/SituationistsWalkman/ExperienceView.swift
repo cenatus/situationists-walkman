@@ -21,7 +21,7 @@ struct ExperienceView: View, ARViewContainerDelegate {
     // vastly more aesthetically pleasing, please don't! That brings
     // back the weird deadlock/livelock/whateverlock errors it was put
     // here to solve, and i've no idea why.
-    let playerQueue = DispatchQueue(label: "phasePlayer", qos: .userInteractive)
+//    let playerQueue = DispatchQueue(label: "phasePlayer", qos: .userInteractive)
     
     var body: some View {
         ZStack {
@@ -43,11 +43,10 @@ struct ExperienceView: View, ARViewContainerDelegate {
     func didCompleteARKitGeoCoaching(session : ARSession, scene : RealityKit.Scene) {
         print("*****LOCALIZED!!!***")
         player.setup(session, scene: scene)
-        // TODO: something to render the debug spheres
     }
 
     func didUpdateListenerPosition(position: float4x4) {
-        playerQueue.async { player.devicePosition = position }
+//        playerQueue.async { player.devicePosition = position }
     }
     
     func didFailARKitGeoCoaching() {
