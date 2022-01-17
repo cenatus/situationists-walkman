@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2204BA382791A11F001BA93F /* PHASEPlayerSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2204BA352791A11E001BA93F /* PHASEPlayerSound.swift */; };
+		2204BA392791A11F001BA93F /* PHASEPlayerDebugRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2204BA362791A11E001BA93F /* PHASEPlayerDebugRenderer.swift */; };
+		2204BA3F2791A2B9001BA93F /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2204BA3E2791A2B9001BA93F /* test.mp3 */; };
 		228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */; };
 		228EDA3C278F385200D2838A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA3B278F385200D2838A /* ContentView.swift */; };
 		228EDA3E278F385600D2838A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA3D278F385600D2838A /* Assets.xcassets */; };
@@ -27,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2204BA352791A11E001BA93F /* PHASEPlayerSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHASEPlayerSound.swift; sourceTree = "<group>"; };
+		2204BA362791A11E001BA93F /* PHASEPlayerDebugRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHASEPlayerDebugRenderer.swift; sourceTree = "<group>"; };
+		2204BA372791A11F001BA93F /* PHASEPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHASEPlayer.swift; sourceTree = "<group>"; };
+		2204BA3E2791A2B9001BA93F /* test.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = test.mp3; sourceTree = "<group>"; };
 		228EDA36278F385200D2838A /* SituationistsWalkman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SituationistsWalkman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SituationistsWalkmanApp.swift; sourceTree = "<group>"; };
 		228EDA3B278F385200D2838A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2204BA3D2791A2A9001BA93F /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				2204BA3E2791A2B9001BA93F /* test.mp3 */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
 		228EDA2D278F385200D2838A = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +94,10 @@
 		228EDA38278F385200D2838A /* SituationistsWalkman */ = {
 			isa = PBXGroup;
 			children = (
+				2204BA3D2791A2A9001BA93F /* audio */,
+				2204BA372791A11F001BA93F /* PHASEPlayer.swift */,
+				2204BA362791A11E001BA93F /* PHASEPlayerDebugRenderer.swift */,
+				2204BA352791A11E001BA93F /* PHASEPlayerSound.swift */,
 				228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */,
 				228EDA3D278F385600D2838A /* Assets.xcassets */,
 				228EDA3F278F385600D2838A /* Preview Content */,
@@ -172,6 +191,7 @@
 				72D456362792124900AAE2F7 /* piano.mp3 in Resources */,
 				72D456312792122100AAE2F7 /* sounds.json in Resources */,
 				72D456352792124900AAE2F7 /* drone.mp3 in Resources */,
+				2204BA3F2791A2B9001BA93F /* test.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,9 +202,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2204BA382791A11F001BA93F /* PHASEPlayerSound.swift in Sources */,
 				228EDA4F278F43AE00D2838A /* ErrorView.swift in Sources */,
 				228EDA3C278F385200D2838A /* ContentView.swift in Sources */,
 				22D4F50E27908CFF00012377 /* ExperienceView.swift in Sources */,
+				2204BA392791A11F001BA93F /* PHASEPlayerDebugRenderer.swift in Sources */,
 				22D4F50C27908B7200012377 /* AppState.swift in Sources */,
 				228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */,
 				72D4562D2792121B00AAE2F7 /* PHASEPlayerDebugRenderer.swift in Sources */,
@@ -323,7 +345,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SituationistsWalkman/Preview Content\"";
-				DEVELOPMENT_TEAM = 2SU4NFSVXJ;
+				DEVELOPMENT_TEAM = 4QU8NPQ536;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
@@ -355,7 +377,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SituationistsWalkman/Preview Content\"";
-				DEVELOPMENT_TEAM = 2SU4NFSVXJ;
+				DEVELOPMENT_TEAM = 4QU8NPQ536;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";

@@ -5,9 +5,9 @@
 //  Created by Tim on 11/1/22.
 //
 
-import ARKit
 import Foundation
 import PHASE
+import ARKit
 
 class PHASEPlayer {
     
@@ -63,6 +63,7 @@ class PHASEPlayer {
     
     init(_ configFileName : String) {
         self.engine = PHASEEngine(updateMode: .automatic)
+        try! self.engine.start()
         self.listener = PHASEListener(engine: self.engine)
         self.listener.transform = matrix_identity_float4x4
         try! self.engine.rootObject.addChild(self.listener)
@@ -79,8 +80,11 @@ class PHASEPlayer {
         }
     }
     
-    func setup() {
-        try! self.engine.start()
+    func setup(_ session : ARSession) {
+        //try! self.engine.start()
+        for (_, sound) in sounds {
+            sound.locateAndStart(session: session)
+        }
     }
     
     func teardown() {
@@ -92,41 +96,4 @@ class PHASEPlayer {
         sound.startAtPosition(position)
         return sound
     }
-    
-    func positionAll() {
-        for (_, sound) in sounds {
-            addGeoAnchor(at: CLLocationCoordinate2D(latitude: sound.lat, longitude: sound.lon))
-        }
-
-    }
-    
-    private func addGeoAnchor(at location: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil) {
-        var geoAnchor: ARGeoAnchor!
-        if let altitude = altitude {
-            geoAnchor = ARGeoAnchor(coordinate: location, altitude: altitude)
-        } else {
-            geoAnchor = ARGeoAnchor(coordinate: location)
-        }
-        
-        addGeoAnchor(geoAnchor)
-    }
-    
-    private func addGeoAnchor(_ geoAnchor: ARGeoAnchor) {
-//        TODO MSP - I think we may still need to do this as tracking can drop at any time
-        // Don't add a geo anchor if Core Location isn't sure yet where the user is.
-//        guard isGeoTrackingLocalized else {
-//            alertUser(withTitle: "Cannot add geo anchor", message: "Unable to add geo anchor because geotracking has not yet localized.")
-//            return
-//        }
-//        TODO MSP
-//        arView.session.add(anchor: geoAnchor)
-    }
-    
-    private var isGeoTrackingLocalized: Bool {
-//        if let status = arView.session.currentFrame?.geoTrackingStatus, status.state == .localized {
-//            return true
-//        }
-        return false
-    }
-    
 }

@@ -49,7 +49,6 @@ class ARViewController: UIViewController {
         super.viewDidLoad()
         arView.session.delegate = self
         setupCoachingOverlay()
-        //locationManager.delegate = self
         arView.automaticallyConfigureSession = false
         restartSession()
     }
@@ -99,7 +98,7 @@ class ARViewController: UIViewController {
 // MARK: - ARViewDelegate
 
 protocol ARViewContainerDelegate {
-    func didCompleteARKitGeoCoaching()
+    func didCompleteARKitGeoCoaching(session: ARSession)
     func didFailARKitGeoCoaching()
 }
 
@@ -108,7 +107,7 @@ protocol ARViewContainerDelegate {
 extension ARViewController : ARSessionDelegate {
     func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
         if geoTrackingStatus.state == .localized {
-            DispatchQueue.main.async { self.delegate.didCompleteARKitGeoCoaching() }
+            DispatchQueue.main.async { self.delegate.didCompleteARKitGeoCoaching(session: self.arView.session) }
         }
     }
 }

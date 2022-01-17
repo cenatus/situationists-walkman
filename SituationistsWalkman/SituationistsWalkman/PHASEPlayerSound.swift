@@ -7,12 +7,17 @@
 
 import Foundation
 import PHASE
+import ARKit
 
 class PHASEPlayerSound {
+    struct LocationConfig: Codable {
+        let lat: Double
+        let lng: Double
+        let ele: Double
+    }
+    
     struct Config: Codable {
         let anchor_name: String
-        let lat: Double
-        let lon: Double
         let audio_file: String
         let debug_color: String
         let source_radius: Float
@@ -20,6 +25,7 @@ class PHASEPlayerSound {
         let rolloff_factor: Double
         let reverb_send_level: Double
         let reference_level: Double
+        let location: LocationConfig
     }
     
     let player : PHASEPlayer!
@@ -28,8 +34,6 @@ class PHASEPlayerSound {
     let config : Config!
     
     let anchorName : String!
-    let lat: Double!
-    let lon: Double!
     let audioFile: String!
     let debugColor: String!
     let sourceRadius: Float!
@@ -37,7 +41,11 @@ class PHASEPlayerSound {
     let rolloffFactor: Double!
     let reverbSendLevel: Double!
     let referenceLevel: Double!
-    
+
+    let lat: Double!
+    let lng: Double!
+    let ele: Double!
+
     var position : float4x4 {
         get { return source.transform }
         set(newValue) {
@@ -50,8 +58,6 @@ class PHASEPlayerSound {
         self.config = config
         
         self.anchorName = config.anchor_name
-        self.lat = config.lat
-        self.lon = config.lon
         self.audioFile = config.audio_file
         self.debugColor = config.debug_color
         self.sourceRadius = config.source_radius
@@ -59,7 +65,10 @@ class PHASEPlayerSound {
         self.rolloffFactor = config.rolloff_factor
         self.reverbSendLevel = config.reverb_send_level
         self.referenceLevel = config.reference_level
-        
+        self.lat = config.location.lat
+        self.lng = config.location.lng
+        self.ele = config.location.ele
+
         let url = Bundle.main.url(forResource: audioFile, withExtension: "mp3")!
         
         try! player.engine.assetRegistry.registerSoundAsset(
@@ -88,6 +97,9 @@ class PHASEPlayerSound {
         samplerNodeDefinition.setCalibrationMode(calibrationMode: .relativeSpl, level: referenceLevel)
         samplerNodeDefinition.cullOption = .sleepWakeAtRealtimeOffset
         
+        print("ANCHORNAME: \(anchorName ?? "EMPTY")")
+        print("SND: \(samplerNodeDefinition)")
+        print("REGISTRY: \(player.engine.assetRegistry)")
         try! player.engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: anchorName)
         
         let mesh = MDLMesh.newIcosahedron(withRadius: sourceRadius, inwardNormals: false, allocator: nil)
@@ -108,7 +120,16 @@ class PHASEPlayerSound {
             mixerParameters: mixerParameters
         )
     }
-        
+
+    func locateAndStart(session: ARSession) {
+        let geoAnchor = ARGeoAnchor(
+            coordinate: CLLocationCoordinate2D(latitude: self.lat, longitude: self.lng),
+            altitude: CLLocationDistance(self.ele)
+        )
+        session.add(anchor: geoAnchor)
+        startAtPosition(geoAnchor.transform)
+    }
+    
     func startAtPosition(_ position: float4x4) {
         self.position = position
         soundEvent.start()

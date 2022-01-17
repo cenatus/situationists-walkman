@@ -16,8 +16,8 @@ struct Experience {
 //    static let debugRenderer : PHASEPlayerDebugRenderer!
 
     static func setup() {
-        phasePlayer.setup()
-        phasePlayer.positionAll()
+        //phasePlayer.setup()
+        //phasePlayer.positionAll()
 //        debugRenderer = PHASEPlayerDebugRenderer(arView.scene)
     }
     

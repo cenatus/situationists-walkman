@@ -3,8 +3,7 @@
     "sounds": [
         {
             "anchor_name": "serres_parasite",
-            "lat": 51.526075,
-            "lon": -0.074916,
+            "location": { "lat": 51.526075, "lng": -0.074916 , "ele": 2.0 },
             "audio_file": "guitar",
             "debug_color": "yellow",
             "source_radius": 0.08,
@@ -16,8 +15,7 @@
         {
             
             "anchor_name": "douglas_purity_danger",
-            "lat": 51.526118,
-            "lon": -0.075273,
+            "location": { "lat": 51.526118, "lng": -0.075273, "ele": 2.0 },
             "audio_file": "drone",
             "debug_color": "blue",
             "source_radius": 0.2,
@@ -28,14 +26,24 @@
         },
         {
             "anchor_name": "morton_being_ecological",
-            "lat": 51.526019,
-            "lon": -0.074581,
+            "location": { "lat": 51.526019, "lng": -0.074581 , "ele": 2.0 },
             "audio_file": "piano",
             "debug_color": "cyan",
             "source_radius": 0.0142,
             "cull_distance": 1.0,
             "rolloff_factor": 2.0,
             "reverb_send_level": 0.5,
+            "reference_level": 12
+        },
+        {
+            "location": { "lat": 51.52588290570274, "lng": -0.07552206824756849 , "ele": 2.0 },
+            "anchor_name": "test",
+            "audio_file": "test",
+            "debug_color": "blue",
+            "source_radius": 2.0,
+            "cull_distance": 25.0,
+            "rolloff_factor": 2.0,
+            "reverb_send_level": 0.1,
             "reference_level": 12
         }
     ]
