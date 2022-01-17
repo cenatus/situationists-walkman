@@ -97,9 +97,6 @@ class PHASEPlayerSound {
         samplerNodeDefinition.setCalibrationMode(calibrationMode: .relativeSpl, level: referenceLevel)
         samplerNodeDefinition.cullOption = .sleepWakeAtRealtimeOffset
         
-        print("ANCHORNAME: \(anchorName ?? "EMPTY")")
-        print("SND: \(samplerNodeDefinition)")
-        print("REGISTRY: \(player.engine.assetRegistry)")
         try! player.engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: anchorName)
         
         let mesh = MDLMesh.newIcosahedron(withRadius: sourceRadius, inwardNormals: false, allocator: nil)

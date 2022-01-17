@@ -34,17 +34,6 @@
             "rolloff_factor": 2.0,
             "reverb_send_level": 0.5,
             "reference_level": 12
-        },
-        {
-            "location": { "lat": 51.52588290570274, "lng": -0.07552206824756849 , "ele": 2.0 },
-            "anchor_name": "test",
-            "audio_file": "test",
-            "debug_color": "blue",
-            "source_radius": 2.0,
-            "cull_distance": 25.0,
-            "rolloff_factor": 2.0,
-            "reverb_send_level": 0.1,
-            "reference_level": 12
         }
     ]
 }

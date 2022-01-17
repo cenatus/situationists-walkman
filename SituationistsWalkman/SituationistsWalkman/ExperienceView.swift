@@ -39,6 +39,11 @@ struct ExperienceView: View, ARViewContainerDelegate {
         player.setup(session)
         // TODO: something to render the debug spheres
     }
+
+    func didUpdateListenerPosition(position: float4x4) {
+        player.devicePosition = position
+    }
+    
     func didFailARKitGeoCoaching() {
         state.page = .outsideGeoTrackingArea
     }
