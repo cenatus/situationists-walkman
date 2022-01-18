@@ -49,6 +49,28 @@ struct ARViewContainer: UIViewRepresentable {
                 longitude: -0.074774)
         )
 
+        let geoAnchor3 = ARGeoAnchor(
+            name: "bandstand",
+            coordinate: CLLocationCoordinate2D(
+                latitude: 51.526060,
+                longitude: -0.074908)
+        )
+
+        let geoAnchor4 = ARGeoAnchor(
+            name: "chertsy-house",
+            coordinate: CLLocationCoordinate2D(
+                latitude: 51.526297,
+                longitude: -0.074577)
+        )
+        
+        let geoAnchor5 = ARGeoAnchor(
+            name: "rochelle-st",
+            coordinate: CLLocationCoordinate2D(
+                latitude: 51.525998,
+                longitude: -0.074419)
+        )
+
+        
         
         sleep(1) // Hack to simluate a ready env. This should all likely be in a callback.
                 
@@ -67,21 +89,48 @@ struct ARViewContainer: UIViewRepresentable {
         
         uiView.session.add(anchor: geoAnchor1)
         uiView.session.add(anchor: geoAnchor2)
+        uiView.session.add(anchor: geoAnchor3)
+        uiView.session.add(anchor: geoAnchor4)
+        uiView.session.add(anchor: geoAnchor5)
         
         uiView.scene.addAnchor(
             SpeakerVisualiser.run(                
                 for: geoAnchor1,
-                color: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5),
-                soundRadius: 1.5
+                color: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.7),
+                soundRadius: 5
             )
         )
         uiView.scene.addAnchor(
             SpeakerVisualiser.run(
                 for: geoAnchor2,
-                color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5),
-                soundRadius: 0.5
+                color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.7),
+                soundRadius: 6
             )
-        )        
+        )
+        uiView.scene.addAnchor(
+            SpeakerVisualiser.run(
+                for: geoAnchor3,
+                color: UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.7),
+                soundRadius: 10
+            )
+        )
+        
+        uiView.scene.addAnchor(
+            SpeakerVisualiser.run(
+                for: geoAnchor4,
+                color: UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.7),
+                soundRadius: 10
+            )
+        )
+        
+        uiView.scene.addAnchor(
+            SpeakerVisualiser.run(
+                for: geoAnchor5,
+                color: UIColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.7),
+                soundRadius: 20
+            )
+        )
+
     }
     
     func  restartSession(arView : ARView) {

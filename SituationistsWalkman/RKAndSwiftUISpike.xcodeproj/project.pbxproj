@@ -25,6 +25,7 @@
 		724403C42796E06600383819 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		724403CB2796E78400383819 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		724403CD2797231000383819 /* SpeakerVisualiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerVisualiser.swift; sourceTree = "<group>"; };
+		72F7D5E927976C8E00924477 /* Arnold Circus 20211217 1435 - AC Bandstand.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Arnold Circus 20211217 1435 - AC Bandstand.mov"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +42,7 @@
 		724403AF2796E06500383819 = {
 			isa = PBXGroup;
 			children = (
+				72F7D5E927976C8E00924477 /* Arnold Circus 20211217 1435 - AC Bandstand.mov */,
 				7239AB4B27975CDF005B1071 /* Arnold Circus 20211217 1454 - AC Bandstand 2.mov */,
 				724403BA2796E06500383819 /* RKAndSwiftUISpike */,
 				724403B92796E06500383819 /* Products */,

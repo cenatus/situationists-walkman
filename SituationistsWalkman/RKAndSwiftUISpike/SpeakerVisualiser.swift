@@ -11,12 +11,12 @@ import RealityKit
 struct SpeakerVisualiser {
     
     static func run(for geoAnchor: ARAnchor, color : UIColor, soundRadius : Float ) -> AnchorEntity {
-        let speakerResource = MeshResource.generateBox(size: 0.2)
+        let speakerResource = MeshResource.generateBox(size: 0.4)
         let speakerMaterial = SimpleMaterial(color: UIColor.black, isMetallic: true)
         let speakerEntity = ModelEntity(mesh: speakerResource, materials: [speakerMaterial])
         
         let sphereResource = MeshResource.generateSphere(radius: soundRadius)
-        let spehereMaterial = SimpleMaterial(color: color, roughness: 0, isMetallic: true)
+        let spehereMaterial = SimpleMaterial(color: color, roughness: 0, isMetallic: false)
         let sphereEntity = ModelEntity(mesh: sphereResource, materials: [spehereMaterial])
         
         let textResource = MeshResource.generateText(geoAnchor.name ?? "????",
