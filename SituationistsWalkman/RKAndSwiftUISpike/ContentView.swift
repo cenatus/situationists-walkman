@@ -69,15 +69,17 @@ struct ARViewContainer: UIViewRepresentable {
         uiView.session.add(anchor: geoAnchor2)
         
         uiView.scene.addAnchor(
-            AnchorVisualiser.run(
+            SpeakerVisualiser.run(                
                 for: geoAnchor1,
-                color: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+                color: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5),
+                soundRadius: 1.5
             )
         )
         uiView.scene.addAnchor(
-            AnchorVisualiser.run(
+            SpeakerVisualiser.run(
                 for: geoAnchor2,
-                color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
+                color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5),
+                soundRadius: 0.5
             )
         )        
     }
