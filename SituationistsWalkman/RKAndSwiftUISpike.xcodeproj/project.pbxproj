@@ -13,6 +13,9 @@
 		724403C22796E06600383819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 724403C12796E06600383819 /* Assets.xcassets */; };
 		724403C52796E06600383819 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 724403C42796E06600383819 /* Preview Assets.xcassets */; };
 		724403CE2797231000383819 /* SpeakerVisualiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724403CD2797231000383819 /* SpeakerVisualiser.swift */; };
+		72F7D5EB27976FBF00924477 /* SpeakerConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F7D5EA27976FBF00924477 /* SpeakerConfigLoader.swift */; };
+		72F7D5ED2797715300924477 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F7D5EC2797715300924477 /* Speaker.swift */; };
+		72F7D5EF279779B300924477 /* speakers-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 72F7D5EE279779B300924477 /* speakers-config.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		724403CB2796E78400383819 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		724403CD2797231000383819 /* SpeakerVisualiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerVisualiser.swift; sourceTree = "<group>"; };
 		72F7D5E927976C8E00924477 /* Arnold Circus 20211217 1435 - AC Bandstand.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Arnold Circus 20211217 1435 - AC Bandstand.mov"; sourceTree = "<group>"; };
+		72F7D5EA27976FBF00924477 /* SpeakerConfigLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerConfigLoader.swift; sourceTree = "<group>"; };
+		72F7D5EC2797715300924477 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
+		72F7D5EE279779B300924477 /* speakers-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "speakers-config.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,9 @@
 				724403C12796E06600383819 /* Assets.xcassets */,
 				724403C32796E06600383819 /* Preview Content */,
 				724403CD2797231000383819 /* SpeakerVisualiser.swift */,
+				72F7D5EA27976FBF00924477 /* SpeakerConfigLoader.swift */,
+				72F7D5EC2797715300924477 /* Speaker.swift */,
+				72F7D5EE279779B300924477 /* speakers-config.json */,
 			);
 			path = RKAndSwiftUISpike;
 			sourceTree = "<group>";
@@ -137,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72F7D5EF279779B300924477 /* speakers-config.json in Resources */,
 				724403C52796E06600383819 /* Preview Assets.xcassets in Resources */,
 				724403C22796E06600383819 /* Assets.xcassets in Resources */,
 			);
@@ -152,7 +162,9 @@
 				724403BE2796E06500383819 /* ContentView.swift in Sources */,
 				724403BC2796E06500383819 /* AppDelegate.swift in Sources */,
 				724403C02796E06500383819 /* Experience.rcproject in Sources */,
+				72F7D5ED2797715300924477 /* Speaker.swift in Sources */,
 				724403CE2797231000383819 /* SpeakerVisualiser.swift in Sources */,
+				72F7D5EB27976FBF00924477 /* SpeakerConfigLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

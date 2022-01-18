@@ -19,118 +19,39 @@ struct ARViewContainer: UIViewRepresentable {
     
     func makeUIView(context: Context) -> ARView {
         print("makeUIView..........................................")
-        
+
         let arView = ARView(frame: .zero)
-        
-//        let boxAnchor = try! Experience.loadBox()
-//        arView.scene.anchors.append(boxAnchor)
-        
         restartSession(arView: arView)
-        
-        
+                
         return arView
-        
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
         print("updateUIView..........................................")
-                        
-        let geoAnchor1 = ARGeoAnchor(
-            name: "outer-bandstand-opposite-hocker-st",
-            coordinate: CLLocationCoordinate2D(
-                latitude: 51.526340,
-                longitude: -0.074786)
-        )
-        
-        let geoAnchor2 = ARGeoAnchor(
-            name: "down-hocker-st",
-            coordinate: CLLocationCoordinate2D(
-                latitude: 51.526422,
-                longitude: -0.074774)
-        )
 
-        let geoAnchor3 = ARGeoAnchor(
-            name: "bandstand",
-            coordinate: CLLocationCoordinate2D(
-                latitude: 51.526060,
-                longitude: -0.074908)
-        )
-
-        let geoAnchor4 = ARGeoAnchor(
-            name: "chertsy-house",
-            coordinate: CLLocationCoordinate2D(
-                latitude: 51.526297,
-                longitude: -0.074577)
-        )
-        
-        let geoAnchor5 = ARGeoAnchor(
-            name: "rochelle-st",
-            coordinate: CLLocationCoordinate2D(
-                latitude: 51.525998,
-                longitude: -0.074419)
-        )
-
-        
-        
-        sleep(1) // Hack to simluate a ready env. This should all likely be in a callback.
+        let speakers = SpeakerConfigLoader.run("speakers-config")
                 
-        var isGeoTrackingLocalized: Bool {
-            if let status = uiView.session.currentFrame?.geoTrackingStatus, status.state == .localized {
-                return true
-            }
-            return false
-        }
+        sleep(1) // Hack to simluate a ready env. This should all likely be in a callback.
         
+//        var isGeoTrackingLocalized: Bool {
+//            if let status = uiView.session.currentFrame?.geoTrackingStatus, status.state == .localized {
+//                return true
+//            }
+//            return false
+//        }
 //         Don't add a geo anchor if Core Location isn't sure yet where the user is.
 //        guard isGeoTrackingLocalized else {
 //            print("******************************************** Unable to add geo anchor because geotracking has not yet localized.")
 //            return
 //        }
-        
-        uiView.session.add(anchor: geoAnchor1)
-        uiView.session.add(anchor: geoAnchor2)
-        uiView.session.add(anchor: geoAnchor3)
-        uiView.session.add(anchor: geoAnchor4)
-        uiView.session.add(anchor: geoAnchor5)
-        
-        uiView.scene.addAnchor(
-            SpeakerVisualiser.run(                
-                for: geoAnchor1,
-                color: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.7),
-                soundRadius: 5
-            )
-        )
-        uiView.scene.addAnchor(
-            SpeakerVisualiser.run(
-                for: geoAnchor2,
-                color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.7),
-                soundRadius: 6
-            )
-        )
-        uiView.scene.addAnchor(
-            SpeakerVisualiser.run(
-                for: geoAnchor3,
-                color: UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.7),
-                soundRadius: 10
-            )
-        )
-        
-        uiView.scene.addAnchor(
-            SpeakerVisualiser.run(
-                for: geoAnchor4,
-                color: UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.7),
-                soundRadius: 10
-            )
-        )
-        
-        uiView.scene.addAnchor(
-            SpeakerVisualiser.run(
-                for: geoAnchor5,
-                color: UIColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 0.7),
-                soundRadius: 20
-            )
-        )
+                
+        for speaker in speakers {
+            uiView.session.add(anchor: speaker.geoAnchor)
 
+            uiView.scene.addAnchor(
+                SpeakerVisualiser.run(for: speaker)
+            )
+        }
     }
     
     func  restartSession(arView : ARView) {
