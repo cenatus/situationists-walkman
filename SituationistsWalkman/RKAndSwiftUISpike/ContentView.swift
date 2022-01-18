@@ -35,15 +35,23 @@ struct ARViewContainer: UIViewRepresentable {
     func updateUIView(_ uiView: ARView, context: Context) {
         print("updateUIView..........................................")
                         
-        // bandstand opposite hocker st
-        let geoAnchor1 = createGeoAnchor(at: CLLocationCoordinate2D(latitude: 51.526340, longitude: -0.074786) )
-
-        // down hocker st
-        let geoAnchor2 = createGeoAnchor(at: CLLocationCoordinate2D(latitude: 51.526422, longitude: -0.074774) )
-
-        let visualGeoAnchor1 = addVisualiserTo(geoAnchor: geoAnchor1)
-        let visualGeoAnchor2 = addVisualiserTo(geoAnchor: geoAnchor2)
+        let geoAnchor1 = ARGeoAnchor(
+            name: "outer-bandstand-opposite-hocker-st",
+            coordinate: CLLocationCoordinate2D(
+                latitude: 51.526340,
+                longitude: -0.074786)
+        )
         
+        let geoAnchor2 = ARGeoAnchor(
+            name: "down-hocker-st",
+            coordinate: CLLocationCoordinate2D(
+                latitude: 51.526422,
+                longitude: -0.074774)
+        )
+
+        
+        sleep(1) // Hack to simluate a ready env. This should all likely be in a callback.
+                
         var isGeoTrackingLocalized: Bool {
             if let status = uiView.session.currentFrame?.geoTrackingStatus, status.state == .localized {
                 return true
@@ -59,37 +67,20 @@ struct ARViewContainer: UIViewRepresentable {
         
         uiView.session.add(anchor: geoAnchor1)
         uiView.session.add(anchor: geoAnchor2)
-        uiView.scene.addAnchor(visualGeoAnchor1)
-        uiView.scene.addAnchor(visualGeoAnchor2)
         
-
+        uiView.scene.addAnchor(
+            AnchorVisualiser.run(
+                for: geoAnchor1,
+                color: UIColor(red: 0.0, green: 0.0, blue: 1.0, alpha: 0.5)
+            )
+        )
+        uiView.scene.addAnchor(
+            AnchorVisualiser.run(
+                for: geoAnchor2,
+                color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
+            )
+        )        
     }
-    
-    func createGeoAnchor(at location: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil) -> ARGeoAnchor {
-        var geoAnchor: ARGeoAnchor!
-        if let altitude = altitude {
-            geoAnchor = ARGeoAnchor(coordinate: location, altitude: altitude)
-        } else {
-            geoAnchor = ARGeoAnchor(coordinate: location)
-        }
-        
-        return geoAnchor
-    }
-
-    
-    func addVisualiserTo(geoAnchor: ARGeoAnchor) -> AnchorEntity {
-        let sphereResource = MeshResource.generateSphere(radius: 1)
-        let spehereMaterial = SimpleMaterial(color: .blue, roughness: 0, isMetallic: true)
-        let sphereEntity = ModelEntity(mesh: sphereResource, materials: [spehereMaterial])
-
-        let anchorEntity = AnchorEntity(anchor: geoAnchor)
-        anchorEntity.addChild(sphereEntity)
-        
-        return anchorEntity
-    }
-    
-    
-    
     
     func  restartSession(arView : ARView) {
         // Check geo-tracking location-based availability.
