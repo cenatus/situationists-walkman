@@ -55,7 +55,7 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> ARView {
-        let speakerConfig = SpeakerConfig("single-source-test-config");
+        let speakerConfig = SpeakerConfig("speakers-config");
         let arView = ARView(frame: .zero)
         arView.session.delegate = context.coordinator
         arView.automaticallyConfigureSession = false

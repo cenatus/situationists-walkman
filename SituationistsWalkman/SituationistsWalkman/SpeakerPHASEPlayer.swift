@@ -75,12 +75,14 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         }
         
         func play() {
-            let url = Bundle.main.url(forResource: speaker.audioFile, withExtension: "mp3")!
-            
-            try! engine.assetRegistry.registerSoundAsset(
-                url: url, identifier: speaker.audioFile, assetType: .resident,
-                channelLayout: nil, normalizationMode: .dynamic
-            )
+            if (engine.assetRegistry.asset(forIdentifier: speaker.audioFile) == nil) {
+                let url = Bundle.main.url(forResource: speaker.audioFile, withExtension: "mp3")!
+                
+                try! engine.assetRegistry.registerSoundAsset(
+                    url: url, identifier: speaker.audioFile, assetType: .resident,
+                    channelLayout: nil, normalizationMode: .dynamic
+                )
+            }
             
             let spatialMixerDefinition = makeSpatialMixerDefinition(
                 spatialPipeline: makeSpatialPipeline(),
