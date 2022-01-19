@@ -85,6 +85,7 @@ struct ARViewContainer: UIViewRepresentable {
     
     static func dismantleUIView(_ arView: ARView, coordinator: Coordinator) {
         arView.session.pause()
+        arView.removeFromSuperview()
         coordinator.player.teardown()
         UIApplication.shared.isIdleTimerDisabled = false
     }

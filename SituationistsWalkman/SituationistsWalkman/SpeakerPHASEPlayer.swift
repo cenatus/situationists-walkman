@@ -111,6 +111,12 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         func updatePosition(_ position : float4x4) {
             source.transform = position
         }
+        
+        func teardown() {
+            engine.assetRegistry.unregisterAsset(identifier: speaker.audioFile)
+            engine.assetRegistry.unregisterAsset(identifier: speaker.anchorName)
+            engine.rootObject.removeChild(source)
+        }
     }
     
     // kinda amazed you can't just look up in an enum by string directly, but ¯\_(ツ)_/¯
@@ -162,6 +168,13 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
     func teardown() {
         self.engine.stop()
+        if hmm.isDeviceMotionActive {
+            hmm.stopDeviceMotionUpdates()
+        }
+        for speaker in self.playingSpeakers.values {
+            speaker.teardown()
+        }
+        self.engine.rootObject.removeChild(self.listener)
     }
     
     func play(_ speaker: Speaker) {
