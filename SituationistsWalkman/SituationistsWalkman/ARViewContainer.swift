@@ -14,12 +14,12 @@ struct ARViewContainer: UIViewRepresentable {
     
     
     let  speakerConfig = SpeakerConfig("speakers-config");
-    var player : SpeakerPlayer { return SpeakerPlayer(speakerConfig) }
+    //var player : SpeakerPlayer { return SpeakerPlayer(speakerConfig) }
     
     class Coordinator : NSObject, ARSessionDelegate, ARCoachingOverlayViewDelegate {
         var arView : ARView!
         var container : ARViewContainer!
-        var player: SpeakerPlayer!
+        //var player: SpeakerPlayer!
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
@@ -27,7 +27,7 @@ struct ARViewContainer: UIViewRepresentable {
                 // FYI MSP here's the entry point to the speaker adding stuff
                 for speaker in container.speakerConfig.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
-                    player.play(speaker)
+                    //player.play(speaker)
                     arView.scene.addAnchor(
                         SpeakerVisualiser.createEntity(for: speaker)
                     )
@@ -36,8 +36,8 @@ struct ARViewContainer: UIViewRepresentable {
         }
         
         func session(_ session: ARSession, didUpdate frame: ARFrame) {
-            let position = frame.camera.transform
-            container.player.devicePosition = position
+            //let position = frame.camera.transform
+            //container.player.devicePosition = position
         }
                 
         // MARK: - ARCoachingOverlayViewDelegate
@@ -57,9 +57,9 @@ struct ARViewContainer: UIViewRepresentable {
         arView.automaticallyConfigureSession = false
         context.coordinator.arView = arView
         context.coordinator.container = self
-        context.coordinator.player = player
+        //context.coordinator.player = player
         restartSession(arView: arView)
-        player.setup()
+        //player.setup()
         UIApplication.shared.isIdleTimerDisabled = true
         return arView
     }
@@ -68,7 +68,7 @@ struct ARViewContainer: UIViewRepresentable {
         arView.session.pause()
         // this is a static method so we have to get the ref from the coordinator
         // as we don't have access to self. TODO factor this better.
-        coordinator.player.teardown()
+        //coordinator.player.teardown()
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
