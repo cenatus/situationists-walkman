@@ -1,0 +1,17 @@
+{
+    "reverb_preset": "largeRoom",
+    "sounds": [
+        {
+            "anchor_name": "bandstand",
+            "location": { "lat": 51.526060, "lng": -0.074908 , "ele": 2.0 },
+            "audio_file": "msp-cb",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 0.5,
+            "cull_distance": 10,
+            "rolloff_factor": 1.2,
+            "reverb_send_level": 0.1,
+            "reference_level": 12
+        }
+    ]
+}
+

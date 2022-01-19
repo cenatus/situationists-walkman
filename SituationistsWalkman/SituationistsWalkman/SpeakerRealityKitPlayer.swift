@@ -31,4 +31,6 @@ class SpeakerRealityKitPlayer: NSObject, SpeakerPlayer {
     
     func updateDevicePosition(_ position: float4x4) {}
     
+    func updateAnchorPosition(for name : String, position : float4x4) {}
+    
 }

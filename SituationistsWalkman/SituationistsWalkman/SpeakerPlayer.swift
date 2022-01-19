@@ -13,4 +13,5 @@ protocol SpeakerPlayer {
         func play(_ speaker : Speaker)
         func teardown()
         func updateDevicePosition(_ position : float4x4)
+        func updateAnchorPosition(for name : String, position : float4x4)
 }

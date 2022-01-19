@@ -13,6 +13,104 @@ import RealityKit
 
 class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
+    private class PHASESpeaker {
+        private let speaker : Speaker
+        private let engine : PHASEEngine
+        private let listener: PHASEListener
+        private let source : PHASESource
+        
+        init(_ speaker : Speaker, engine: PHASEEngine, listener: PHASEListener) {
+            self.speaker = speaker
+            self.engine = engine
+            self.listener = listener
+            
+            let mesh = MDLMesh.newIcosahedron(withRadius: speaker.sourceRadius, inwardNormals: false, allocator: nil)
+            let shape = PHASEShape(engine: engine, mesh: mesh)
+            let source = PHASESource(engine: engine, shapes: [shape])
+
+            source.transform = speaker.geoAnchor.transform
+            self.source = source
+        }
+        
+        private func makeSpatialPipeline() -> PHASESpatialPipeline {
+            let spatialPipelineFlags : PHASESpatialPipeline.Flags = [.directPathTransmission, .lateReverb]
+            let spatialPipeline = PHASESpatialPipeline(flags: spatialPipelineFlags)!
+            spatialPipeline.entries[PHASESpatialCategory.lateReverb]!.sendLevel = speaker.reverbSendLevel;
+            return spatialPipeline
+        }
+        
+        private func makeDistanceModelParameters() -> PHASEDistanceModelParameters {
+            let distanceModelParameters = PHASEGeometricSpreadingDistanceModelParameters()
+            distanceModelParameters.fadeOutParameters =
+            PHASEDistanceModelFadeOutParameters(cullDistance: speaker.cullDistance)
+            distanceModelParameters.rolloffFactor = speaker.rolloffFactor
+            return distanceModelParameters
+        }
+        
+        
+        private func makeSpatialMixerDefinition(spatialPipeline : PHASESpatialPipeline, distanceModelParameters: PHASEDistanceModelParameters) -> PHASESpatialMixerDefinition {
+            let spatialMixerDefinition = PHASESpatialMixerDefinition(spatialPipeline: spatialPipeline)
+            spatialMixerDefinition.distanceModelParameters = distanceModelParameters
+            return spatialMixerDefinition
+        }
+        
+        private func makeSamplerNodeDefinition(spatialMixerDefinition : PHASESpatialMixerDefinition) -> PHASESamplerNodeDefinition {
+            let samplerNodeDefinition = PHASESamplerNodeDefinition(
+                soundAssetIdentifier: speaker.audioFile,
+                mixerDefinition: spatialMixerDefinition
+            )
+            samplerNodeDefinition.playbackMode = .looping
+            samplerNodeDefinition.setCalibrationMode(calibrationMode: .relativeSpl, level: speaker.referenceLevel)
+            samplerNodeDefinition.cullOption = .sleepWakeAtRealtimeOffset
+            return samplerNodeDefinition
+        }
+        
+        private func makeMixerParameters(spatialMixerDefinition : PHASESpatialMixerDefinition, source: PHASESource) -> PHASEMixerParameters {
+            let mixerParameters = PHASEMixerParameters()
+            mixerParameters.addSpatialMixerParameters(
+                identifier: spatialMixerDefinition.identifier,
+                source: source, listener: listener
+            )
+            return mixerParameters
+        }
+        
+        func play() {
+            let url = Bundle.main.url(forResource: speaker.audioFile, withExtension: "mp3")!
+            
+            try! engine.assetRegistry.registerSoundAsset(
+                url: url, identifier: speaker.audioFile, assetType: .resident,
+                channelLayout: nil, normalizationMode: .dynamic
+            )
+            
+            let spatialMixerDefinition = makeSpatialMixerDefinition(
+                spatialPipeline: makeSpatialPipeline(),
+                distanceModelParameters: makeDistanceModelParameters()
+            )
+            
+            let samplerNodeDefinition = makeSamplerNodeDefinition(spatialMixerDefinition: spatialMixerDefinition)
+            
+            try! engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: speaker.anchorName)
+            
+            try! engine.rootObject.addChild(source)
+            
+            let mixerParameters = makeMixerParameters(
+                spatialMixerDefinition: spatialMixerDefinition,
+                source: source
+            )
+            
+            let soundEvent = try! PHASESoundEvent(
+                engine: engine, assetIdentifier: speaker.anchorName,
+                mixerParameters: mixerParameters
+            )
+            
+            soundEvent.start()
+        }
+        
+        func updatePosition(_ position : float4x4) {
+            source.transform = position
+        }
+    }
+    
     // kinda amazed you can't just look up in an enum by string directly, but ¯\_(ツ)_/¯
     let REVERB_PRESETS : [String :PHASEReverbPreset] = Dictionary.init(uniqueKeysWithValues: [
         ("cathedral", PHASEReverbPreset.cathedral),
@@ -30,15 +128,16 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         ("none", PHASEReverbPreset.none)
     ])
     
-    let config: SpeakerConfig!
-    let engine: PHASEEngine!
-    let listener: PHASEListener!
-    let hmm = CMHeadphoneMotionManager()
+    private let config: SpeakerConfig!
+    private let engine: PHASEEngine!
+    private let listener: PHASEListener!
+    private let hmm = CMHeadphoneMotionManager()
     
+    private var playingSpeakers : [String : PHASESpeaker] = [:]
     private var devicePosition: simd_float4x4 = matrix_identity_float4x4;
     private var headPosition: simd_float4x4 = matrix_identity_float4x4;
     
-    init(_ config: SpeakerConfig) {
+    init(config: SpeakerConfig) {
         self.config = config
         self.engine = PHASEEngine(updateMode: .automatic)
         self.listener = PHASEListener(engine: self.engine)
@@ -64,12 +163,20 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     }
     
     func play(_ speaker: Speaker) {
-        /*speaker.play(on: self) */
+        let phaseSpeaker = PHASESpeaker(speaker, engine: self.engine, listener: self.listener)
+        playingSpeakers[speaker.anchorName] = phaseSpeaker
+        phaseSpeaker.play()
     }
     
     func updateDevicePosition(_ position: float4x4) {
         devicePosition = position
         listener.transform = matrix_multiply(devicePosition, headPosition)
+    }
+    
+    func updateAnchorPosition(for name : String, position : float4x4) {
+        if let speaker = playingSpeakers[name] {
+            speaker.updatePosition(position)
+        }
     }
     
     private func updateHeadPosition(_ position : float4x4) {

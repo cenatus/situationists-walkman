@@ -21,7 +21,6 @@ struct ARViewContainer: UIViewRepresentable {
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
             if geoTrackingStatus.state == .localized {
-                // FYI MSP here's the entry point to the speaker adding stuff
                 for speaker in speakerConfig.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
                     player.play(speaker)
@@ -32,9 +31,17 @@ struct ARViewContainer: UIViewRepresentable {
             }
         }
         
+        func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+            for anchor in anchors {
+                if let name = anchor.name {
+                    player.updateAnchorPosition(for: name, position: anchor.transform)
+                }
+            }
+        }
+        
         func session(_ session: ARSession, didUpdate frame: ARFrame) {
-            //let position = frame.camera.transform
-            //container.player.updateDevicePosition(position)
+            let position = frame.camera.transform
+            player.updateDevicePosition(position)
         }
                 
         // MARK: - ARCoachingOverlayViewDelegate
@@ -48,12 +55,12 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> ARView {
-        let speakerConfig = SpeakerConfig("speakers-config");
+        let speakerConfig = SpeakerConfig("single-source-test-config");
         let arView = ARView(frame: .zero)
         arView.session.delegate = context.coordinator
         arView.automaticallyConfigureSession = false
         
-        let player = SpeakerRealityKitPlayer(view: arView) // SpeakerPHASEPlayer(speakerConfig)
+        let player = SpeakerPHASEPlayer(config: speakerConfig) // SpeakerRealityKitPlayer(view: arView)
         player.setup()
 
         setupCoachingOverlay(arView: arView, context: context)
@@ -71,18 +78,13 @@ struct ARViewContainer: UIViewRepresentable {
     
     static func dismantleUIView(_ arView: ARView, coordinator: Coordinator) {
         arView.session.pause()
-        // this is a static method so we have to get the ref from the coordinator
-        // as we don't have access to self. TODO factor this better.
         coordinator.player.teardown()
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {
-        // FYI MSP - this all now goes in the callback where it needs to be to
-        // not have to do the sleep(1)
-    }
+    func updateUIView(_ uiView: ARView, context: Context) {}
     
-    func  restartSession(arView : ARView) {
+    func restartSession(arView : ARView) {
         ARGeoTrackingConfiguration.checkAvailability { (available, error) in
             if !available {
                 self.state.page = .outsideGeoTrackingArea

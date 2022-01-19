@@ -15,6 +15,7 @@
 		2209D64E27983A3600329FD7 /* speakers-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 2209D64A27983A3600329FD7 /* speakers-config.json */; };
 		2246D0FB279849F2007EE896 /* SpeakerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */; };
 		2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */; };
+		2246D0FF27985EA7007EE896 /* single-source-test-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 2246D0FE27985EA6007EE896 /* single-source-test-config.json */; };
 		228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */; };
 		228EDA3C278F385200D2838A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA3B278F385200D2838A /* ContentView.swift */; };
 		228EDA3E278F385600D2838A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA3D278F385600D2838A /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 		2209D64A27983A3600329FD7 /* speakers-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "speakers-config.json"; sourceTree = "<group>"; };
 		2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerPlayer.swift; sourceTree = "<group>"; };
 		2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerRealityKitPlayer.swift; sourceTree = "<group>"; };
+		2246D0FE27985EA6007EE896 /* single-source-test-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "single-source-test-config.json"; sourceTree = "<group>"; };
 		228EDA36278F385200D2838A /* SituationistsWalkman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SituationistsWalkman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SituationistsWalkmanApp.swift; sourceTree = "<group>"; };
 		228EDA3B278F385200D2838A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */,
 				2209D64A27983A3600329FD7 /* speakers-config.json */,
 				2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */,
+				2246D0FE27985EA6007EE896 /* single-source-test-config.json */,
 			);
 			path = SituationistsWalkman;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				72D456372792124900AAE2F7 /* guitar.mp3 in Resources */,
 				72D456362792124900AAE2F7 /* piano.mp3 in Resources */,
 				2209D64E27983A3600329FD7 /* speakers-config.json in Resources */,
+				2246D0FF27985EA7007EE896 /* single-source-test-config.json in Resources */,
 				72D456352792124900AAE2F7 /* drone.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

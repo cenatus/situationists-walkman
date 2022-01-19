@@ -33,6 +33,7 @@ struct SpeakerVisualiser {
         speakerEntity.addChild(sphereEntity)
         
         let anchorEntity = AnchorEntity(anchor: speaker.geoAnchor)
+        print("VIS TRANSFORM AT MOMENT CREATED \(speaker.geoAnchor.name ?? "unnamed"): \(speaker.geoAnchor.transform) ***********")
         anchorEntity.addChild(speakerEntity)
         
         return anchorEntity
