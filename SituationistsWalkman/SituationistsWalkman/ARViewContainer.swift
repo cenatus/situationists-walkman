@@ -59,8 +59,15 @@ struct ARViewContainer: UIViewRepresentable {
         let arView = ARView(frame: .zero)
         arView.session.delegate = context.coordinator
         arView.automaticallyConfigureSession = false
+        var player : SpeakerPlayer
+        if(speakerConfig.engine == "phase") {
+            print("**** using PHASE Audio Engine ***")
+            player = SpeakerPHASEPlayer(config: speakerConfig)
+        } else {
+            print("**** using Reality Kit Audio Engine ***")
+            player = SpeakerRealityKitPlayer(view: arView)
+        }
         
-        let player = SpeakerPHASEPlayer(config: speakerConfig) // SpeakerRealityKitPlayer(view: arView)
         player.setup()
 
         setupCoachingOverlay(arView: arView, context: context)

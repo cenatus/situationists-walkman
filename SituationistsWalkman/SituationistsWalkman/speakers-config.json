@@ -1,4 +1,5 @@
 {
+    "engine": "phase",
     "reverb_preset": "largeRoom",
     "sounds": [
         {

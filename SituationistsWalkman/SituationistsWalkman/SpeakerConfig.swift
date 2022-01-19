@@ -11,8 +11,10 @@ struct SpeakerConfig {
     
     let speakers : [Speaker]
     let reverbPreset : String
+    let engine : String
     
     struct Config: Codable {
+        let engine : String
         let reverb_preset: String
         let sounds : [Speaker.Config]
     }
@@ -25,6 +27,7 @@ struct SpeakerConfig {
  
         self.speakers = config.sounds.map { Speaker(config: $0 )}
         self.reverbPreset = config.reverb_preset
+        self.engine = config.engine
     }
 }
 
