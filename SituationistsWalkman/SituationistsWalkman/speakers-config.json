@@ -1,0 +1,61 @@
+{
+    "reverb_preset": "largeRoom",
+    "sounds": [
+        {
+            "anchor_name": "outer-bandstand-opposite-hocker-st",
+            "location": { "lat": 51.526340, "lng": -0.074786 , "ele": 2.0 },
+            "audio_file": "msp-cb",
+            "color": { "r": 0.0, "g": 0.0 , "b": 1.0, "a": 0.7 },
+            "source_radius": 0.5,
+            "cull_distance": 5,
+            "rolloff_factor": 1.2,
+            "reverb_send_level": 0.1,
+            "reference_level": 12
+        },
+        {
+            "anchor_name": "down-hocker-st",
+            "location": { "lat": 51.526422, "lng": -0.074774 , "ele": 2.0 },
+            "audio_file": "msp-cb",
+            "color": { "r": 1.0, "g": 0.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 0.5,
+            "cull_distance": 6,
+            "rolloff_factor": 1.2,
+            "reverb_send_level": 0.1,
+            "reference_level": 12
+        },
+        {
+            "anchor_name": "bandstand",
+            "location": { "lat": 51.526060, "lng": -0.074908 , "ele": 2.0 },
+            "audio_file": "msp-cb",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 0.5,
+            "cull_distance": 10,
+            "rolloff_factor": 1.2,
+            "reverb_send_level": 0.1,
+            "reference_level": 12
+        },
+        {
+            "anchor_name": "chertsy-house",
+            "location": { "lat": 51.526297, "lng": -0.074577 , "ele": 2.0 },
+            "audio_file": "msp-cb",
+            "color": { "r": 0.0, "g": 1.0 , "b": 1.0, "a": 0.7 },
+            "source_radius": 0.5,
+            "cull_distance": 10,
+            "rolloff_factor": 1.2,
+            "reverb_send_level": 0.1,
+            "reference_level": 12
+        },
+        {
+            "anchor_name": "rochelle-st",
+            "location": { "lat": 51.525998, "lng": -0.074419 , "ele": 2.0 },
+            "audio_file": "msp-cb",
+            "color": { "r": 0.5, "g": 0.5 , "b": 1.0, "a": 0.7 },
+            "source_radius": 0.5,
+            "cull_distance": 20,
+            "rolloff_factor": 1.2,
+            "reverb_send_level": 0.1,
+            "reference_level": 12
+        }
+    ]
+}
+

@@ -1,8 +1,8 @@
 //
-//  PHASEPlayer.swift
-//  TestARKitObjectDetection
+//  SpeakerPlayer.swift
+//  SituationistsWalkman
 //
-//  Created by Tim on 11/1/22.
+//  Created by Tim on 19/1/22.
 //
 
 import Foundation
@@ -11,13 +11,8 @@ import ARKit
 import CoreMotion
 import RealityKit
 
-class PHASEPlayer {
-    
-    struct Config: Codable {
-        let reverb_preset: String
-        let sounds : [PHASEPlayerSound.Config]
-    }
-    
+class SpeakerPlayer {
+        
     // kinda amazed you can't just look up in an enum by string directly, but ¯\_(ツ)_/¯
     let REVERB_PRESETS : [String :PHASEReverbPreset] = Dictionary.init(uniqueKeysWithValues: [
         ("cathedral", PHASEReverbPreset.cathedral),
@@ -35,11 +30,10 @@ class PHASEPlayer {
         ("none", PHASEReverbPreset.none)
     ])
     
+    let config: SpeakerConfig!
     let engine: PHASEEngine!
     let listener: PHASEListener!
     let hmm = CMHeadphoneMotionManager()
-    
-    var sounds: [String : PHASEPlayerSound] = [:]
     
     private var _devicePosition: simd_float4x4 = matrix_identity_float4x4;
     private var _headPosition: simd_float4x4 = matrix_identity_float4x4;
@@ -64,29 +58,17 @@ class PHASEPlayer {
         }
     }
     
-    init(_ configFileName : String) {
+    init(_ config: SpeakerConfig) {
+        self.config = config
         self.engine = PHASEEngine(updateMode: .automatic)
         self.listener = PHASEListener(engine: self.engine)
         self.listener.transform = matrix_identity_float4x4
-        try! self.engine.rootObject.addChild(self.listener)
-        
-        let path = Bundle.main.path(forResource: configFileName, ofType: "json")!
-        let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-        let decoder = JSONDecoder()
-        let config = try! decoder.decode(Config.self, from: data)
-        
-        self.engine.defaultReverbPreset = REVERB_PRESETS[config.reverb_preset]!
-        
-        for soundConfig in config.sounds {
-            sounds[soundConfig.anchor_name] = PHASEPlayerSound(player: self, config: soundConfig)
-        }
     }
     
-    func setup(_ session : ARSession, scene : RealityKit.Scene) {
+    func setup() {
+        try! self.engine.rootObject.addChild(self.listener)
+        self.engine.defaultReverbPreset = REVERB_PRESETS[config.reverbPreset]!
         try! self.engine.start()
-        for (_, sound) in sounds {
-            sound.locateAndStart(session: session, scene: scene)
-        }
         if hmm.isDeviceMotionAvailable {
             hmm.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: {[weak self] motion, error in
                  guard let motion = motion, error == nil else { return }
@@ -98,6 +80,10 @@ class PHASEPlayer {
     
     func teardown() {
         self.engine.stop()
+    }
+    
+    func play(_ speaker: Speaker) {
+        speaker.play(on: self)
     }
 }
 

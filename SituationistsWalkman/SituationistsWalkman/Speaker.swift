@@ -1,26 +1,33 @@
 //
-//  PHASEPlayerSound.swift
-//  TestARKitObjectDetection
+//  Speaker.swift
+//  RKAndSwiftUISpike
 //
-//  Created by Tim on 12/1/22.
+//  Created by msp on 18/01/2022.
 //
 
 import Foundation
+import UIKit
 import PHASE
 import ARKit
-import RealityKit
 
-class PHASEPlayerSound {
+class Speaker {
     struct LocationConfig: Codable {
         let lat: Double
         let lng: Double
         let ele: Double
     }
     
+    struct ColorConfig: Codable {
+        let r: Double
+        let g: Double
+        let b: Double
+        let a: Double
+    }
+    
     struct Config: Codable {
         let anchor_name: String
         let audio_file: String
-        let debug_color: String
+        let color: ColorConfig
         let source_radius: Float
         let cull_distance: Double
         let rolloff_factor: Double
@@ -29,38 +36,28 @@ class PHASEPlayerSound {
         let location: LocationConfig
     }
     
-    let player : PHASEPlayer!
-    let source : PHASESource!
-    let soundEvent : PHASESoundEvent!
     let config : Config!
+    let geoAnchor : ARGeoAnchor
+    
     
     let anchorName : String!
     let audioFile: String!
-    let debugColor: String!
+    let color: UIColor!
     let sourceRadius: Float!
     let cullDistance: Double!
     let rolloffFactor: Double!
     let reverbSendLevel: Double!
     let referenceLevel: Double!
-
+    
     let lat: Double!
     let lng: Double!
     let ele: Double!
-
-    var position : float4x4 {
-        get { return source.transform }
-        set(newValue) {
-            source.transform = newValue
-        }
-    }
     
-    init(player : PHASEPlayer, config: Config) {
-        self.player = player
+    init(config: Config) {
         self.config = config
         
         self.anchorName = config.anchor_name
         self.audioFile = config.audio_file
-        self.debugColor = config.debug_color
         self.sourceRadius = config.source_radius
         self.cullDistance = config.cull_distance
         self.rolloffFactor = config.rolloff_factor
@@ -69,7 +66,21 @@ class PHASEPlayerSound {
         self.lat = config.location.lat
         self.lng = config.location.lng
         self.ele = config.location.ele
-
+        
+        self.color = UIColor(red: config.color.r,
+                             green: config.color.g,
+                             blue: config.color.b,
+                             alpha: config.color.a)
+        
+        self.geoAnchor = ARGeoAnchor(
+            name: self.anchorName,
+            coordinate: CLLocationCoordinate2D(
+                latitude: self.lat,
+                longitude: self.lng)
+        )
+    }
+    
+    func play(on player : SpeakerPlayer) {
         let url = Bundle.main.url(forResource: audioFile, withExtension: "mp3")!
         
         try! player.engine.assetRegistry.registerSoundAsset(
@@ -103,8 +114,11 @@ class PHASEPlayerSound {
         let mesh = MDLMesh.newIcosahedron(withRadius: sourceRadius, inwardNormals: false, allocator: nil)
         
         let shape = PHASEShape(engine: player.engine, mesh: mesh)
-        self.source = PHASESource(engine: player.engine, shapes: [shape])
-        self.source.transform = matrix_identity_float4x4
+        
+        let source = PHASESource(engine: player.engine, shapes: [shape])
+        
+        source.transform = geoAnchor.transform
+        
         try! player.engine.rootObject.addChild(source)
         
         let mixerParameters = PHASEMixerParameters()
@@ -112,27 +126,11 @@ class PHASEPlayerSound {
             identifier: spatialMixerDefinition.identifier,
             source: source, listener: player.listener
         )
-
-        self.soundEvent = try! PHASESoundEvent(
+        let soundEvent = try! PHASESoundEvent(
             engine: player.engine, assetIdentifier: anchorName,
             mixerParameters: mixerParameters
         )
-    }
-
-    func locateAndStart(session: ARSession, scene: RealityKit.Scene) {
-        let geoAnchor = ARGeoAnchor(
-            coordinate: CLLocationCoordinate2D(latitude: self.lat, longitude: self.lng),
-            altitude: CLLocationDistance(self.ele)
-        )
-        session.add(anchor: geoAnchor)
-        startAtPosition(geoAnchor.transform)
-
-//        scene.addAnchor(PHASESoundVisualiser.mspEntity(for: geoAnchor))
         
-    }
-    
-    func startAtPosition(_ position: float4x4) {
-        self.position = position
         soundEvent.start()
     }
 }
