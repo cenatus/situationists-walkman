@@ -12,22 +12,19 @@ struct ARViewContainer: UIViewRepresentable {
     
     @EnvironmentObject var state : AppState
     
-    
-    let  speakerConfig = SpeakerConfig("speakers-config");
-    //var player : SpeakerPlayer { return SpeakerPlayer(speakerConfig) }
-    
     class Coordinator : NSObject, ARSessionDelegate, ARCoachingOverlayViewDelegate {
         var arView : ARView!
         var container : ARViewContainer!
-        //var player: SpeakerPlayer!
+        var speakerConfig : SpeakerConfig!
+        var player: SpeakerPlayer!
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
             if geoTrackingStatus.state == .localized {
                 // FYI MSP here's the entry point to the speaker adding stuff
-                for speaker in container.speakerConfig.speakers {
+                for speaker in speakerConfig.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
-                    //player.play(speaker)
+                    player.play(speaker)
                     arView.scene.addAnchor(
                         SpeakerVisualiser.createEntity(for: speaker)
                     )
@@ -37,7 +34,7 @@ struct ARViewContainer: UIViewRepresentable {
         
         func session(_ session: ARSession, didUpdate frame: ARFrame) {
             //let position = frame.camera.transform
-            //container.player.devicePosition = position
+            //container.player.updateDevicePosition(position)
         }
                 
         // MARK: - ARCoachingOverlayViewDelegate
@@ -51,16 +48,24 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> ARView {
+        let speakerConfig = SpeakerConfig("speakers-config");
         let arView = ARView(frame: .zero)
         arView.session.delegate = context.coordinator
-        setupCoachingOverlay(arView: arView, context: context)
         arView.automaticallyConfigureSession = false
+        
+        let player = SpeakerRealityKitPlayer(view: arView) // SpeakerPHASEPlayer(speakerConfig)
+        player.setup()
+
+        setupCoachingOverlay(arView: arView, context: context)
+
         context.coordinator.arView = arView
         context.coordinator.container = self
-        //context.coordinator.player = player
+        context.coordinator.player = player
+        context.coordinator.speakerConfig = speakerConfig
+        
         restartSession(arView: arView)
-        //player.setup()
         UIApplication.shared.isIdleTimerDisabled = true
+        
         return arView
     }
     
@@ -68,7 +73,7 @@ struct ARViewContainer: UIViewRepresentable {
         arView.session.pause()
         // this is a static method so we have to get the ref from the coordinator
         // as we don't have access to self. TODO factor this better.
-        //coordinator.player.teardown()
+        coordinator.player.teardown()
         UIApplication.shared.isIdleTimerDisabled = false
     }
     

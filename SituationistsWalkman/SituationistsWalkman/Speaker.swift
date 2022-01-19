@@ -80,7 +80,7 @@ class Speaker {
         )
     }
     
-    func play(on player : SpeakerPlayer) {
+    /*func play(on player : SpeakerPlayer) {
         let url = Bundle.main.url(forResource: audioFile, withExtension: "mp3")!
         
         try! player.engine.assetRegistry.registerSoundAsset(
@@ -132,5 +132,5 @@ class Speaker {
         )
         
         soundEvent.start()
-    }
+    } */
 }
