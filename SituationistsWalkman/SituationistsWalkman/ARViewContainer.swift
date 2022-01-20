@@ -20,7 +20,9 @@ struct ARViewContainer: UIViewRepresentable {
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
+            print("***** SituWalk: Geotracking status changed: \(geoTrackingStatus.state.rawValue) *****")
             if geoTrackingStatus.state == .localized {
+                print("***** SituWalk: Geotracking status LOCALIZED: \(geoTrackingStatus.state.rawValue) *****")
                 for speaker in speakerConfig.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
                     player.play(speaker)
@@ -33,6 +35,7 @@ struct ARViewContainer: UIViewRepresentable {
         
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
             for anchor in anchors {
+                print("***** SituWalk: Anchor udpated: \(anchor.name ?? "unnamed") at transform: \(anchor.transform) *****")
                 if let name = anchor.name {
                     player.updateAnchorPosition(for: name, position: anchor.transform)
                 }
@@ -46,6 +49,7 @@ struct ARViewContainer: UIViewRepresentable {
                 
         // MARK: - ARCoachingOverlayViewDelegate
         func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
+            print("***** SituWalk: Coaching overlay requested session reset *****")
             self.container.restartSession(arView: self.arView)
         }
     }
@@ -55,16 +59,17 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> ARView {
+        print("***** SituWalk: Creating view *****")
         let speakerConfig = SpeakerConfig("speakers-config");
         let arView = ARView(frame: .zero)
         arView.session.delegate = context.coordinator
         arView.automaticallyConfigureSession = false
         var player : SpeakerPlayer
         if(speakerConfig.engine == "phase") {
-            print("**** using PHASE Audio Engine ***")
+            print("**** SituWalk: using PHASE Audio Engine ***")
             player = SpeakerPHASEPlayer(config: speakerConfig)
         } else {
-            print("**** using Reality Kit Audio Engine ***")
+            print("**** SituWalk: using Reality Kit Audio Engine ***")
             player = SpeakerRealityKitPlayer(view: arView)
         }
         
@@ -84,6 +89,7 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     static func dismantleUIView(_ arView: ARView, coordinator: Coordinator) {
+        print("***** SituWalk: Dismantling view *****")
         arView.session.pause()
         arView.removeFromSuperview()
         coordinator.player.teardown()
@@ -93,6 +99,7 @@ struct ARViewContainer: UIViewRepresentable {
     func updateUIView(_ uiView: ARView, context: Context) {}
     
     func restartSession(arView : ARView) {
+        print("***** SituWalk: Restarting session *****")
         ARGeoTrackingConfiguration.checkAvailability { (available, error) in
             if !available {
                 self.state.page = .outsideGeoTrackingArea

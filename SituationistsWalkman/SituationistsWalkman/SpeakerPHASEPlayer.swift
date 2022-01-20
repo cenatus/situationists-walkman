@@ -75,6 +75,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         }
         
         func play() {
+            print("***** SituWalk: playing audio file \(speaker.audioFile ?? "unnamed") and anchor \(speaker.anchorName ?? "unnamed") *****")
             if (engine.assetRegistry.asset(forIdentifier: speaker.audioFile) == nil) {
                 let url = Bundle.main.url(forResource: speaker.audioFile, withExtension: "mp3")!
                 
@@ -82,6 +83,8 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                     url: url, identifier: speaker.audioFile, assetType: .resident,
                     channelLayout: nil, normalizationMode: .dynamic
                 )
+            } else {
+                print("***** SituWalk: asset for audio file \(speaker.audioFile ?? "unnamed") already added *****")
             }
             
             let spatialMixerDefinition = makeSpatialMixerDefinition(
@@ -93,6 +96,9 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
             
             if (engine.assetRegistry.asset(forIdentifier: speaker.anchorName) == nil) {
                 try! engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: speaker.anchorName)
+            } else {
+                print("***** SituWalk: sampler node for audio file \(speaker.anchorName ?? "unnamed") already added *****")
+
             }
             
             try! engine.rootObject.addChild(source)
