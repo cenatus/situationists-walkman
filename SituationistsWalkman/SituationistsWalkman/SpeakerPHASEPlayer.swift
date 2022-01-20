@@ -91,7 +91,9 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
             
             let samplerNodeDefinition = makeSamplerNodeDefinition(spatialMixerDefinition: spatialMixerDefinition)
             
-            try! engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: speaker.anchorName)
+            if (engine.assetRegistry.asset(forIdentifier: speaker.anchorName) == nil) {
+                try! engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: speaker.anchorName)
+            }
             
             try! engine.rootObject.addChild(source)
             
