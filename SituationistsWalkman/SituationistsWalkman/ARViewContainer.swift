@@ -17,12 +17,14 @@ struct ARViewContainer: UIViewRepresentable {
         var container : ARViewContainer!
         var speakerConfig : SpeakerConfig!
         var player: SpeakerPlayer!
+        private var alreadyLocalized = false;
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
             print("***** SituWalk: Geotracking status changed: \(geoTrackingStatus.state.rawValue) *****")
-            if geoTrackingStatus.state == .localized {
+            if geoTrackingStatus.state == .localized && !alreadyLocalized {
                 print("***** SituWalk: Geotracking status LOCALIZED: \(geoTrackingStatus.state.rawValue) *****")
+                alreadyLocalized = true
                 for speaker in speakerConfig.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
                     player.play(speaker)
