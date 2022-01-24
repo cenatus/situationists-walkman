@@ -16,6 +16,13 @@
 		2246D0FB279849F2007EE896 /* SpeakerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */; };
 		2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */; };
 		2246D0FF27985EA7007EE896 /* single-source-test-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 2246D0FE27985EA6007EE896 /* single-source-test-config.json */; };
+		226014AE279EC52F00C06714 /* TIM_HTCA_DRONE_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014A7279EC52C00C06714 /* TIM_HTCA_DRONE_1.mp3 */; };
+		226014AF279EC52F00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014A8279EC52D00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 */; };
+		226014B0279EC52F00C06714 /* TIM_HTCA_GRANULES_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014A9279EC52E00C06714 /* TIM_HTCA_GRANULES_1.mp3 */; };
+		226014B1279EC52F00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014AA279EC52E00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 */; };
+		226014B2279EC52F00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014AB279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 */; };
+		226014B3279EC52F00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014AC279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 */; };
+		226014B4279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014AD279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 */; };
 		228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */; };
 		228EDA3C278F385200D2838A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA3B278F385200D2838A /* ContentView.swift */; };
 		228EDA3E278F385600D2838A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA3D278F385600D2838A /* Assets.xcassets */; };
@@ -24,10 +31,9 @@
 		22D4F50A2790899E00012377 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F5092790899E00012377 /* IntroView.swift */; };
 		22D4F50C27908B7200012377 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50B27908B7200012377 /* AppState.swift */; };
 		22D4F50E27908CFF00012377 /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50D27908CFF00012377 /* ExperienceView.swift */; };
-		7255EC3D279ED7B300B59670 /* msp-cb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7255EC3C279ED7B300B59670 /* msp-cb.mp3 */; };
+		22EBB66C279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */; };
 		7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255EC3E279EE84300B59670 /* GPXParser.swift */; };
 		7255EC46279F011C00B59670 /* speakers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7255EC45279F011C00B59670 /* speakers.gpx */; };
-		72C46160279B27E200F47EF3 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 72C4615F279B27E200F47EF3 /* sounds */; };
 		72D456352792124900AAE2F7 /* drone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456322792124900AAE2F7 /* drone.mp3 */; };
 		72D456362792124900AAE2F7 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456332792124900AAE2F7 /* piano.mp3 */; };
 		72D456372792124900AAE2F7 /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456342792124900AAE2F7 /* guitar.mp3 */; };
@@ -45,6 +51,13 @@
 		2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerPlayer.swift; sourceTree = "<group>"; };
 		2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerRealityKitPlayer.swift; sourceTree = "<group>"; };
 		2246D0FE27985EA6007EE896 /* single-source-test-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "single-source-test-config.json"; sourceTree = "<group>"; };
+		226014A7279EC52C00C06714 /* TIM_HTCA_DRONE_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_DRONE_1.mp3; sourceTree = "<group>"; };
+		226014A8279EC52D00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_BASS_DRONE_1.mp3; sourceTree = "<group>"; };
+		226014A9279EC52E00C06714 /* TIM_HTCA_GRANULES_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_GRANULES_1.mp3; sourceTree = "<group>"; };
+		226014AA279EC52E00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_VOX_ALTO_1.mp3; sourceTree = "<group>"; };
+		226014AB279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_VOX_SOPRANO_1_1.mp3; sourceTree = "<group>"; };
+		226014AC279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_VOX_SOPRANO_2_1.mp3; sourceTree = "<group>"; };
+		226014AD279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_NOISY_1.mp3; sourceTree = "<group>"; };
 		228EDA36278F385200D2838A /* SituationistsWalkman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SituationistsWalkman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SituationistsWalkmanApp.swift; sourceTree = "<group>"; };
 		228EDA3B278F385200D2838A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,10 +67,9 @@
 		22D4F5092790899E00012377 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		22D4F50B27908B7200012377 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		22D4F50D27908CFF00012377 /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
-		7255EC3C279ED7B300B59670 /* msp-cb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "msp-cb.mp3"; sourceTree = "<group>"; };
+		22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "tim-htca-coffee-shop-test-config.json"; sourceTree = "<group>"; };
 		7255EC3E279EE84300B59670 /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
 		7255EC45279F011C00B59670 /* speakers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speakers.gpx; sourceTree = "<group>"; };
-		72C4615F279B27E200F47EF3 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		72D456322792124900AAE2F7 /* drone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drone.mp3; sourceTree = "<group>"; };
 		72D456332792124900AAE2F7 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
 		72D456342792124900AAE2F7 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
@@ -94,31 +106,37 @@
 		228EDA38278F385200D2838A /* SituationistsWalkman */ = {
 			isa = PBXGroup;
 			children = (
+				7255EC45279F011C00B59670 /* speakers.gpx */,
+				2246D0FE27985EA6007EE896 /* single-source-test-config.json */,
+				2209D64A27983A3600329FD7 /* speakers-config.json */,
+				22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */,
+				72D456322792124900AAE2F7 /* drone.mp3 */,
+				72D456342792124900AAE2F7 /* guitar.mp3 */,
+				72D456332792124900AAE2F7 /* piano.mp3 */,
+				226014A8279EC52D00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 */,
+				226014A7279EC52C00C06714 /* TIM_HTCA_DRONE_1.mp3 */,
+				226014A9279EC52E00C06714 /* TIM_HTCA_GRANULES_1.mp3 */,
+				226014AD279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 */,
+				226014AA279EC52E00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 */,
+				226014AB279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 */,
+				226014AC279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 */,
+				2204BA402795ABA6001BA93F /* Info.plist */,
 				22D4F50B27908B7200012377 /* AppState.swift */,
 				2209D63A27980E8E00329FD7 /* ARViewContainer.swift */,
-				228EDA3D278F385600D2838A /* Assets.xcassets */,
 				228EDA3B278F385200D2838A /* ContentView.swift */,
-				72D456322792124900AAE2F7 /* drone.mp3 */,
 				228EDA4E278F43AE00D2838A /* ErrorView.swift */,
 				22D4F50D27908CFF00012377 /* ExperienceView.swift */,
-				72D456342792124900AAE2F7 /* guitar.mp3 */,
-				7255EC3C279ED7B300B59670 /* msp-cb.mp3 */,
-				2204BA402795ABA6001BA93F /* Info.plist */,
+				7255EC3E279EE84300B59670 /* GPXParser.swift */,
 				22D4F5092790899E00012377 /* IntroView.swift */,
-				72D456332792124900AAE2F7 /* piano.mp3 */,
-				72C4615F279B27E200F47EF3 /* sounds */,
-				228EDA3F278F385600D2838A /* Preview Content */,
 				228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */,
 				2209D64727983A3600329FD7 /* Speaker.swift */,
 				2209D64827983A3600329FD7 /* SpeakerConfig.swift */,
 				2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */,
 				2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */,
 				2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */,
-				2209D64A27983A3600329FD7 /* speakers-config.json */,
-				7255EC45279F011C00B59670 /* speakers.gpx */,
-				7255EC3E279EE84300B59670 /* GPXParser.swift */,
 				2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */,
-				2246D0FE27985EA6007EE896 /* single-source-test-config.json */,
+				228EDA3D278F385600D2838A /* Assets.xcassets */,
+				228EDA3F278F385600D2838A /* Preview Content */,
 			);
 			path = SituationistsWalkman;
 			sourceTree = "<group>";
@@ -189,15 +207,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7255EC3D279ED7B300B59670 /* msp-cb.mp3 in Resources */,
 				7255EC46279F011C00B59670 /* speakers.gpx in Resources */,
 				228EDA41278F385600D2838A /* Preview Assets.xcassets in Resources */,
+				226014AE279EC52F00C06714 /* TIM_HTCA_DRONE_1.mp3 in Resources */,
+				226014AF279EC52F00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 in Resources */,
+				226014B1279EC52F00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 in Resources */,
+				226014B3279EC52F00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 in Resources */,
 				228EDA3E278F385600D2838A /* Assets.xcassets in Resources */,
+				226014B2279EC52F00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 in Resources */,
 				72D456372792124900AAE2F7 /* guitar.mp3 in Resources */,
 				72D456362792124900AAE2F7 /* piano.mp3 in Resources */,
-				72C46160279B27E200F47EF3 /* sounds in Resources */,
 				2209D64E27983A3600329FD7 /* speakers-config.json in Resources */,
+				22EBB66C279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json in Resources */,
+				226014B4279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 in Resources */,
 				2246D0FF27985EA7007EE896 /* single-source-test-config.json in Resources */,
+				226014B0279EC52F00C06714 /* TIM_HTCA_GRANULES_1.mp3 in Resources */,
 				72D456352792124900AAE2F7 /* drone.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

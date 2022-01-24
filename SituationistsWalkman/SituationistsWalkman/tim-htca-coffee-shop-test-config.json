@@ -1,0 +1,87 @@
+{
+    "engine": "phase",
+    "reverb_preset": "largeRoom",
+    "sounds": [
+        {
+            "anchor_name": "BASS_DRONE",
+            "location": { "lat": 51.52671, "lng": -0.07811, "ele": 0.0 },
+            "audio_file": "TIM_HTCA_BASS_DRONE_1",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 1.0,
+            "cull_distance": 30,
+            "rolloff_factor": 0.5,
+            "reverb_send_level": 0.0,
+            "reference_level": -9
+        },
+        {
+            "anchor_name": "SOPRANO_1",
+            "location": { "lat": 51.5267, "lng": -0.07812, "ele": 1.5 },
+            "audio_file": "TIM_HTCA_VOX_SOPRANO_1_1",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 1.0,
+            "cull_distance": 10,
+            "rolloff_factor": 1.0,
+            "reverb_send_level": 0.3,
+            "reference_level": -3
+        },
+        {
+            "anchor_name": "SOPRANO_2",
+            "location": { "lat": 51.52669, "lng": -0.07813, "ele": 1.7 },
+            "audio_file": "TIM_HTCA_VOX_SOPRANO_2_1",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 1.0,
+            "cull_distance": 10,
+            "rolloff_factor": 1.0,
+            "reverb_send_level": 0.3,
+            "reference_level": -3
+        },
+        {
+            "anchor_name": "ALTO",
+            "location": { "lat": 51.52673, "lng": -0.07815, "ele": 1.8 },
+            "audio_file": "TIM_HTCA_VOX_ALTO_1",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 1.0,
+            "cull_distance": 10,
+            "rolloff_factor": 1.0,
+            "reverb_send_level": 0.3,
+            "reference_level": -3
+        },
+        {
+            "anchor_name": "DRONE",
+            "location": { "lat": 51.52672, "lng": -0.07799, "ele": 5.0 },
+            "audio_file": "TIM_HTCA_DRONE_1",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 1.0,
+            "cull_distance": 20,
+            "rolloff_factor": 1.0,
+            "reverb_send_level": 0.6,
+            "reference_level": -3
+        },
+        {
+            "anchor_name": "GRANULES",
+            "location": { "lat": 51.52685, "lng": -0.078, "ele": 6.0 },
+            "audio_file": "TIM_HTCA_GRANULES_1",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 1.0,
+            "cull_distance": 30,
+            "rolloff_factor": 1.0,
+            "reverb_send_level": 0.45,
+            "reference_level": -3
+        },
+        {
+            "anchor_name": "NOISY",
+            "location": { "lat": 51.52667, "lng": -0.07799, "ele": 4.5 },
+            "audio_file": "TIM_HTCA_NOISY_1",
+            "color": { "r": 0.0, "g": 1.0 , "b": 0.0, "a": 0.7 },
+            "source_radius": 1.0,
+            "cull_distance": 30,
+            "rolloff_factor": 1.0,
+            "reverb_send_level": 0.6,
+            "reference_level": -3
+        },
+
+
+    ]
+}
+
+
