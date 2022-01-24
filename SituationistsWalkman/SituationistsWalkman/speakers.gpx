@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="Apple Inc.">
+  <wpt lat="51.52673" lon="-0.07815">
+    <ele>16.76348877</ele>
+    <name>alto</name>
+    <audioFile>msp-cb</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>0.0</g>
+      <b>1.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>1.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.526060" lon="-0.074908">
+    <ele>16.76348877</ele>
+    <name>bandstand</name>
+    <audioFile>msp-cb</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>1.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+</gpx>
+

@@ -2,7 +2,7 @@
 //  Speaker.swift
 //  RKAndSwiftUISpike
 //
-//  Created by msp on 18/01/2022.
+//  Created by msp on 21/01/2022.
 //
 
 import Foundation
@@ -11,72 +11,61 @@ import PHASE
 import ARKit
 
 class Speaker {
-    struct LocationConfig: Codable {
-        let lat: Double
-        let lng: Double
-        let ele: Double
-    }
+    let name : String
     
-    struct ColorConfig: Codable {
-        let r: Double
-        let g: Double
-        let b: Double
-        let a: Double
-    }
+    let lat: Double
+    let lon: Double
+    let ele: Double
     
-    struct Config: Codable {
-        let anchor_name: String
-        let audio_file: String
-        let color: ColorConfig
-        let source_radius: Float
-        let cull_distance: Double
-        let rolloff_factor: Double
-        let reverb_send_level: Double
-        let reference_level: Double
-        let location: LocationConfig
-    }
-    
-    let config : Config!
+    let audioFile: String
+    let color: UIColor
     let geoAnchor : ARGeoAnchor
     
-    
-    let anchorName : String!
-    let audioFile: String!
-    let color: UIColor!
+
     let sourceRadius: Float!
     let cullDistance: Double!
     let rolloffFactor: Double!
     let reverbSendLevel: Double!
     let referenceLevel: Double!
-    
-    let lat: Double!
-    let lng: Double!
-    let ele: Double!
-    
-    init(config: Config) {
-        self.config = config
+                
+    init(_ config: [String: String]) {
+        self.name = config["name"]!
+        self.lat = Double(config["lat"]!)!
+        self.lon = Double(config["lon"]!)!
+        self.ele = Double(config["ele"]!)!
+        self.audioFile = config["audiofile"] ?? "msp-cb.mp3"
         
-        self.anchorName = config.anchor_name
-        self.audioFile = config.audio_file
-        self.sourceRadius = config.source_radius
-        self.cullDistance = config.cull_distance
-        self.rolloffFactor = config.rolloff_factor
-        self.reverbSendLevel = config.reverb_send_level
-        self.referenceLevel = config.reference_level
-        self.lat = config.location.lat
-        self.lng = config.location.lng
-        self.ele = config.location.ele
-        
-        self.color = UIColor(red: config.color.r,
-                             green: config.color.g,
-                             blue: config.color.b,
-                             alpha: config.color.a)
+        self.color = UIColor(red:   Double(config["r"] ?? "0.0")!,
+                             green: Double(config["g"] ?? "0.0")!,
+                             blue:  Double(config["b"] ?? "1.0")!,
+                             alpha: Double(config["a"] ?? "0.7")!
+        )
         
         self.geoAnchor = ARGeoAnchor(
-            name: self.anchorName,
+            name: name,
             coordinate: CLLocationCoordinate2D(
                 latitude: self.lat,
-                longitude: self.lng)
+                longitude: self.lon),
+            altitude: CLLocationDistance(self.ele)
         )
+        
+        self.sourceRadius = Float(config["sourceRadius"] ?? "1.0")
+        self.cullDistance = Double(config["cullDistance"] ?? "1")
+        self.rolloffFactor = Double(config["rolloffFactor"] ?? "1.0")
+        self.reverbSendLevel = Double(config["reverbSendLevel"] ?? "0")
+        self.referenceLevel = Double(config["referenceLevel"] ?? "0.8")
+    }
+    
+    static func hardcoded() -> Speaker {
+        var defaultConfig: [String:String] = [:]
+
+        defaultConfig["name"] = "hardcoded-bandstand"
+        defaultConfig["lat"] = "51.526060"
+        defaultConfig["lon"] = "-0.074908"
+        defaultConfig["ele"] = "0.1"
+
+        return Speaker(defaultConfig)
+
     }
 }
+

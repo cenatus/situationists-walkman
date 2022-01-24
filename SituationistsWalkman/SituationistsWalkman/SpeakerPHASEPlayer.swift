@@ -75,7 +75,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         }
         
         func play() {
-            print("***** SituWalk: playing audio file \(speaker.audioFile ?? "unnamed") and anchor \(speaker.anchorName ?? "unnamed") *****")
+            print("***** SituWalk: playing audio file \(speaker.audioFile ) and anchor \(speaker.name ) *****")
             if (engine.assetRegistry.asset(forIdentifier: speaker.audioFile) == nil) {
                 let url = Bundle.main.url(forResource: speaker.audioFile, withExtension: "mp3")!
                 
@@ -84,7 +84,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                     channelLayout: nil, normalizationMode: .dynamic
                 )
             } else {
-                print("***** SituWalk: asset for audio file \(speaker.audioFile ?? "unnamed") already added *****")
+                print("***** SituWalk: asset for audio file \(speaker.audioFile ) already added *****")
             }
             
             let spatialMixerDefinition = makeSpatialMixerDefinition(
@@ -94,10 +94,10 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
             
             let samplerNodeDefinition = makeSamplerNodeDefinition(spatialMixerDefinition: spatialMixerDefinition)
             
-            if (engine.assetRegistry.asset(forIdentifier: speaker.anchorName) == nil) {
-                try! engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: speaker.anchorName)
+            if (engine.assetRegistry.asset(forIdentifier: speaker.name) == nil) {
+                try! engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: speaker.name)
             } else {
-                print("***** SituWalk: sampler node for audio file \(speaker.anchorName ?? "unnamed") already added *****")
+                print("***** SituWalk: sampler node for audio file \(speaker.name ) already added *****")
 
             }
             
@@ -109,7 +109,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
             )
             
             let soundEvent = try! PHASESoundEvent(
-                engine: engine, assetIdentifier: speaker.anchorName,
+                engine: engine, assetIdentifier: speaker.name,
                 mixerParameters: mixerParameters
             )
             
@@ -122,7 +122,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         
         func teardown() {
             engine.assetRegistry.unregisterAsset(identifier: speaker.audioFile)
-            engine.assetRegistry.unregisterAsset(identifier: speaker.anchorName)
+            engine.assetRegistry.unregisterAsset(identifier: speaker.name)
             engine.rootObject.removeChild(source)
         }
     }
@@ -144,7 +144,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         ("none", PHASEReverbPreset.none)
     ])
     
-    private let config: SpeakerConfig!
+//    private let config: SpeakerConfig!
     private let engine: PHASEEngine!
     private let listener: PHASEListener!
     private let hmm = CMHeadphoneMotionManager()
@@ -153,8 +153,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     private var devicePosition: simd_float4x4 = matrix_identity_float4x4;
     private var headPosition: simd_float4x4 = matrix_identity_float4x4;
     
-    init(config: SpeakerConfig) {
-        self.config = config
+    override init() {
         self.engine = PHASEEngine(updateMode: .automatic)
         self.listener = PHASEListener(engine: self.engine)
         self.listener.worldTransform = matrix_identity_float4x4
@@ -162,7 +161,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
     func setup() {
         try! self.engine.rootObject.addChild(self.listener)
-        self.engine.defaultReverbPreset = REVERB_PRESETS[config.reverbPreset]!
+        self.engine.defaultReverbPreset = REVERB_PRESETS["none"]!
         try! self.engine.start()
         if hmm.isDeviceMotionAvailable {
             hmm.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: {[weak self] motion, error in
@@ -187,7 +186,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
     func play(_ speaker: Speaker) {
         let phaseSpeaker = PHASESpeaker(speaker, engine: self.engine, listener: self.listener)
-        playingSpeakers[speaker.anchorName] = phaseSpeaker
+        playingSpeakers[speaker.name] = phaseSpeaker
         phaseSpeaker.play()
     }
     
