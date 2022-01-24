@@ -10,6 +10,13 @@
       <b>1.0</b>
       <a>0.7</a>
     </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>1.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
   </wpt>
   <wpt lat="51.526060" lon="-0.074908">
     <ele>16.76348877</ele>
@@ -21,6 +28,13 @@
       <b>0.0</b>
       <a>0.7</a>
     </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>1.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
   </wpt>
 </gpx>
 
