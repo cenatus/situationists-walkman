@@ -193,7 +193,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
     func updateDevicePosition(_ position: float4x4) {
         devicePosition = position
-        listener.worldTransform = devicePosition //matrix_multiply(devicePosition, headPosition)
+        listener.worldTransform = matrix_multiply(devicePosition, headPosition)
     }
     
     func updateAnchorPosition(for name : String, position : float4x4) {
@@ -203,8 +203,9 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     }
     
     private func updateHeadPosition(_ position : float4x4) {
-        //headPosition = position
-        //listener.worldTransform = matrix_multiply(devicePosition,  headPosition)
+        headPosition = position
+        print("******* HEAD POSITION: \(position)")
+        listener.worldTransform = matrix_multiply(devicePosition,  headPosition)
     }
 }
 
