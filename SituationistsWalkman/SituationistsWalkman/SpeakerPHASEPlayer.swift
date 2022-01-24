@@ -28,7 +28,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
             let shape = PHASEShape(engine: engine, mesh: mesh)
             let source = PHASESource(engine: engine, shapes: [shape])
 
-            source.transform = speaker.geoAnchor.transform
+            source.worldTransform = speaker.geoAnchor.transform
             self.source = source
         }
         
@@ -117,7 +117,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         }
         
         func updatePosition(_ position : float4x4) {
-            source.transform = position
+            source.worldTransform = position
         }
         
         func teardown() {
@@ -157,7 +157,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         self.config = config
         self.engine = PHASEEngine(updateMode: .automatic)
         self.listener = PHASEListener(engine: self.engine)
-        self.listener.transform = matrix_identity_float4x4
+        self.listener.worldTransform = matrix_identity_float4x4
     }
     
     func setup() {
@@ -193,7 +193,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
     func updateDevicePosition(_ position: float4x4) {
         devicePosition = position
-        listener.transform = matrix_multiply(devicePosition, headPosition)
+        listener.worldTransform = devicePosition //matrix_multiply(devicePosition, headPosition)
     }
     
     func updateAnchorPosition(for name : String, position : float4x4) {
@@ -203,8 +203,8 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     }
     
     private func updateHeadPosition(_ position : float4x4) {
-        headPosition = position
-        listener.transform = matrix_multiply(devicePosition,  headPosition)
+        //headPosition = position
+        //listener.worldTransform = matrix_multiply(devicePosition,  headPosition)
     }
 }
 
