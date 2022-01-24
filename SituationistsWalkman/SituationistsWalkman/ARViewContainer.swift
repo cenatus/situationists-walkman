@@ -12,12 +12,14 @@ struct ARViewContainer: UIViewRepresentable {
     
     @EnvironmentObject var state : AppState
     
-    class Coordinator : NSObject, ARSessionDelegate, ARCoachingOverlayViewDelegate {
+    class Coordinator : NSObject, ARSessionDelegate, ARCoachingOverlayViewDelegate, GPXParserDelegate {
         var arView : ARView!
         var container : ARViewContainer!
         var speakerConfig : SpeakerConfig!
         var player: SpeakerPlayer!
         private var alreadyLocalized = false;
+        
+        var speakers: [Speaker] = []
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
@@ -25,7 +27,8 @@ struct ARViewContainer: UIViewRepresentable {
             if geoTrackingStatus.state == .localized && !alreadyLocalized {
                 print("***** SituWalk: Geotracking status LOCALIZED: \(geoTrackingStatus.state.rawValue) *****")
                 alreadyLocalized = true
-                for speaker in speakerConfig.speakers {
+
+                for (speaker) in self.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
                     player.play(speaker)
                     arView.scene.addAnchor(
@@ -54,7 +57,29 @@ struct ARViewContainer: UIViewRepresentable {
             print("***** SituWalk: Coaching overlay requested session reset *****")
             self.container.restartSession(arView: self.arView)
         }
-    }
+                
+        // MARK: - GPXParserDelegate
+        func parser(_ parser: GPXParser, didFinishParsingFileWithAnchors speakers: [Speaker]) {
+            if speakers.isEmpty {
+                print("GPX file does not contain anchors or is invalid.")
+                return
+            }
+            
+            self.speakers = speakers
+                        
+            print("\(speakers.count) speakers(s) added.")
+        }
+        
+        func parseGPXFile(with url: URL) {
+            guard let parser = GPXParser(contentsOf: url) else {
+                print("Unable to open GPX file !!!!!!!!!!!!!!!!!!!!!!!!")
+                return
+            }
+            
+            parser.delegate = self
+            parser.parse()
+        }
+    } // end Coordinator class
     
     func makeCoordinator() -> Coordinator {
         return Coordinator()
@@ -62,19 +87,16 @@ struct ARViewContainer: UIViewRepresentable {
     
     func makeUIView(context: Context) -> ARView {
         print("***** SituWalk: Creating view *****")
-        let speakerConfig = SpeakerConfig("speakers-config");
+                
+        let url = Bundle.main.url(forResource: "speakers", withExtension: "gpx")!
+        context.coordinator.parseGPXFile(with: url)
+        
         let arView = ARView(frame: .zero)
         arView.session.delegate = context.coordinator
         arView.automaticallyConfigureSession = false
-        var player : SpeakerPlayer
-        if(speakerConfig.engine == "phase") {
-            print("**** SituWalk: using PHASE Audio Engine ***")
-            player = SpeakerPHASEPlayer(config: speakerConfig)
-        } else {
-            print("**** SituWalk: using Reality Kit Audio Engine ***")
-            player = SpeakerRealityKitPlayer(view: arView)
-        }
         
+        var player : SpeakerPlayer
+        player = SpeakerPHASEPlayer()
         player.setup()
 
         setupCoachingOverlay(arView: arView, context: context)
@@ -82,7 +104,7 @@ struct ARViewContainer: UIViewRepresentable {
         context.coordinator.arView = arView
         context.coordinator.container = self
         context.coordinator.player = player
-        context.coordinator.speakerConfig = speakerConfig
+//        context.coordinator.speakerConfig = speakerConfig
         
         restartSession(arView: arView)
         UIApplication.shared.isIdleTimerDisabled = true

@@ -20,7 +20,7 @@ class SpeakerRealityKitPlayer: NSObject, SpeakerPlayer {
     func setup() {}
     
     func play(_ speaker: Speaker) {
-        let audio1 = try! AudioFileResource.load(named: "\(speaker.audioFile!).mp3")
+        let audio1 = try! AudioFileResource.load(named: "\(speaker.audioFile).mp3")
         audio1.shouldLoop = true
         let entity = AnchorEntity(anchor: speaker.geoAnchor)
         view.scene.addAnchor(entity)

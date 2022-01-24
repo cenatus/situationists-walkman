@@ -19,7 +19,7 @@ struct SpeakerVisualiser {
         let spehereMaterial = SimpleMaterial(color: speaker.color, roughness: 0, isMetallic: false)
         let sphereEntity = ModelEntity(mesh: sphereResource, materials: [spehereMaterial])
         
-        let textResource = MeshResource.generateText(speaker.anchorName ?? "????",
+        let textResource = MeshResource.generateText(speaker.name ,
                                                      extrusionDepth: 0.01,
                                                      font: .systemFont(ofSize: 0.25),
                                                      containerFrame: .zero,
