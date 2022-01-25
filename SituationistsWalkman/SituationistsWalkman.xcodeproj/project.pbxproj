@@ -16,13 +16,6 @@
 		2246D0FB279849F2007EE896 /* SpeakerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */; };
 		2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */; };
 		2246D0FF27985EA7007EE896 /* single-source-test-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 2246D0FE27985EA6007EE896 /* single-source-test-config.json */; };
-		226014AE279EC52F00C06714 /* TIM_HTCA_DRONE_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014A7279EC52C00C06714 /* TIM_HTCA_DRONE_1.mp3 */; };
-		226014AF279EC52F00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014A8279EC52D00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 */; };
-		226014B0279EC52F00C06714 /* TIM_HTCA_GRANULES_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014A9279EC52E00C06714 /* TIM_HTCA_GRANULES_1.mp3 */; };
-		226014B1279EC52F00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014AA279EC52E00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 */; };
-		226014B2279EC52F00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014AB279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 */; };
-		226014B3279EC52F00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014AC279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 */; };
-		226014B4279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 226014AD279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 */; };
 		228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */; };
 		228EDA3C278F385200D2838A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA3B278F385200D2838A /* ContentView.swift */; };
 		228EDA3E278F385600D2838A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA3D278F385600D2838A /* Assets.xcassets */; };
@@ -34,16 +27,12 @@
 		22EBB66C279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */; };
 		7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255EC3E279EE84300B59670 /* GPXParser.swift */; };
 		7255EC46279F011C00B59670 /* speakers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7255EC45279F011C00B59670 /* speakers.gpx */; };
-		72D456352792124900AAE2F7 /* drone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456322792124900AAE2F7 /* drone.mp3 */; };
-		72D456362792124900AAE2F7 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456332792124900AAE2F7 /* piano.mp3 */; };
-		72D456372792124900AAE2F7 /* guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 72D456342792124900AAE2F7 /* guitar.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2204BA402795ABA6001BA93F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2209D63A27980E8E00329FD7 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerPHASEPlayer.swift; sourceTree = "<group>"; };
-		2209D6462798394600329FD7 /* Arnold Circus 20211217 1454 - AC Bandstand 2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Arnold Circus 20211217 1454 - AC Bandstand 2.mov"; sourceTree = "<group>"; };
 		2209D64727983A3600329FD7 /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		2209D64827983A3600329FD7 /* SpeakerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerConfig.swift; sourceTree = "<group>"; };
 		2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerVisualiser.swift; sourceTree = "<group>"; };
@@ -51,13 +40,6 @@
 		2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerPlayer.swift; sourceTree = "<group>"; };
 		2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerRealityKitPlayer.swift; sourceTree = "<group>"; };
 		2246D0FE27985EA6007EE896 /* single-source-test-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "single-source-test-config.json"; sourceTree = "<group>"; };
-		226014A7279EC52C00C06714 /* TIM_HTCA_DRONE_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_DRONE_1.mp3; sourceTree = "<group>"; };
-		226014A8279EC52D00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_BASS_DRONE_1.mp3; sourceTree = "<group>"; };
-		226014A9279EC52E00C06714 /* TIM_HTCA_GRANULES_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_GRANULES_1.mp3; sourceTree = "<group>"; };
-		226014AA279EC52E00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_VOX_ALTO_1.mp3; sourceTree = "<group>"; };
-		226014AB279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_VOX_SOPRANO_1_1.mp3; sourceTree = "<group>"; };
-		226014AC279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_VOX_SOPRANO_2_1.mp3; sourceTree = "<group>"; };
-		226014AD279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TIM_HTCA_NOISY_1.mp3; sourceTree = "<group>"; };
 		228EDA36278F385200D2838A /* SituationistsWalkman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SituationistsWalkman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SituationistsWalkmanApp.swift; sourceTree = "<group>"; };
 		228EDA3B278F385200D2838A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,9 +52,6 @@
 		22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "tim-htca-coffee-shop-test-config.json"; sourceTree = "<group>"; };
 		7255EC3E279EE84300B59670 /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
 		7255EC45279F011C00B59670 /* speakers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speakers.gpx; sourceTree = "<group>"; };
-		72D456322792124900AAE2F7 /* drone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drone.mp3; sourceTree = "<group>"; };
-		72D456332792124900AAE2F7 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
-		72D456342792124900AAE2F7 /* guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +68,6 @@
 		228EDA2D278F385200D2838A = {
 			isa = PBXGroup;
 			children = (
-				2209D6462798394600329FD7 /* Arnold Circus 20211217 1454 - AC Bandstand 2.mov */,
 				228EDA38278F385200D2838A /* SituationistsWalkman */,
 				228EDA37278F385200D2838A /* Products */,
 			);
@@ -110,16 +88,6 @@
 				2246D0FE27985EA6007EE896 /* single-source-test-config.json */,
 				2209D64A27983A3600329FD7 /* speakers-config.json */,
 				22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */,
-				72D456322792124900AAE2F7 /* drone.mp3 */,
-				72D456342792124900AAE2F7 /* guitar.mp3 */,
-				72D456332792124900AAE2F7 /* piano.mp3 */,
-				226014A8279EC52D00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 */,
-				226014A7279EC52C00C06714 /* TIM_HTCA_DRONE_1.mp3 */,
-				226014A9279EC52E00C06714 /* TIM_HTCA_GRANULES_1.mp3 */,
-				226014AD279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 */,
-				226014AA279EC52E00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 */,
-				226014AB279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 */,
-				226014AC279EC52E00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 */,
 				2204BA402795ABA6001BA93F /* Info.plist */,
 				22D4F50B27908B7200012377 /* AppState.swift */,
 				2209D63A27980E8E00329FD7 /* ARViewContainer.swift */,
@@ -209,20 +177,10 @@
 			files = (
 				7255EC46279F011C00B59670 /* speakers.gpx in Resources */,
 				228EDA41278F385600D2838A /* Preview Assets.xcassets in Resources */,
-				226014AE279EC52F00C06714 /* TIM_HTCA_DRONE_1.mp3 in Resources */,
-				226014AF279EC52F00C06714 /* TIM_HTCA_BASS_DRONE_1.mp3 in Resources */,
-				226014B1279EC52F00C06714 /* TIM_HTCA_VOX_ALTO_1.mp3 in Resources */,
-				226014B3279EC52F00C06714 /* TIM_HTCA_VOX_SOPRANO_2_1.mp3 in Resources */,
 				228EDA3E278F385600D2838A /* Assets.xcassets in Resources */,
-				226014B2279EC52F00C06714 /* TIM_HTCA_VOX_SOPRANO_1_1.mp3 in Resources */,
-				72D456372792124900AAE2F7 /* guitar.mp3 in Resources */,
-				72D456362792124900AAE2F7 /* piano.mp3 in Resources */,
 				2209D64E27983A3600329FD7 /* speakers-config.json in Resources */,
 				22EBB66C279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json in Resources */,
-				226014B4279EC52F00C06714 /* TIM_HTCA_NOISY_1.mp3 in Resources */,
 				2246D0FF27985EA7007EE896 /* single-source-test-config.json in Resources */,
-				226014B0279EC52F00C06714 /* TIM_HTCA_GRANULES_1.mp3 in Resources */,
-				72D456352792124900AAE2F7 /* drone.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
