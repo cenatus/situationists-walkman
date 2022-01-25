@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" creator="Apple Inc.">
+  <!-- START MSP test -->
   <wpt lat="51.52673" lon="-0.07815">
     <ele>18</ele>
     <name>alto</name>
@@ -18,6 +19,8 @@
         <referenceLevel>0.8</referenceLevel>
     </phaseAudio>
   </wpt>
+  <!-- END MSP test -->
+  <!-- START Ruaridh -->
   <wpt lat="51.52634" lon="-0.07708">
     <ele>18</ele>
     <name>ruaridh-1</name>
@@ -162,6 +165,116 @@
         <referenceLevel>0.8</referenceLevel>
     </phaseAudio>
   </wpt>
-
+  <!-- END Ruaridh -->
+  <!-- START Freya -->
+  <wpt lat="51.52624" lon="-0.07366">
+    <ele>18</ele>
+    <name>freya-dog</name>
+    <audioFile>Dog Warper</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>0.5</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>6.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52622" lon="-0.07352">
+    <ele>18</ele>
+    <name>freya-earthworm</name>
+    <audioFile>Earthworm choir</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>0.5</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>10.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52616" lon="-0.07364">
+    <ele>18</ele>
+    <name>freya-biohazard</name>
+    <audioFile>Bio-Haphazard</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>0.5</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>20.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52616" lon="-0.07364">
+    <ele>18</ele>
+    <name>freya-shuffle</name>
+    <audioFile>Immersive Shuffle</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>0.5</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>30.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52607" lon="-0.07362">
+    <ele>18</ele>
+    <name>freya-duck</name>
+    <audioFile>Duck Wreck</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>0.5</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>6.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52607" lon="-0.07375">
+    <ele>18</ele>
+    <name>freya-drizzle</name>
+    <audioFile>Nerve Drizzle</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>0.5</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>15.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <!-- END Freya -->
 </gpx>
 
