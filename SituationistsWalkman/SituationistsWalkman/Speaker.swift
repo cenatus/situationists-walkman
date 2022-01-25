@@ -49,11 +49,11 @@ class Speaker {
             altitude: CLLocationDistance(self.ele)
         )
         
-        self.sourceRadius = Float(config["sourceRadius"] ?? "1.0")
-        self.cullDistance = Double(config["cullDistance"] ?? "1")
-        self.rolloffFactor = Double(config["rolloffFactor"] ?? "1.0")
-        self.reverbSendLevel = Double(config["reverbSendLevel"] ?? "0")
-        self.referenceLevel = Double(config["referenceLevel"] ?? "0.8")
+        self.sourceRadius = Float(config["sourceradius"] ?? "1.0")
+        self.cullDistance = Double(config["culldistance"] ?? "1")
+        self.rolloffFactor = Double(config["rollofffactor"] ?? "1.0")
+        self.reverbSendLevel = Double(config["reverbsendLevel"] ?? "0")
+        self.referenceLevel = Double(config["referencelevel"] ?? "0.8")
     }
     
     static func hardcoded() -> Speaker {
