@@ -18,19 +18,109 @@
         <referenceLevel>0.8</referenceLevel>
     </phaseAudio>
   </wpt>
-  <wpt lat="51.526060" lon="-0.074908">
+  <wpt lat="51.52629" lon="-0.0766">
     <ele>18</ele>
-    <name>bandstand</name>
-    <audioFile>msp-cb</audioFile>
+    <name>ruaridh-1</name>
+    <audioFile>1 ra</audioFile>
     <color>
-      <r>0.0</r>
+      <r>1.0</r>
       <g>1.0</g>
       <b>0.0</b>
       <a>0.7</a>
     </color>
     <phaseAudio>
         <sourceRadius>1.0</sourceRadius>
-        <cullDistance>1.0</cullDistance>
+        <cullDistance>50.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52621" lon="-0.07585">
+    <ele>18</ele>
+    <name>ruaridh-2</name>
+    <audioFile>2 ai</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>50.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52625" lon="-0.07524">
+    <ele>18</ele>
+    <name>ruaridh-3</name>
+    <audioFile>3 fi1</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>20.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52637" lon="-0.07482">
+    <ele>18</ele>
+    <name>ruaridh-4</name>
+    <audioFile>4 fi2</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>20.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52667" lon="-0.07484">
+    <ele>18</ele>
+    <name>ruaridh-5</name>
+    <audioFile>5 tl</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>20.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52692" lon="-0.07501">
+    <ele>18</ele>
+    <name>ruaridh-6</name>
+    <audioFile>6 bl</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>20.0</cullDistance>
         <rolloffFactor>1.0</rolloffFactor>
         <reverbSendLevel>0</reverbSendLevel>
         <referenceLevel>0.8</referenceLevel>
