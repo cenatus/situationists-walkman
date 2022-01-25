@@ -18,7 +18,7 @@
         <referenceLevel>0.8</referenceLevel>
     </phaseAudio>
   </wpt>
-  <wpt lat="51.52629" lon="-0.0766">
+  <wpt lat="51.52634" lon="-0.07708">
     <ele>18</ele>
     <name>ruaridh-1</name>
     <audioFile>1 ra</audioFile>
@@ -36,7 +36,7 @@
         <referenceLevel>0.8</referenceLevel>
     </phaseAudio>
   </wpt>
-  <wpt lat="51.52621" lon="-0.07585">
+  <wpt lat="51.52664" lon="-0.07615">
     <ele>18</ele>
     <name>ruaridh-2</name>
     <audioFile>2 ai</audioFile>
@@ -126,5 +126,42 @@
         <referenceLevel>0.8</referenceLevel>
     </phaseAudio>
   </wpt>
+  <wpt lat="51.52623" lon="-0.07606">
+    <ele>18</ele>
+    <name>ruaridh-7</name>
+    <audioFile>7 bld</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>30.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52713" lon="-0.07627">
+    <ele>18</ele>
+    <name>ruaridh-8</name>
+    <audioFile>8 ma</audioFile>
+    <color>
+      <r>1.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <sourceRadius>1.0</sourceRadius>
+        <cullDistance>50.0</cullDistance>
+        <rolloffFactor>1.0</rolloffFactor>
+        <reverbSendLevel>0</reverbSendLevel>
+        <referenceLevel>0.8</referenceLevel>
+    </phaseAudio>
+  </wpt>
+
 </gpx>
 
