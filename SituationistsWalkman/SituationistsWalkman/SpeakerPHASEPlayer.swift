@@ -77,8 +77,9 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         func play() {
             print("***** SituWalk: playing audio file \(speaker.audioFile ) and anchor \(speaker.name ) *****")
             if (engine.assetRegistry.asset(forIdentifier: speaker.audioFile) == nil) {
-                let url = Bundle.main.url(forResource: speaker.audioFile, withExtension: "mp3")!
-                
+                let url = Bundle.main.url(forResource: speaker.audioFile
+                                          , withExtension: "mp3"
+                                          , subdirectory: "sounds")!
                 try! engine.assetRegistry.registerSoundAsset(
                     url: url, identifier: speaker.audioFile, assetType: .resident,
                     channelLayout: nil, normalizationMode: .dynamic

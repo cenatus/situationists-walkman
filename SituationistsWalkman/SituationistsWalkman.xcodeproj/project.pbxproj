@@ -27,6 +27,8 @@
 		22EBB66C279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */; };
 		7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255EC3E279EE84300B59670 /* GPXParser.swift */; };
 		7255EC46279F011C00B59670 /* speakers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7255EC45279F011C00B59670 /* speakers.gpx */; };
+		7286F70D27A013960062B674 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7286F70C27A013960062B674 /* sounds */; };
+		7286F70F27A019E70062B674 /* msp-cb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7286F70E27A019E70062B674 /* msp-cb.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "tim-htca-coffee-shop-test-config.json"; sourceTree = "<group>"; };
 		7255EC3E279EE84300B59670 /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
 		7255EC45279F011C00B59670 /* speakers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speakers.gpx; sourceTree = "<group>"; };
+		7286F70C27A013960062B674 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
+		7286F70E27A019E70062B674 /* msp-cb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "msp-cb.mp3"; path = "sounds/msp-cb.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */,
 				2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */,
 				2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */,
+				7286F70E27A019E70062B674 /* msp-cb.mp3 */,
+				7286F70C27A013960062B674 /* sounds */,
 				228EDA3D278F385600D2838A /* Assets.xcassets */,
 				228EDA3F278F385600D2838A /* Preview Content */,
 			);
@@ -177,6 +183,8 @@
 			files = (
 				7255EC46279F011C00B59670 /* speakers.gpx in Resources */,
 				228EDA41278F385600D2838A /* Preview Assets.xcassets in Resources */,
+				7286F70F27A019E70062B674 /* msp-cb.mp3 in Resources */,
+				7286F70D27A013960062B674 /* sounds in Resources */,
 				228EDA3E278F385600D2838A /* Assets.xcassets in Resources */,
 				2209D64E27983A3600329FD7 /* speakers-config.json in Resources */,
 				22EBB66C279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json in Resources */,
