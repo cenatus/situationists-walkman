@@ -53,7 +53,7 @@ class Speaker {
         self.cullDistance = Double(config["culldistance"] ?? "1")
         self.rolloffFactor = Double(config["rollofffactor"] ?? "1.0")
         self.reverbSendLevel = Double(config["reverbsendLevel"] ?? "0")
-        self.referenceLevel = Double(config["referencelevel"] ?? "0.8")
+        self.referenceLevel = Double(config["referencelevel"] ?? "0.4")
     }
     
     static func hardcoded() -> Speaker {
