@@ -33,11 +33,13 @@ struct ARViewContainer: UIViewRepresentable {
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
-            print("***** SituWalk: Geotracking status changed: \(geoTrackingStatus.state.rawValue) *****")
-            if geoTrackingStatus.state == .localized && !alreadyLocalized {
-                print("***** SituWalk: Geotracking status LOCALIZED: \(geoTrackingStatus.state.rawValue) *****")
+            if geoTrackingStatus.state == .localizing && alreadyLocalized {
+                print("***** SituWalk: Geotracking status: RELOCALIZING *****")
+                alertPlayer.play()
+            } else if geoTrackingStatus.state == .localized && !alreadyLocalized {
+                print("***** SituWalk: Geotracking status LOCALIZED *****")
                 alreadyLocalized = true
-
+                
                 for (speaker) in self.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
                     player.play(speaker)
@@ -60,14 +62,13 @@ struct ARViewContainer: UIViewRepresentable {
             let position = frame.camera.transform
             player.updateDevicePosition(position)
         }
-                
+        
         // MARK: - ARCoachingOverlayViewDelegate
         func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
             print("***** SituWalk: Coaching overlay requested session reset *****")
-            alertPlayer.play()
             self.container.restartSession(arView: self.arView)
         }
-                
+        
         // MARK: - GPXParserDelegate
         func parser(_ parser: GPXParser, didFinishParsingFileWithAnchors speakers: [Speaker]) {
             if speakers.isEmpty {
@@ -76,7 +77,7 @@ struct ARViewContainer: UIViewRepresentable {
             }
             
             self.speakers = speakers
-                        
+            
             print("\(speakers.count) speakers(s) added.")
         }
         
@@ -97,7 +98,7 @@ struct ARViewContainer: UIViewRepresentable {
     
     func makeUIView(context: Context) -> ARView {
         print("***** SituWalk: Creating view *****")
-       
+        
         let url = Bundle.main.url(forResource: "speakers", withExtension: "gpx")!
         context.coordinator.parseGPXFile(with: url)
         
@@ -108,9 +109,9 @@ struct ARViewContainer: UIViewRepresentable {
         var player : SpeakerPlayer
         player = SpeakerPHASEPlayer()
         player.setup()
-
+        
         setupCoachingOverlay(arView: arView, context: context)
-
+        
         context.coordinator.arView = arView
         context.coordinator.container = self
         context.coordinator.player = player
@@ -157,6 +158,6 @@ struct ARViewContainer: UIViewRepresentable {
             coachingOverlay.centerYAnchor.constraint(equalTo: arView.centerYAnchor),
             coachingOverlay.widthAnchor.constraint(equalTo: arView.widthAnchor),
             coachingOverlay.heightAnchor.constraint(equalTo: arView.heightAnchor)
-            ])
+        ])
     }
 }
