@@ -145,7 +145,6 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         ("none", PHASEReverbPreset.none)
     ])
     
-//    private let config: SpeakerConfig!
     private let engine: PHASEEngine!
     private let listener: PHASEListener!
     private let hmm = CMHeadphoneMotionManager()
@@ -193,7 +192,8 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
     func updateDevicePosition(_ position: float4x4) {
         devicePosition = position
-        listener.worldTransform = matrix_multiply(devicePosition, headPosition)
+//        listener.worldTransform = matrix_multiply(devicePosition, headPosition)
+        listener.worldTransform = devicePosition
     }
     
     func updateAnchorPosition(for name : String, position : float4x4) {
@@ -205,7 +205,8 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     private func updateHeadPosition(_ position : float4x4) {
         headPosition = position
         print("******* HEAD POSITION: \(position)")
-        listener.worldTransform = matrix_multiply(devicePosition,  headPosition)
+//        listener.worldTransform = matrix_multiply(devicePosition,  headPosition)
+        listener.worldTransform = devicePosition
     }
 }
 

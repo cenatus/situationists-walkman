@@ -54,9 +54,6 @@
          identifier = "London, England"
          referenceType = "1">
       </LocationScenarioReference>
-      <DeviceSensorReplayFileReference
-         identifier = "../../Arnold Circus 20211217 1454 - AC Bandstand 2.mov">
-      </DeviceSensorReplayFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

@@ -10,12 +10,9 @@
 		2209D63B27980E8E00329FD7 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209D63A27980E8E00329FD7 /* ARViewContainer.swift */; };
 		2209D6432798141E00329FD7 /* SpeakerPHASEPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */; };
 		2209D64B27983A3600329FD7 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209D64727983A3600329FD7 /* Speaker.swift */; };
-		2209D64C27983A3600329FD7 /* SpeakerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209D64827983A3600329FD7 /* SpeakerConfig.swift */; };
 		2209D64D27983A3600329FD7 /* SpeakerVisualiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */; };
-		2209D64E27983A3600329FD7 /* speakers-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 2209D64A27983A3600329FD7 /* speakers-config.json */; };
 		2246D0FB279849F2007EE896 /* SpeakerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */; };
 		2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */; };
-		2246D0FF27985EA7007EE896 /* single-source-test-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 2246D0FE27985EA6007EE896 /* single-source-test-config.json */; };
 		228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */; };
 		228EDA3C278F385200D2838A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA3B278F385200D2838A /* ContentView.swift */; };
 		228EDA3E278F385600D2838A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA3D278F385600D2838A /* Assets.xcassets */; };
@@ -24,7 +21,6 @@
 		22D4F50A2790899E00012377 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F5092790899E00012377 /* IntroView.swift */; };
 		22D4F50C27908B7200012377 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50B27908B7200012377 /* AppState.swift */; };
 		22D4F50E27908CFF00012377 /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50D27908CFF00012377 /* ExperienceView.swift */; };
-		22EBB66C279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */; };
 		7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255EC3E279EE84300B59670 /* GPXParser.swift */; };
 		7255EC46279F011C00B59670 /* speakers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7255EC45279F011C00B59670 /* speakers.gpx */; };
 		7286F70D27A013960062B674 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7286F70C27A013960062B674 /* sounds */; };
@@ -35,12 +31,9 @@
 		2209D63A27980E8E00329FD7 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerPHASEPlayer.swift; sourceTree = "<group>"; };
 		2209D64727983A3600329FD7 /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
-		2209D64827983A3600329FD7 /* SpeakerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerConfig.swift; sourceTree = "<group>"; };
 		2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerVisualiser.swift; sourceTree = "<group>"; };
-		2209D64A27983A3600329FD7 /* speakers-config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "speakers-config.json"; sourceTree = "<group>"; };
 		2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerPlayer.swift; sourceTree = "<group>"; };
 		2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerRealityKitPlayer.swift; sourceTree = "<group>"; };
-		2246D0FE27985EA6007EE896 /* single-source-test-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "single-source-test-config.json"; sourceTree = "<group>"; };
 		228EDA36278F385200D2838A /* SituationistsWalkman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SituationistsWalkman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SituationistsWalkmanApp.swift; sourceTree = "<group>"; };
 		228EDA3B278F385200D2838A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,7 +43,6 @@
 		22D4F5092790899E00012377 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		22D4F50B27908B7200012377 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		22D4F50D27908CFF00012377 /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
-		22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "tim-htca-coffee-shop-test-config.json"; sourceTree = "<group>"; };
 		7255EC3E279EE84300B59670 /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
 		7255EC45279F011C00B59670 /* speakers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speakers.gpx; sourceTree = "<group>"; };
 		7286F70C27A013960062B674 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
@@ -87,9 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				7255EC45279F011C00B59670 /* speakers.gpx */,
-				2246D0FE27985EA6007EE896 /* single-source-test-config.json */,
-				2209D64A27983A3600329FD7 /* speakers-config.json */,
-				22EBB66B279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json */,
 				2204BA402795ABA6001BA93F /* Info.plist */,
 				22D4F50B27908B7200012377 /* AppState.swift */,
 				2209D63A27980E8E00329FD7 /* ARViewContainer.swift */,
@@ -100,7 +89,6 @@
 				22D4F5092790899E00012377 /* IntroView.swift */,
 				228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */,
 				2209D64727983A3600329FD7 /* Speaker.swift */,
-				2209D64827983A3600329FD7 /* SpeakerConfig.swift */,
 				2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */,
 				2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */,
 				2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */,
@@ -182,9 +170,6 @@
 				228EDA41278F385600D2838A /* Preview Assets.xcassets in Resources */,
 				7286F70D27A013960062B674 /* sounds in Resources */,
 				228EDA3E278F385600D2838A /* Assets.xcassets in Resources */,
-				2209D64E27983A3600329FD7 /* speakers-config.json in Resources */,
-				22EBB66C279EC2D7005DF7B9 /* tim-htca-coffee-shop-test-config.json in Resources */,
-				2246D0FF27985EA7007EE896 /* single-source-test-config.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +180,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2209D64C27983A3600329FD7 /* SpeakerConfig.swift in Sources */,
 				2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */,
 				7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */,
 				228EDA4F278F43AE00D2838A /* ErrorView.swift in Sources */,

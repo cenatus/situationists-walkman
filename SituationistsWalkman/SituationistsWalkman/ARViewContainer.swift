@@ -15,7 +15,6 @@ struct ARViewContainer: UIViewRepresentable {
     class Coordinator : NSObject, ARSessionDelegate, ARCoachingOverlayViewDelegate, GPXParserDelegate {
         var arView : ARView!
         var container : ARViewContainer!
-        var speakerConfig : SpeakerConfig!
         var player: SpeakerPlayer!
         private var alreadyLocalized = false;
         
@@ -104,7 +103,6 @@ struct ARViewContainer: UIViewRepresentable {
         context.coordinator.arView = arView
         context.coordinator.container = self
         context.coordinator.player = player
-//        context.coordinator.speakerConfig = speakerConfig
         
         restartSession(arView: arView)
         UIApplication.shared.isIdleTimerDisabled = true
