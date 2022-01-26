@@ -430,6 +430,78 @@
         </phaseAudio>
     </wpt>
     <!-- END Mark -->
+    <!-- START Matt -->
+    <wpt lat="51.5262" lon="-0.07468">
+        <ele>21</ele>
+        <name>matt-atlantis-15m</name>
+        <audioFile>situationists-walkman Atlantis</audioFile>
+        <color>
+            <r>0.7</r>
+            <g>0.2</g>
+            <b>0.7</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>15.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52602" lon="-0.07459">
+        <ele>21</ele>
+        <name>matt-bela-20m</name>
+        <audioFile>situationists-walkman Bela</audioFile>
+        <color>
+            <r>0.7</r>
+            <g>0.2</g>
+            <b>0.7</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>20.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.5259" lon="-0.0748">
+        <ele>21</ele>
+        <name>matt-es8-3-15m</name>
+        <audioFile>situationists-walkman Es8-3</audioFile>
+        <color>
+            <r>0.7</r>
+            <g>0.2</g>
+            <b>0.7</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>15.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.526" lon="-0.07515">
+        <ele>21</ele>
+        <name>matt-noise-15m</name>
+        <audioFile>situationists-walkman Noise ducked</audioFile>
+        <color>
+            <r>0.7</r>
+            <g>0.2</g>
+            <b>0.7</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>15.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52621" lon="-0.07509">
+        <ele>21</ele>
+        <name>matt-pad-15m</name>
+        <audioFile>situationists-walkman Pad ducked</audioFile>
+        <color>
+            <r>0.7</r>
+            <g>0.2</g>
+            <b>0.7</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>15.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <!-- END Matt -->
     <!-- START Perimeter markers -->
     <wpt lat="51.5262797" lon="-0.0730004">
         <ele>18</ele>
@@ -445,7 +517,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5253236" lon="-0.0727566">
         <ele>18</ele>
         <name>perimeter-marker-rhoda-7m</name>
@@ -460,7 +532,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5247835" lon="-0.0727399">
         <ele>18</ele>
         <name>perimeter-marker-swanfield-7m</name>
@@ -475,7 +547,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5247873" lon="-0.0743069">
         <ele>18</ele>
         <name>perimeter-marker-club-7m</name>
@@ -490,7 +562,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5248619" lon="-0.0735242">
         <ele>18</ele>
         <name>perimeter-marker-turville-7m</name>
@@ -505,7 +577,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5247239" lon="-0.0751979">
         <ele>18</ele>
         <name>perimeter-marker-chance-7m</name>
@@ -520,7 +592,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5244802" lon="-0.076472">
         <ele>18</ele>
         <name>perimeter-marker-boundary-street-7m</name>
@@ -535,7 +607,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5247166" lon="-0.0770456">
         <ele>18</ele>
         <name>perimeter-marker-boundary-passage-7m</name>
@@ -550,7 +622,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5264716" lon="-0.0778417">
         <ele>18</ele>
         <name>perimeter-marker-calvert-10m</name>
@@ -565,7 +637,7 @@
             <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5272673" lon="-0.0769912">
         <ele>18</ele>
         <name>perimeter-marker-austin-7m</name>
@@ -580,7 +652,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.527231" lon="-0.0754705">
         <ele>18</ele>
         <name>perimeter-marker-godfrey-7m</name>
@@ -595,7 +667,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5256007" lon="-0.0728215">
         <ele>18</ele>
         <name>perimeter-marker-rhoda-park-7m</name>
@@ -610,7 +682,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5270381" lon="-0.0733813">
         <ele>18</ele>
         <name>perimeter-marker-chambord-7m</name>
@@ -625,7 +697,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5273649" lon="-0.073593">
         <ele>18</ele>
         <name>perimeter-marker-virginia-7m</name>
@@ -640,7 +712,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.52742" lon="-0.0740195">
         <ele>18</ele>
         <name>perimeter-marker-gascoigne-7m</name>
@@ -655,7 +727,7 @@
             <cullDistance>7.0</cullDistance>
         </phaseAudio>
     </wpt>
-    
+
     <wpt lat="51.5272898" lon="-0.0750173">
         <ele>18</ele>
         <name>perimeter-marker-leopold-7m</name>
