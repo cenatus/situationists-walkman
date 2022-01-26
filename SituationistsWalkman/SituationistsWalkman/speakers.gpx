@@ -422,5 +422,118 @@
     </phaseAudio>
   </wpt>
   <!-- END Tim & Constanza -->
+  <!-- START Mark -->
+  <wpt lat="51.52652" lon="-0.07444">
+    <ele>18</ele>
+    <name>mark-stem1-ambience-20m</name>
+    <audioFile>Stem 1 General Ambience</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <cullDistance>20.0</cullDistance>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52624" lon="-0.07444">
+    <ele>18</ele>
+    <name>mark-cars-10m</name>
+    <audioFile>Stem 2 Cars</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <cullDistance>10.0</cullDistance>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52632" lon="-0.07425">
+    <ele>18</ele>
+    <name>mark-other-transport-15m</name>
+    <audioFile>Stem 3 Other transport</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <cullDistance>15.0</cullDistance>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52666" lon="-0.07352">
+    <ele>18</ele>
+    <name>mark-plane-5m</name>
+    <audioFile>Stem 4 Plane</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <cullDistance>5.0</cullDistance>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52661" lon="-0.07442">
+    <ele>18</ele>
+    <name>mark-animals-10m</name>
+    <audioFile>Stem 5 Animals</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <cullDistance>10.0</cullDistance>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52652" lon="-0.07398">
+    <ele>18</ele>
+    <name>mark-russian-10m</name>
+    <audioFile>Stem 6 Russian</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <cullDistance>10.0</cullDistance>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52664" lon="-0.07372">
+    <ele>18</ele>
+    <name>mark-stem7-additional-ambience-23m</name>
+    <audioFile>Stem 7 Additional ambience</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <cullDistance>23.0</cullDistance>
+    </phaseAudio>
+  </wpt>
+  <wpt lat="51.52667" lon="-0.07404">
+    <ele>18</ele>
+    <name>mark-stem8-music-20m</name>
+    <audioFile>Stem 8 Music</audioFile>
+    <color>
+      <r>0.0</r>
+      <g>1.0</g>
+      <b>0.0</b>
+      <a>0.7</a>
+    </color>
+    <phaseAudio>
+        <cullDistance>20.0</cullDistance>
+    </phaseAudio>
+  </wpt>
+  <!-- END Mark -->
 </gpx>
-
