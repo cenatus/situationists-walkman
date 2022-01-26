@@ -7,6 +7,7 @@
 import SwiftUI
 import RealityKit
 import ARKit
+import AVFAudio
 
 struct ARViewContainer: UIViewRepresentable {
     
@@ -16,6 +17,16 @@ struct ARViewContainer: UIViewRepresentable {
         var arView : ARView!
         var container : ARViewContainer!
         var player: SpeakerPlayer!
+        let alertPlayer: AVAudioPlayer!
+        
+        override init() {
+            let alertURL = Bundle.main.url(forResource: "need_tracking_alert", withExtension: "mp3", subdirectory: "sounds")!
+            self.alertPlayer = try! AVAudioPlayer(contentsOf: alertURL)
+            alertPlayer.volume = 0.75
+            super.init()
+        }
+        
+        
         private var alreadyLocalized = false;
         
         var speakers: [Speaker] = []
@@ -39,7 +50,6 @@ struct ARViewContainer: UIViewRepresentable {
         
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
             for anchor in anchors {
-                print("***** SituWalk: Anchor udpated: \(anchor.name ?? "unnamed") at transform: \(anchor.transform) *****")
                 if let name = anchor.name {
                     player.updateAnchorPosition(for: name, position: anchor.transform)
                 }
@@ -54,6 +64,7 @@ struct ARViewContainer: UIViewRepresentable {
         // MARK: - ARCoachingOverlayViewDelegate
         func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
             print("***** SituWalk: Coaching overlay requested session reset *****")
+            alertPlayer.play()
             self.container.restartSession(arView: self.arView)
         }
                 
@@ -86,7 +97,7 @@ struct ARViewContainer: UIViewRepresentable {
     
     func makeUIView(context: Context) -> ARView {
         print("***** SituWalk: Creating view *****")
-                
+       
         let url = Bundle.main.url(forResource: "speakers", withExtension: "gpx")!
         context.coordinator.parseGPXFile(with: url)
         
