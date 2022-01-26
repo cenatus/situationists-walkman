@@ -31,7 +31,7 @@
             <cullDistance>50.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52664" lon="-0.07615">
+    <wpt lat="51.52713" lon="-0.07627">
         <ele>18</ele>
         <name>ruaridh-2-50m</name>
         <audioFile>2 ai</audioFile>
@@ -45,7 +45,7 @@
             <cullDistance>50.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52625" lon="-0.07524">
+    <wpt lat="51.52628" lon="-0.07533">
         <ele>18</ele>
         <name>ruaridh-3-20m</name>
         <audioFile>3 fi1</audioFile>
@@ -59,7 +59,7 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52637" lon="-0.07482">
+    <wpt lat="51.52642" lon="-0.07492">
         <ele>18</ele>
         <name>ruaridh-4-20m</name>
         <audioFile>4 fi2</audioFile>
@@ -115,7 +115,7 @@
             <cullDistance>30.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52713" lon="-0.07627">
+    <wpt lat="51.52664" lon="-0.07615">
         <ele>18</ele>
         <name>ruaridh-8-50m</name>
         <audioFile>8 ma</audioFile>
