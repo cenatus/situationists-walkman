@@ -2,8 +2,8 @@
 <gpx xmlns="http://www.topografix.com/GPX/1/1" creator="Apple Inc.">
   <!-- START MSP test -->
   <wpt lat="51.52673" lon="-0.07815">
-    <ele>18</ele>
-    <name>alto</name>
+    <ele>21</ele>
+    <name>test ping</name>
     <audioFile>msp-cb</audioFile>
     <color>
       <r>0.0</r>
@@ -12,11 +12,7 @@
       <a>0.7</a>
     </color>
     <phaseAudio>
-        <sourceRadius>1.0</sourceRadius>
-        <cullDistance>10.0</cullDistance>
-        <rolloffFactor>1.0</rolloffFactor>
-        <reverbSendLevel>0</reverbSendLevel>
-        <referenceLevel>0.8</referenceLevel>
+        <cullDistance>2.0</cullDistance>
     </phaseAudio>
   </wpt>
   <!-- END MSP test -->
