@@ -82,7 +82,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                                           , withExtension: "mp3"
                                           , subdirectory: "sounds")!
                 try! engine.assetRegistry.registerSoundAsset(
-                    url: url, identifier: speaker.audioFile, assetType: .resident,
+                    url: url, identifier: speaker.audioFile, assetType: .streamed,
                     channelLayout: nil, normalizationMode: .dynamic
                 )
             } else {
@@ -114,6 +114,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                 engine: engine, assetIdentifier: speaker.name,
                 mixerParameters: mixerParameters
             )
+            self.soundEvent!.prepare()
         }
         
         func play() {
