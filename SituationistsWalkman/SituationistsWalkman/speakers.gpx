@@ -515,6 +515,20 @@
             <cullDistance>12.0</cullDistance>
         </phaseAudio>
     </wpt>
+    <wpt lat="51.52606" lon="-0.0749">
+        <ele>21</ele>
+        <name>olly-chord-5m</name>
+        <audioFile>olly-chord</audioFile>
+        <color>
+            <r>0.7</r>
+            <g>0.2</g>
+            <b>0.7</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>5.0</cullDistance>
+        </phaseAudio>
+    </wpt>
     <!-- END Matt -->
     <!-- START Nonument -->
     <wpt lat="51.52589" lon="-0.07557">
