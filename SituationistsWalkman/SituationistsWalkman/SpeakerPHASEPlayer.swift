@@ -210,6 +210,14 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         }
     }
     
+    func mute() {
+        self.listener.gain = 0.0
+    }
+    
+    func unMute() {
+        self.listener.gain = 1.0
+    }
+    
     func updateDevicePosition(_ position: float4x4) {
         devicePosition = position
 //        listener.worldTransform = matrix_multiply(devicePosition, headPosition)

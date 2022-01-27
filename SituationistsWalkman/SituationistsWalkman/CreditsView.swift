@@ -1,8 +1,8 @@
 //
-//  IntroView.swift
+//  CreditsView.swift
 //  SituationistsWalkman
 //
-//  Created by Tim on 13/1/22.
+//  Created by Tim on 27/1/22.
 //
 
 import SwiftUI

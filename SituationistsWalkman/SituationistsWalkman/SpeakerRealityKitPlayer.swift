@@ -31,6 +31,10 @@ class SpeakerRealityKitPlayer: NSObject, SpeakerPlayer {
     
     func teardown() {}
     
+    func mute() {}
+    
+    func unMute() {}
+    
     func updateDevicePosition(_ position: float4x4) {}
     
     func updateAnchorPosition(for name : String, position : float4x4) {}

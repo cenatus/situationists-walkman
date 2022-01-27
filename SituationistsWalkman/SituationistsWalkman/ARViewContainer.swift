@@ -18,6 +18,7 @@ struct ARViewContainer: UIViewRepresentable {
         var container : ARViewContainer!
         var player: SpeakerPlayer!
         let alertPlayer: AVAudioPlayer!
+        var state : AppState!
         
         override init() {
             let alertURL = Bundle.main.url(forResource: "need_tracking_alert", withExtension: "mp3", subdirectory: "sounds")!
@@ -39,13 +40,15 @@ struct ARViewContainer: UIViewRepresentable {
             } else if geoTrackingStatus.state == .localized && !alreadyLocalized {
                 print("***** SituWalk: Geotracking status LOCALIZED *****")
                 alreadyLocalized = true
-                
+                state.localized = true
                 for (speaker) in self.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
-                    player.play(speaker)
                     arView.scene.addAnchor(
                         SpeakerVisualiser.createEntity(for: speaker)
                     )
+                    //DispatchQueue.global(qos: .userInitiated).async { [self] in
+                    player.play(speaker)
+                    //}
                 }
             }
         }
@@ -110,7 +113,9 @@ struct ARViewContainer: UIViewRepresentable {
         var player : SpeakerPlayer
         player = SpeakerPHASEPlayer()
         player.setup()
-        
+        player.mute() // We unmute later to stop the massive cacophany of overlaid noises when the experience first loads.
+
+        context.coordinator.state = state
         context.coordinator.arView = arView
         context.coordinator.container = self
         context.coordinator.player = player
@@ -133,7 +138,16 @@ struct ARViewContainer: UIViewRepresentable {
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func updateUIView(_ uiView: ARView, context: Context) {
+        print("***** SituWalk: Updating view *****")
+        print("***** SituWalk: \(state.started)")
+        if(state.started) {
+            context.coordinator.player.unMute()
+        } else {
+            context.coordinator.player.mute()
+        }
+
+    }
     
     func restartSession(arView : ARView) {
         print("***** SituWalk: Restarting session *****")
