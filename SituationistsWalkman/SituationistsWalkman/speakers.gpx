@@ -12,7 +12,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>2.0</cullDistance>
+            <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
     <!-- END MSP test -->

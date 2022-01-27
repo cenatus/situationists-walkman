@@ -27,8 +27,8 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
             let mesh = MDLMesh.newIcosahedron(withRadius: speaker.sourceRadius, inwardNormals: false, allocator: nil)
             let shape = PHASEShape(engine: engine, mesh: mesh)
             let source = PHASESource(engine: engine, shapes: [shape])
-
-            source.worldTransform = speaker.geoAnchor.transform
+            print("***** SituWalk: speaker transform: \(speaker.transform())")
+            source.worldTransform = speaker.transform()
             self.source = source
         }
         

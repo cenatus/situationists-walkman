@@ -11,6 +11,14 @@ import PHASE
 import ARKit
 
 class Speaker {
+    
+    let FAR_AWAY_POINT = simd_float4x4(columns: (
+        vector4(1.0,0.0,0.0,0.0),
+        vector4(0.0,1.0,0.0,0.0),
+        vector4(0.0,0.0,1.0,0.0),
+        vector4(1000.0,1000.0,100.0,1.0)
+    ))
+    
     let name : String
     
     let lat: Double
@@ -54,6 +62,14 @@ class Speaker {
         self.rolloffFactor = Double(config["rollofffactor"] ?? "1.0")
         self.reverbSendLevel = Double(config["reverbsendLevel"] ?? "0")
         self.referenceLevel = Double(config["referencelevel"] ?? "0.4")
+    }
+    
+    func transform() -> float4x4 {
+        if(geoAnchor.transform == matrix_identity_float4x4) {
+            return FAR_AWAY_POINT
+        } else {
+            return geoAnchor.transform
+        }
     }
     
     static func hardcoded() -> Speaker {
