@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  SituationistsWalkman
+
+  Created by Tim on 27/1/22.
+  
+*/
+/* Intro screen */
+"app-title" = "The Situationist's Walkman";
+"quote-one" = "“We want a wild and ephemeral music.\nWe propose a fundamental regeneration:\nconcert strikes,\nsound gatherings with collective investigation.”";
+"quote-one-attribution" = "— Anonymous graffiti artist, Paris, May 1968";
+"quote-two" = "“La beauté est dans la rue”";
+"quote-two-attribution" = "— L'Atelier Populaire";
+"blurb" = "The Situationists Walkman is a collaborative, immersive sound art experience, centred around Arnold Circus and the Boundary Estate in London E2. Featuring the work of six sound artists, musicians and collectives, it invites us to consider the radical possibilities of augmented reality technologies for creative expression and public space,  as well as to meditate on the uncanny, aleatoric, and often beautiful contrasts of the urban soundscape.";
+"cta" = "Meet us there, connect your headphones, and explore.";
+/* Credits screen */
+"app-credits"= "Concept, Design and Development:\nMatt Spendlove & Tim Cowlishaw";
+"artist-credits"= "Featured artists:\n\t— Spatial, Sally Golding & Oliver Coates\n\t— Freya Edmundes\n\t— Mark Harwood\n\t— Ruaridh Law\n\t— The Nonument Group\n\t— Tim Cowlishaw & Constanza Piffardi";
+"production-credits"= "Produced by Cenatus";
+"funding-credits"= "Made with the support of the Innovate UK Creative Industries Fund.";

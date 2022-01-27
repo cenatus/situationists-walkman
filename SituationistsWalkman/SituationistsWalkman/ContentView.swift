@@ -25,6 +25,9 @@ struct ContentView: View {
                 ErrorView(message: "Sorry, your device is not supported!")
             case .outsideGeoTrackingArea:
                 ErrorView(message: "Sorry, Geographic AR is not supported where you are.")
+                
+            case .credits:
+                CreditsView()
             }
         }.environmentObject(state)
     }
