@@ -516,6 +516,78 @@
         </phaseAudio>
     </wpt>
     <!-- END Matt -->
+    <!-- START Nonument -->
+    <wpt lat="51.52589" lon="-0.07557">
+        <ele>18</ele>
+        <name>non-no-swimming-10m</name>
+        <audioFile>no swimming sign DDM Final Short</audioFile>
+        <color>
+            <r>0.59</r>
+            <g>0.29</g>
+            <b>0.0</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>10.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52595" lon="-0.07587">
+        <ele>18</ele>
+        <name>non-peace-mandm-10m</name>
+        <audioFile>Peace mandm women in black</audioFile>
+        <color>
+            <r>0.59</r>
+            <g>0.29</g>
+            <b>0.0</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>10.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52579" lon="-0.07605">
+        <ele>18</ele>
+        <name>non-pennies-fred1-8m</name>
+        <audioFile>pennies Fred Shorts Final_1</audioFile>
+        <color>
+            <r>0.59</r>
+            <g>0.29</g>
+            <b>0.0</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>8.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52574" lon="-0.07639">
+        <ele>18</ele>
+        <name>non-plaque-10m</name>
+        <audioFile>plaque</audioFile>
+        <color>
+            <r>0.59</r>
+            <g>0.29</g>
+            <b>0.0</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>10.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52543" lon="-0.07652">
+        <ele>18</ele>
+        <name>non-white-people-sign-20m</name>
+        <audioFile>White people sign Meghan</audioFile>
+        <color>
+            <r>0.59</r>
+            <g>0.29</g>
+            <b>0.0</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>20.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <!-- END Nonument -->
     <!-- START Perimeter markers -->
     <wpt lat="51.5262797" lon="-0.0730004">
         <ele>18</ele>
