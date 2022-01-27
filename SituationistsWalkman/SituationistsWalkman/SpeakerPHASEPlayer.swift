@@ -114,6 +114,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                 engine: engine, assetIdentifier: speaker.name,
                 mixerParameters: mixerParameters
             )
+
             self.soundEvent!.prepare()
         }
         
