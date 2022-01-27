@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" creator="Apple Inc.">
     <!-- START MSP test -->
-    <wpt lat="51.52673" lon="-0.07815">
-        <ele>21</ele>
+    <wpt lat="51.52669723866872" lon="-0.07816211243112564">
+        <ele>18</ele>
         <name>test ping</name>
         <audioFile>msp-cb</audioFile>
         <color>
