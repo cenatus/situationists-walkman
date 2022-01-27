@@ -12,6 +12,7 @@ enum NavState {
     case experience
     case unsupportedDevice
     case outsideGeoTrackingArea
+    case credits
 }
 
 class AppState: ObservableObject {

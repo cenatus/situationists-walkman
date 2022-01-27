@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IntroView: View {
+struct CreditsView: View {
     @EnvironmentObject var state : AppState
     
     var body: some View {
@@ -21,45 +21,28 @@ struct IntroView: View {
                         .foregroundColor(Color(highlightColor))
                     Spacer()
                 }.padding(.trailing)
-                VStack(alignment: .center){
-                    Text("quote-one")
-                        .italic()
-                        .foregroundColor(Color(textColor))
-                        .padding(.bottom, -1.0)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text("quote-one-attribution")
-                        .padding(.bottom)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .foregroundColor(Color(textColor))
-                    Text("quote-two")
-                        .italic()
-                        .foregroundColor(Color(textColor))
-                        .padding(.bottom, -1.0)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text("quote-two-attribution")
-                        .padding(.bottom)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .foregroundColor(Color(textColor))
-                    Text("blurb")
+                VStack(alignment: .center) {
+                    Text("app-credits")
                         .foregroundColor(Color(textColor))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom)
-                    Text("cta")
+                    Text("artist-credits")
+                        .foregroundColor(Color(textColor))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom)
+                    Text("production-credits")
+                        .foregroundColor(Color(textColor))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom)
+                    Text("funding-credits")
                         .foregroundColor(Color(textColor))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
                 }.padding(.trailing)
                 VStack(alignment: .trailing) {
                     Spacer()
-                    Button("Start") {
-                        self.state.page = .experience
-                    }
-                    .padding(.all)
-                    .frame(maxWidth: .infinity)
-                    .background(Color(highlightColor))
-                    .foregroundColor((Color(backgroundColor)))
-                    Button("Credits") {
-                        self.state.page = .credits
+                    Button("Back") {
+                        self.state.page = .intro
                     }
                     .padding(.all)
                     .frame(maxWidth: .infinity)
@@ -72,8 +55,8 @@ struct IntroView: View {
     }
 }
 
-struct IntroView_Previews: PreviewProvider {
+struct CreditsView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroView()
+        CreditsView()
     }
 }
