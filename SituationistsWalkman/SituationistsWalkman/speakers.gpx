@@ -459,7 +459,7 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52594" lon="-0.07482">
+    <wpt lat="51.52594" lon="-0.07489">
         <ele>21</ele>
         <name>matt-es8-3-15m</name>
         <audioFile>situationists-walkman Es8-3</audioFile>
@@ -475,22 +475,8 @@
     </wpt>
     <wpt lat="51.52601" lon="-0.07509">
         <ele>21</ele>
-        <name>matt-noise-15m</name>
+        <name>matt-noise-20m</name>
         <audioFile>situationists-walkman Noise ducked</audioFile>
-        <color>
-            <r>0.7</r>
-            <g>0.2</g>
-            <b>0.7</b>
-            <a>0.7</a>
-        </color>
-        <phaseAudio>
-            <cullDistance>15.0</cullDistance>
-        </phaseAudio>
-    </wpt>
-    <wpt lat="51.52617" lon="-0.07503">
-        <ele>21</ele>
-        <name>matt-pad-20m</name>
-        <audioFile>situationists-walkman Pad ducked</audioFile>
         <color>
             <r>0.7</r>
             <g>0.2</g>
@@ -501,7 +487,21 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52609" lon="-0.07488">
+    <wpt lat="51.52616" lon="-0.075">
+        <ele>21</ele>
+        <name>matt-pad-23m</name>
+        <audioFile>situationists-walkman Pad ducked</audioFile>
+        <color>
+            <r>0.7</r>
+            <g>0.2</g>
+            <b>0.7</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>23.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52605" lon="-0.07489">
         <ele>21</ele>
         <name>matt-sub-12m</name>
         <audioFile>situationists-walkman Sub</audioFile>
