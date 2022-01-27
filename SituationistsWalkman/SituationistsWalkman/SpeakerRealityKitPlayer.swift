@@ -19,6 +19,8 @@ class SpeakerRealityKitPlayer: NSObject, SpeakerPlayer {
     
     func setup() {}
     
+    func prepare(_ speaker: Speaker) {}
+    
     func play(_ speaker: Speaker) {
         let audio1 = try! AudioFileResource.load(named: "\(speaker.audioFile).mp3")
         audio1.shouldLoop = true

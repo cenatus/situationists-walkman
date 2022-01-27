@@ -77,7 +77,9 @@ struct ARViewContainer: UIViewRepresentable {
             }
             
             self.speakers = speakers
-            
+            for (speaker) in self.speakers {
+                player.prepare(speaker)
+            }
             print("\(speakers.count) speakers(s) added.")
         }
         
@@ -100,7 +102,6 @@ struct ARViewContainer: UIViewRepresentable {
         print("***** SituWalk: Creating view *****")
         
         let url = Bundle.main.url(forResource: "speakers", withExtension: "gpx")!
-        context.coordinator.parseGPXFile(with: url)
         
         let arView = ARView(frame: .zero)
         arView.session.delegate = context.coordinator
@@ -110,13 +111,15 @@ struct ARViewContainer: UIViewRepresentable {
         player = SpeakerPHASEPlayer()
         player.setup()
         
-        setupCoachingOverlay(arView: arView, context: context)
-        
         context.coordinator.arView = arView
         context.coordinator.container = self
         context.coordinator.player = player
         
+        context.coordinator.parseGPXFile(with: url)
+        
+        setupCoachingOverlay(arView: arView, context: context)
         restartSession(arView: arView)
+        
         UIApplication.shared.isIdleTimerDisabled = true
         
         return arView

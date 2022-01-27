@@ -18,6 +18,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         private let engine : PHASEEngine
         private let listener: PHASEListener
         private let source : PHASESource
+        private var soundEvent : PHASESoundEvent?
         
         init(_ speaker : Speaker, engine: PHASEEngine, listener: PHASEListener) {
             self.speaker = speaker
@@ -74,8 +75,8 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
             return mixerParameters
         }
         
-        func play() {
-            print("***** SituWalk: playing audio file \(speaker.audioFile ) and anchor \(speaker.name ) *****")
+        func prepare() {
+            print("***** SituWalk: preparing audio file \(speaker.audioFile ) and anchor \(speaker.name ) *****")
             if (engine.assetRegistry.asset(forIdentifier: speaker.audioFile) == nil) {
                 let url = Bundle.main.url(forResource: speaker.audioFile
                                           , withExtension: "mp3"
@@ -109,12 +110,20 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                 source: source
             )
             
-            let soundEvent = try! PHASESoundEvent(
+            self.soundEvent = try! PHASESoundEvent(
                 engine: engine, assetIdentifier: speaker.name,
                 mixerParameters: mixerParameters
             )
-            
-            soundEvent.start()
+        }
+        
+        func play() {
+            guard let se = self.soundEvent else {
+                self.prepare()
+                self.play()
+                return
+            }
+            print("***** SituWalk: playing audio file \(speaker.audioFile ) and anchor \(speaker.name ) *****")
+            se.start()
         }
         
         func updatePosition(_ position : float4x4) {
@@ -184,10 +193,20 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         self.engine.rootObject.removeChild(self.listener)
     }
     
-    func play(_ speaker: Speaker) {
+    func prepare(_ speaker: Speaker) {
         let phaseSpeaker = PHASESpeaker(speaker, engine: self.engine, listener: self.listener)
+        phaseSpeaker.prepare()
         playingSpeakers[speaker.name] = phaseSpeaker
-        phaseSpeaker.play()
+    }
+    
+    func play(_ speaker: Speaker) {
+        let phaseSpeaker = playingSpeakers[speaker.name]
+        if(phaseSpeaker != nil) {
+            phaseSpeaker!.play()
+        } else {
+            self.prepare(speaker)
+            self.play(speaker)
+        }
     }
     
     func updateDevicePosition(_ position: float4x4) {
