@@ -13,7 +13,7 @@ struct SituationistsWalkmanApp: App {
     var body: some Scene {
         WindowGroup {
             if !ARGeoTrackingConfiguration.isSupported {
-                MessageView(message: "Sorry, your device is not supported!", buttonText: "Try again")
+                MessageView(message: "unsupported-device-error", buttonText: "Try again")
             } else {
                 ContentView()
             }

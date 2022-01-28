@@ -19,4 +19,8 @@
 "production-credits"= "Produced by Cenatus";
 "funding-credits"= "Made with the support of the Innovate UK Creative Industries Fund.";
 /* Start experience screen */
-"start-experience"= "Now listen, and get lost - we’ll handle the navigation. Hold your phone in landscape orientation in front of you (we need to see where we’re going!), and remember to stay aware of your surroundings, and stay safe. We’ll tell you via your headphones if you leave the installation, or if we need help locating you.";
+"start-experience"= "Now listen, and get lost - we’ll handle the navigation. Hold your phone in landscape orientation in front of your chest (we need to see where we’re going!), and remember to stay aware of your surroundings, and stay safe. We’ll tell you via your headphones if you leave the installation, or if we need help locating you.";
+/* Errors */
+"out-of-range-error"= "The Situationist's Walkman takes place in and around Arnold Circus, in London, UK.
+Find your way there and try again! We’ll meet you by the bandstand.";
+"unsupported-device-error"= "We’re sorry, but The Situationists Walkman requires iOS 11 and above, and only works on devices that support Apple AR:\n\t—iPhone (SE, 6s or newer)\n\t—iPad (5th gen or newer, iPad Air 3rd gen or newer, or iPad Pro)\n\t—iPod Touch (7th generation or newer)";
