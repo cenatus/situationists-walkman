@@ -720,6 +720,23 @@
         </phaseAudio>
     </wpt>
     <!-- END Freya 2 -->
+    <!-- START Sally -->
+    <wpt lat="51.52508" lon="-0.07628">
+        <ele>18</ele>
+        <name>sally-leve-2018-40m</name>
+        <audioFile>LEVE 2018_Sally</audioFile>
+        <color>
+            <r>0.8</r>
+            <g>0.1</g>
+            <b>0.5</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>40.0</cullDistance>
+            <referenceLevel>0.8</referenceLevel>
+        </phaseAudio>
+    </wpt>
+    <!-- END Sally -->
     <!-- START Perimeter markers -->
     <wpt lat="51.5262797" lon="-0.0730004">
         <ele>18</ele>
