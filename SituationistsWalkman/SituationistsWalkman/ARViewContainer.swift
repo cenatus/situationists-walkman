@@ -14,6 +14,7 @@ struct ARViewContainer: UIViewRepresentable {
     @EnvironmentObject var state : AppState
     
     class Coordinator : NSObject, ARSessionDelegate, ARCoachingOverlayViewDelegate, GPXParserDelegate {
+        var state : AppState!
         var arView : ARView!
         var container : ARViewContainer!
         var player: SpeakerPlayer!
@@ -26,19 +27,17 @@ struct ARViewContainer: UIViewRepresentable {
             super.init()
         }
         
-        
-        private var alreadyLocalized = false;
-        
         var speakers: [Speaker] = []
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
-            if geoTrackingStatus.state == .localizing && alreadyLocalized {
+            if geoTrackingStatus.state == .localizing && state.localized {
                 print("***** SituWalk: Geotracking status: RELOCALIZING *****")
+                state.localized = false
                 alertPlayer.play()
-            } else if geoTrackingStatus.state == .localized && !alreadyLocalized {
+            } else if geoTrackingStatus.state == .localized && !state.localized {
                 print("***** SituWalk: Geotracking status LOCALIZED *****")
-                alreadyLocalized = true
+                state.localized = true
                 
                 for (speaker) in self.speakers {
                     arView.session.add(anchor: speaker.geoAnchor)
@@ -111,6 +110,7 @@ struct ARViewContainer: UIViewRepresentable {
         player = SpeakerPHASEPlayer()
         player.setup()
         
+        context.coordinator.state = state
         context.coordinator.arView = arView
         context.coordinator.container = self
         context.coordinator.player = player

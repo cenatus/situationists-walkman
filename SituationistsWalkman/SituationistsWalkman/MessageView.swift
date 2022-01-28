@@ -1,14 +1,16 @@
 //
-//  CreditsView.swift
+//  MessageView.swift
 //  SituationistsWalkman
 //
-//  Created by Tim on 27/1/22.
+//  Created by Tim on 28/1/22.
 //
-
 import SwiftUI
 
-struct CreditsView: View {
+struct MessageView: View {
     @EnvironmentObject var state : AppState
+    
+    let message : LocalizedStringKey
+    var buttonText = "Back"
     
     var body: some View {
         ZStack {
@@ -22,27 +24,17 @@ struct CreditsView: View {
                     Spacer()
                 }.padding(.trailing)
                 VStack(alignment: .center) {
-                    Text("app-credits")
-                        .foregroundColor(Color(textColor))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom)
-                    Text("artist-credits")
-                        .foregroundColor(Color(textColor))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom)
-                    Text("production-credits")
-                        .foregroundColor(Color(textColor))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom)
-                    Text("funding-credits")
-                        .foregroundColor(Color(textColor))
-                        .frame(maxWidth: .infinity, alignment: .leading)
                     Spacer()
+                    Text(message)
+                        .foregroundColor(Color(textColor))
+                    Spacer()
+                    
                 }.padding(.trailing)
                 VStack(alignment: .trailing) {
                     Spacer()
-                    Button("Back") {
+                    Button(buttonText) {
                         self.state.page = .intro
+                        self.state.localized = false
                     }
                     .padding(.all)
                     .frame(maxWidth: .infinity)
@@ -51,12 +43,13 @@ struct CreditsView: View {
                     
                 }.frame(maxWidth: .infinity)
             }.padding(.all)
+            
         }
     }
 }
 
-struct CreditsView_Previews: PreviewProvider {
+struct MessageView_Previews: PreviewProvider {
     static var previews: some View {
-        CreditsView()
+        MessageView(message: "This is a test message.")
     }
 }

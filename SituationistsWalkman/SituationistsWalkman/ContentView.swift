@@ -22,9 +22,9 @@ struct ContentView: View {
             case .experience:
                 ExperienceView()
             case .unsupportedDevice:
-                ErrorView(message: "Sorry, your device is not supported!")
+                MessageView(message: "Sorry, your device is not supported!", buttonText: "Home")
             case .outsideGeoTrackingArea:
-                ErrorView(message: "Sorry, Geographic AR is not supported where you are.")
+                MessageView(message: "Sorry, Geographic AR is not supported where you are.", buttonText: "Try again")
                 
             case .credits:
                 CreditsView()

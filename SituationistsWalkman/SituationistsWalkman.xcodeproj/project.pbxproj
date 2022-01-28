@@ -11,6 +11,7 @@
 		2209D6432798141E00329FD7 /* SpeakerPHASEPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */; };
 		2209D64B27983A3600329FD7 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209D64727983A3600329FD7 /* Speaker.swift */; };
 		2209D64D27983A3600329FD7 /* SpeakerVisualiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */; };
+		222259C727A4133500BDA0F3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222259C627A4133500BDA0F3 /* MessageView.swift */; };
 		2246D0FB279849F2007EE896 /* SpeakerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */; };
 		2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */; };
 		228B90AF27A2A56700A37074 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 228B90AE27A2A56700A37074 /* Localizable.strings */; };
@@ -18,7 +19,6 @@
 		228EDA3C278F385200D2838A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA3B278F385200D2838A /* ContentView.swift */; };
 		228EDA3E278F385600D2838A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA3D278F385600D2838A /* Assets.xcassets */; };
 		228EDA41278F385600D2838A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228EDA40278F385600D2838A /* Preview Assets.xcassets */; };
-		228EDA4F278F43AE00D2838A /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228EDA4E278F43AE00D2838A /* ErrorView.swift */; };
 		22BBBE6427A2BB2200A8DA11 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BBBE6327A2BB2200A8DA11 /* CreditsView.swift */; };
 		22BBBE6627A2BE0300A8DA11 /* UIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BBBE6527A2BE0300A8DA11 /* UIHelpers.swift */; };
 		22D4F50A2790899E00012377 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F5092790899E00012377 /* IntroView.swift */; };
@@ -35,6 +35,7 @@
 		2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerPHASEPlayer.swift; sourceTree = "<group>"; };
 		2209D64727983A3600329FD7 /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerVisualiser.swift; sourceTree = "<group>"; };
+		222259C627A4133500BDA0F3 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerPlayer.swift; sourceTree = "<group>"; };
 		2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerRealityKitPlayer.swift; sourceTree = "<group>"; };
 		228B90AE27A2A56700A37074 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		228EDA3B278F385200D2838A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		228EDA3D278F385600D2838A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		228EDA40278F385600D2838A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		228EDA4E278F43AE00D2838A /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		22BBBE6327A2BB2200A8DA11 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		22BBBE6527A2BE0300A8DA11 /* UIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelpers.swift; sourceTree = "<group>"; };
 		22D4F5092790899E00012377 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -85,26 +85,26 @@
 		228EDA38278F385200D2838A /* SituationistsWalkman */ = {
 			isa = PBXGroup;
 			children = (
+				7286F70C27A013960062B674 /* sounds */,
 				7255EC45279F011C00B59670 /* speakers.gpx */,
 				2204BA402795ABA6001BA93F /* Info.plist */,
 				22D4F50B27908B7200012377 /* AppState.swift */,
 				2209D63A27980E8E00329FD7 /* ARViewContainer.swift */,
+				222259C627A4133500BDA0F3 /* MessageView.swift */,
 				228EDA3B278F385200D2838A /* ContentView.swift */,
-				228EDA4E278F43AE00D2838A /* ErrorView.swift */,
+				22BBBE6327A2BB2200A8DA11 /* CreditsView.swift */,
 				22D4F50D27908CFF00012377 /* ExperienceView.swift */,
 				7255EC3E279EE84300B59670 /* GPXParser.swift */,
 				22D4F5092790899E00012377 /* IntroView.swift */,
-				22BBBE6327A2BB2200A8DA11 /* CreditsView.swift */,
 				228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */,
 				2209D64727983A3600329FD7 /* Speaker.swift */,
 				2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */,
 				2246D0FA279849F2007EE896 /* SpeakerPlayer.swift */,
 				2246D0FC27984C57007EE896 /* SpeakerRealityKitPlayer.swift */,
 				2209D64927983A3600329FD7 /* SpeakerVisualiser.swift */,
-				7286F70C27A013960062B674 /* sounds */,
+				22BBBE6527A2BE0300A8DA11 /* UIHelpers.swift */,
 				228EDA3D278F385600D2838A /* Assets.xcassets */,
 				228EDA3F278F385600D2838A /* Preview Content */,
-				22BBBE6527A2BE0300A8DA11 /* UIHelpers.swift */,
 			);
 			path = SituationistsWalkman;
 			sourceTree = "<group>";
@@ -193,7 +193,6 @@
 				2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */,
 				22BBBE6427A2BB2200A8DA11 /* CreditsView.swift in Sources */,
 				7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */,
-				228EDA4F278F43AE00D2838A /* ErrorView.swift in Sources */,
 				228EDA3C278F385200D2838A /* ContentView.swift in Sources */,
 				2209D63B27980E8E00329FD7 /* ARViewContainer.swift in Sources */,
 				22BBBE6627A2BE0300A8DA11 /* UIHelpers.swift in Sources */,
@@ -204,6 +203,7 @@
 				22D4F50C27908B7200012377 /* AppState.swift in Sources */,
 				2209D64B27983A3600329FD7 /* Speaker.swift in Sources */,
 				228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */,
+				222259C727A4133500BDA0F3 /* MessageView.swift in Sources */,
 				22D4F50A2790899E00012377 /* IntroView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,12 +342,13 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
 				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to your device motion data to locate you within the experience";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeRight;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -377,12 +378,13 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
 				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to your device motion data to locate you within the experience";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeLeft;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeRight;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

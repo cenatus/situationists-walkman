@@ -18,3 +18,5 @@
 "artist-credits"= "Featured artists:\n\t— Spatial, Sally Golding & Oliver Coates\n\t— Freya Edmundes\n\t— Mark Harwood\n\t— Ruaridh Law\n\t— The Nonument Group\n\t— Tim Cowlishaw & Constanza Piffardi";
 "production-credits"= "Produced by Cenatus";
 "funding-credits"= "Made with the support of the Innovate UK Creative Industries Fund.";
+/* Start experience screen */
+"start-experience"= "Now listen, and get lost - we’ll handle the navigation. Hold your phone in landscape orientation in front of you (we need to see where we’re going!), and remember to stay aware of your surroundings, and stay safe. We’ll tell you via your headphones if you leave the installation, or if we need help locating you.";

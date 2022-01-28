@@ -14,15 +14,13 @@ struct ExperienceView: View {
         
     var body: some View {
         ZStack {
+            Color(backgroundColor).edgesIgnoringSafeArea(.all)
             ARViewContainer()
-            VStack {
-                Spacer()
-                Spacer()
-                Button("Home") {
-                    self.state.page = .intro
-                }.padding()
-                    .background(RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color.white).opacity(0.7))
+            if(state.localized && !state.debugMode) {
+                MessageView(
+                    message: "start-experience",
+                    buttonText: "Home"
+                )
             }
         }
     }
