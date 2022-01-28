@@ -443,6 +443,7 @@
         </color>
         <phaseAudio>
             <cullDistance>15.0</cullDistance>
+            <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
     <wpt lat="51.52603" lon="-0.07468">
@@ -457,6 +458,7 @@
         </color>
         <phaseAudio>
             <cullDistance>20.0</cullDistance>
+            <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
     <wpt lat="51.52594" lon="-0.07489">
@@ -471,6 +473,7 @@
         </color>
         <phaseAudio>
             <cullDistance>15.0</cullDistance>
+            <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
     <wpt lat="51.52601" lon="-0.07509">
@@ -485,6 +488,7 @@
         </color>
         <phaseAudio>
             <cullDistance>20.0</cullDistance>
+            <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
     <wpt lat="51.52616" lon="-0.075">
@@ -499,6 +503,7 @@
         </color>
         <phaseAudio>
             <cullDistance>23.0</cullDistance>
+            <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
     <wpt lat="51.52605" lon="-0.07489">
@@ -513,6 +518,7 @@
         </color>
         <phaseAudio>
             <cullDistance>12.0</cullDistance>
+            <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
     <wpt lat="51.52606" lon="-0.0749">
@@ -527,6 +533,7 @@
         </color>
         <phaseAudio>
             <cullDistance>5.0</cullDistance>
+            <referenceLevel>0.3</referenceLevel>
         </phaseAudio>
     </wpt>
     <!-- END Matt -->
