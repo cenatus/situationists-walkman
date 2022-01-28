@@ -158,15 +158,17 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     private let engine: PHASEEngine!
     private let listener: PHASEListener!
     private let hmm = CMHeadphoneMotionManager()
+    private let headTracking: Bool!
     
     private var playingSpeakers : [String : PHASESpeaker] = [:]
     private var devicePosition: simd_float4x4 = matrix_identity_float4x4;
     private var headPosition: simd_float4x4 = matrix_identity_float4x4;
     
-    override init() {
+    init(headTracking: Bool = false) {
         self.engine = PHASEEngine(updateMode: .automatic)
         self.listener = PHASEListener(engine: self.engine)
         self.listener.worldTransform = matrix_identity_float4x4
+        self.headTracking = headTracking
     }
     
     func setup() {
@@ -212,8 +214,11 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
     func updateDevicePosition(_ position: float4x4) {
         devicePosition = position
-//        listener.worldTransform = matrix_multiply(devicePosition, headPosition)
-        listener.worldTransform = devicePosition
+        if(headTracking) {
+            listener.worldTransform = matrix_multiply(devicePosition, headPosition)
+        } else {
+            listener.worldTransform = devicePosition
+        }
     }
     
     func updateAnchorPosition(for name : String, position : float4x4) {
@@ -223,10 +228,10 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     }
     
     private func updateHeadPosition(_ position : float4x4) {
-        headPosition = position
-        print("******* HEAD POSITION: \(position)")
-//        listener.worldTransform = matrix_multiply(devicePosition,  headPosition)
-        listener.worldTransform = devicePosition
+        if(headTracking) {
+            headPosition = position
+            listener.worldTransform = matrix_multiply(devicePosition,  headPosition)
+        }
     }
 }
 

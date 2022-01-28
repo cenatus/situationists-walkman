@@ -107,7 +107,7 @@ struct ARViewContainer: UIViewRepresentable {
         arView.automaticallyConfigureSession = false
         
         var player : SpeakerPlayer
-        player = SpeakerPHASEPlayer()
+        player = SpeakerPHASEPlayer(headTracking: state.headTracking)
         player.setup()
         
         context.coordinator.state = state

@@ -18,5 +18,6 @@ enum NavState {
 class AppState: ObservableObject {
     @Published var page = NavState.intro
     @Published var localized = false
-    @Published var debugMode = false
+    @Published var debugMode = true
+    @Published var headTracking = false
 }
