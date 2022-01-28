@@ -580,9 +580,9 @@
             <cullDistance>8.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52574" lon="-0.07639">
+    <wpt lat="51.52574" lon="-0.07643">
         <ele>18</ele>
-        <name>non-plaque-10m</name>
+        <name>non-plaque-15m</name>
         <audioFile>plaque</audioFile>
         <color>
             <r>0.59</r>
@@ -591,7 +591,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>10.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
     <wpt lat="51.52543" lon="-0.07652">
@@ -609,6 +609,94 @@
         </phaseAudio>
     </wpt>
     <!-- END Nonument -->
+    <!-- START Nick -->
+    <wpt lat="51.52542" lon="-0.07364">
+        <ele>18</ele>
+        <name>nick-local-train-barrier-20m</name>
+        <audioFile>Nick Luscombe Zoom H3 Recording  - Local Train Barrier -Mix</audioFile>
+        <color>
+            <r>0.5</r>
+            <g>0.5</g>
+            <b>0.5</b>
+            <a>0.8</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>20.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <!-- END Nick -->
+    <!-- START Freya 2 -->
+    <wpt lat="51.52555" lon="-0.0756">
+        <ele>18</ele>
+        <name>freya-synchonised-sinking-18m</name>
+        <audioFile>synchonised sinking</audioFile>
+        <color>
+            <r>1.0</r>
+            <g>0.6</g>
+            <b>0.0</b>
+            <a>0.8</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>18.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52519" lon="-0.07554">
+        <ele>18</ele>
+        <name>freya-syncopate-sound-20m</name>
+        <audioFile>syncopate sound</audioFile>
+        <color>
+            <r>1.0</r>
+            <g>0.6</g>
+            <b>0.0</b>
+            <a>0.8</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>20.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52493" lon="-0.07565">
+        <ele>18</ele>
+        <name>freya-digital-folk-20m</name>
+        <audioFile>digital folk</audioFile>
+        <color>
+            <r>1.0</r>
+            <g>0.6</g>
+            <b>0.0</b>
+            <a>0.8</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>20.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52531" lon="-0.07572">
+        <ele>18</ele>
+        <name>face-plant-10m</name>
+        <audioFile>face plant</audioFile>
+        <color>
+            <r>1.0</r>
+            <g>0.6</g>
+            <b>0.0</b>
+            <a>0.8</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>10.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52507" lon="-0.0756">
+        <ele>18</ele>
+        <name>silent-disco-8m</name>
+        <audioFile>silent disco</audioFile>
+        <color>
+            <r>1.0</r>
+            <g>0.6</g>
+            <b>0.0</b>
+            <a>0.8</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>8.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <!-- END Freya 2 -->
     <!-- START Perimeter markers -->
     <wpt lat="51.5262797" lon="-0.0730004">
         <ele>18</ele>
