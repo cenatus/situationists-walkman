@@ -15,7 +15,7 @@
 "cta" = "Meet us there, connect your headphones, and explore.";
 /* Credits screen */
 "app-credits"= "Concept, Design and Development:\nMatt Spendlove & Tim Cowlishaw";
-"artist-credits"= "Featured artists:\n\t— Spatial, Sally Golding & Oliver Coates\n\t— Freya Edmundes\n\t— Mark Harwood\n\t— Ruaridh Law\n\t— The Nonument Group\n\t— Tim Cowlishaw & Constanza Piffardi";
+"artist-credits"= "Featured artists:\n\t— Spatial, Sally Golding & Oliver Coates\n\t— Freya Edmundes\n\t— Mark Harwood\n\t— Ruaridh Law\n\t— The Nonument Group\n\t— Tim Cowlishaw & Constanza Piffardi\n\t— Nick Luscombe";
 "production-credits"= "Produced by Cenatus";
 "funding-credits"= "Made with the support of the Innovate UK Creative Industries Fund.";
 /* Start experience screen */
