@@ -228,6 +228,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
+            <reverbSendLevel>0.4</reverbSendLevel>
             <cullDistance>25.0</cullDistance>
         </phaseAudio>
     </wpt>
@@ -242,6 +243,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
+            <reverbSendLevel>0.4</reverbSendLevel>
             <cullDistance>18.0</cullDistance>
         </phaseAudio>
     </wpt>
@@ -256,6 +258,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
+            <reverbSendLevel>0.4</reverbSendLevel>
             <cullDistance>18.0</cullDistance>
         </phaseAudio>
     </wpt>
@@ -271,6 +274,23 @@
         </color>
         <phaseAudio>
             <cullDistance>8.0</cullDistance>
+            <reverbSendLevel>0.1</reverbSendLevel>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.52524" lon="-0.07489">
+        <ele>18</ele>
+        <name>tim-constanza-static-fuzz-30m</name>
+        <audioFile>TIM_HTCA_STATICKY_FUZZ_DRONE_1</audioFile>
+        <color>
+            <r>0.0</r>
+            <g>0.25</g>
+            <b>1.0</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>30.0</cullDistance>
+            <reverbSendLevel>0.2</reverbSendLevel>
+            <referenceLevel>-3</referenceLevel>
         </phaseAudio>
     </wpt>
     <wpt lat="51.52531" lon="-0.07495">
@@ -284,6 +304,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
+            <reverbSendLevel>0.2</reverbSendLevel>
             <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
@@ -298,6 +319,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
+            <reverbSendLevel>0.2</reverbSendLevel>
             <cullDistance>18.0</cullDistance>
         </phaseAudio>
     </wpt>
@@ -312,6 +334,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
+            <reverbSendLevel>0.2</reverbSendLevel>
             <cullDistance>25.0</cullDistance>
         </phaseAudio>
     </wpt>

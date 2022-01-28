@@ -171,7 +171,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
     func setup() {
         try! self.engine.rootObject.addChild(self.listener)
-        self.engine.defaultReverbPreset = REVERB_PRESETS["none"]!
+        self.engine.defaultReverbPreset = REVERB_PRESETS["largeRoom"]!
         try! self.engine.start()
         if hmm.isDeviceMotionAvailable {
             hmm.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: {[weak self] motion, error in
