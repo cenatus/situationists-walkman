@@ -11,28 +11,34 @@ import RealityKit
 struct SpeakerVisualiser {
     
     static func createEntity(for speaker: Speaker) -> AnchorEntity {
-        let speakerResource = MeshResource.generateBox(size: 0.4)
+        // Speaker box - use original design but make it visible
+        let speakerResource = MeshResource.generateBox(size: 0.8)
         let speakerMaterial = SimpleMaterial(color: UIColor.black, isMetallic: true)
         let speakerEntity = ModelEntity(mesh: speakerResource, materials: [speakerMaterial])
         
-        let sphereResource = MeshResource.generateSphere(radius: Float(speaker.cullDistance))
-        let spehereMaterial = SimpleMaterial(color: speaker.color, roughness: 0, isMetallic: false)
-        let sphereEntity = ModelEntity(mesh: sphereResource, materials: [spehereMaterial])
+        // Sphere using speaker's color and cullDistance for radius (clamped to reasonable size)
+        let clampedRadius = Float(min(max(speaker.cullDistance, 0.5), 3.0)) // Between 0.5m and 3m
+        let sphereResource = MeshResource.generateSphere(radius: clampedRadius)
+        let sphereMaterial = SimpleMaterial(color: speaker.color, roughness: 0, isMetallic: false)
+        let sphereEntity = ModelEntity(mesh: sphereResource, materials: [sphereMaterial])
         
-        let textResource = MeshResource.generateText(speaker.name ,
-                                                     extrusionDepth: 0.01,
-                                                     font: .systemFont(ofSize: 0.25),
+        // Text showing speaker name - original design but larger
+        let textResource = MeshResource.generateText(speaker.name,
+                                                     extrusionDepth: 0.02,
+                                                     font: .systemFont(ofSize: 0.4),
                                                      containerFrame: .zero,
                                                      alignment: .center,
                                                      lineBreakMode: .byWordWrapping)
         
-        let textEntity = ModelEntity(mesh: textResource)
-        textEntity.position.z += 0.5
+        let textMaterial = SimpleMaterial(color: UIColor.white, isMetallic: false)
+        let textEntity = ModelEntity(mesh: textResource, materials: [textMaterial])
+        textEntity.position.z += Float(clampedRadius + 0.5) // Position text outside the sphere
         
         speakerEntity.addChild(textEntity)
         speakerEntity.addChild(sphereEntity)
         
-        let anchorEntity = AnchorEntity(anchor: speaker.geoAnchor)
+        // TODO - this used to be "anchor: speaker.geoAnchor", rather than "matrix_identity_float4x4"
+        let anchorEntity = AnchorEntity(.world(transform: matrix_identity_float4x4))
         anchorEntity.addChild(speakerEntity)
         
         return anchorEntity

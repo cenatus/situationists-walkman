@@ -20,4 +20,7 @@ class AppState: ObservableObject {
     @Published var localized = false
     @Published var debugMode = true
     @Published var headTracking = false
+    @Published var geoTrackingStatus = "Unknown"
+    @Published var geoTrackingReason = ""
+    @Published var speakerCount = 0
 }

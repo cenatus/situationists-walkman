@@ -22,11 +22,10 @@ class SpeakerRealityKitPlayer: NSObject, SpeakerPlayer {
     func prepare(_ speaker: Speaker) {}
     
     func play(_ speaker: Speaker) {
-        let audio1 = try! AudioFileResource.load(named: "\(speaker.audioFile).mp3")
-        audio1.shouldLoop = true
-        let entity = AnchorEntity(anchor: speaker.geoAnchor)
-        view.scene.addAnchor(entity)
-        entity.playAudio(audio1)
+        // Note: This RealityKit player is not used in the main app
+        // The app uses SpeakerPHASEPlayer for spatial audio instead
+        // This is just a stub to make the project compile
+        print("RealityKit player not implemented - using PHASE audio instead")
     }
     
     func teardown() {}

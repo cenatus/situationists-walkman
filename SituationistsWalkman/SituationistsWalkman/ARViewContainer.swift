@@ -8,6 +8,8 @@ import SwiftUI
 import RealityKit
 import ARKit
 import AVFAudio
+import AudioToolbox
+import AVFoundation
 
 struct ARViewContainer: UIViewRepresentable {
     
@@ -28,9 +30,60 @@ struct ARViewContainer: UIViewRepresentable {
         }
         
         var speakers: [Speaker] = []
+        // TODO - do we still need to track this visualEntities?
+        var visualEntities: [String: AnchorEntity] = [:]
+        var positionedEntities: Set<String> = []
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
+            print("***** SituWalk: Geotracking status changed: \(geoTrackingStatus.state) *****")
+            print("***** SituWalk: Accuracy: \(geoTrackingStatus.accuracy) *****")
+            print("***** SituWalk: Reason: \(geoTrackingStatus.stateReason) *****")
+            
+            // Update UI state for field debugging (on main queue)
+            DispatchQueue.main.async {
+                // Decode state enum to human readable
+                let stateText: String
+                switch geoTrackingStatus.state {
+                case .initializing:
+                    stateText = "Initializing"
+                case .localized:
+                    stateText = "Localized ✅"
+                case .localizing:
+                    stateText = "Localizing..."
+                case .notAvailable:
+                    stateText = "Not Available ❌"
+                @unknown default:
+                    stateText = "Unknown(\(geoTrackingStatus.state.rawValue))"
+                }
+                
+                // Decode reason enum to human readable
+                let reasonText: String
+                switch geoTrackingStatus.stateReason {
+                case .none:
+                    reasonText = "None"
+                case .worldTrackingUnstable:
+                    reasonText = "World tracking unstable"
+                case .waitingForLocation:
+                    reasonText = "Waiting for GPS"
+                case .geoDataNotLoaded:
+                    reasonText = "Geo data not loaded"
+                case .visualLocalizationFailed:
+                    reasonText = "Visual localization failed"
+                case .waitingForAvailabilityCheck:
+                    reasonText = "Checking availability"
+                case .notAvailableAtLocation:
+                    reasonText = "Not available at location"
+                case .needLocationPermissions:
+                    reasonText = "Need location permissions"
+                @unknown default:
+                    reasonText = "Unknown(\(geoTrackingStatus.stateReason.rawValue))"
+                }
+                
+                self.state.geoTrackingStatus = stateText
+                self.state.geoTrackingReason = reasonText
+            }
+            
             if geoTrackingStatus.state == .localizing && state.localized {
                 print("***** SituWalk: Geotracking status: RELOCALIZING *****")
                 state.localized = false
@@ -39,27 +92,79 @@ struct ARViewContainer: UIViewRepresentable {
                 print("***** SituWalk: Geotracking status LOCALIZED *****")
                 state.localized = true
                 
+                // Test system audio after localization
+                // TODO - remove me when happy with audio later
+                AudioServicesPlaySystemSound(1007) // SMS sound
+                print("***** SituWalk: Playing test SMS sound after localization *****")
+                
+                // Test non-spatial audio playback to verify files work
+                // TODO - remove me (and implementation) when happy with audio later
+                self.testNonSpatialAudio()
+                
                 for (speaker) in self.speakers {
+                    print("***** SituWalk: Adding geo anchor for speaker: \(speaker.name) *****")
                     arView.session.add(anchor: speaker.geoAnchor)
+                    print("***** SituWalk: Starting audio for speaker: \(speaker.name) *****")
                     player.play(speaker)
-                    arView.scene.addAnchor(
-                        SpeakerVisualiser.createEntity(for: speaker)
-                    )
+                    print("***** SituWalk: Creating visual entity for speaker: \(speaker.name) *****")
+                    let visualEntity = SpeakerVisualiser.createEntity(for: speaker)
+                    visualEntity.name = speaker.name
+                    
+                    // Override GPS positioning with close test positions
+                    let testPositions: [String: SIMD3<Float>] = [
+                        "test ping": SIMD3<Float>(0, 0, -5),        // 5m in front
+                        "matt-atlantis-15m": SIMD3<Float>(5, 0, 0), // 5m to the right  
+                        "matt-bela-20m": SIMD3<Float>(-5, 0, 0),    // 5m to the left
+                        "matt-es8-3-15m": SIMD3<Float>(0, 3, 0)     // 3m above
+                    ]
+                    
+                    if let testPos = testPositions[speaker.name] {
+                        visualEntity.position = testPos
+                        print("***** SituWalk: Positioned \(speaker.name) at test position: \(testPos) *****")
+                    }
+                    
+                    visualEntities[speaker.name] = visualEntity
+                    arView.scene.addAnchor(visualEntity)
+                    print("***** SituWalk: Added visual entity to scene for speaker: \(speaker.name) *****")
                 }
+            } else if geoTrackingStatus.state == .notAvailable {
+                print("***** SituWalk: Geo tracking NOT AVAILABLE at this location *****")
             }
         }
         
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-            for anchor in anchors {
-                if let name = anchor.name {
-                    player.updateAnchorPosition(for: name, position: anchor.transform)
-                }
+            // Skip GPS anchor updates - we're using manual test positions
+            // Update PHASE positions to match visual entities instead
+            // TODO - this needs to be something like the old code below when running from GPS
+            //if let name = anchor.name {
+            //  player.updateAnchorPosition(for: name, position: anchor.transform)
+            //}
+            for (name, visualEntity) in visualEntities {
+                // Convert visual entity position to transform matrix
+                var transform = matrix_identity_float4x4
+                transform.columns.3.x = visualEntity.position.x
+                transform.columns.3.y = visualEntity.position.y
+                transform.columns.3.z = visualEntity.position.z
+                
+                player.updateAnchorPosition(for: name, position: transform)
             }
         }
         
         func session(_ session: ARSession, didUpdate frame: ARFrame) {
             let position = frame.camera.transform
             player.updateDevicePosition(position)
+            
+            // Debug distance to single test speaker (once per 10 seconds) - check visual entity position
+            // TODO - remove this whole block when tidying up.
+//            if let testSpeaker = self.speakers.first,
+//               let visualEntity = visualEntities[testSpeaker.name],
+//               Int(CACurrentMediaTime()) % 10 == 0 {
+//                let speakerPos = visualEntity.position
+//                let devicePos = position.columns.3
+//                let distance = simd_distance(speakerPos, SIMD3<Float>(devicePos.x, devicePos.y, devicePos.z))
+//                
+//                print("***** SituWalk: Distance to \(testSpeaker.name) at \(speakerPos): \(String(format: "%.1f", distance))m *****")
+//            }
         }
         
         // MARK: - ARCoachingOverlayViewDelegate
@@ -71,25 +176,131 @@ struct ARViewContainer: UIViewRepresentable {
         // MARK: - GPXParserDelegate
         func parser(_ parser: GPXParser, didFinishParsingFileWithAnchors speakers: [Speaker]) {
             if speakers.isEmpty {
-                print("GPX file does not contain anchors or is invalid.")
+                print("***** SituWalk: ERROR - GPX file does not contain anchors or is invalid *****")
+                DispatchQueue.main.async {
+                    self.state.speakerCount = 0
+                    self.state.geoTrackingReason = "No speakers loaded from GPX"
+                }
                 return
             }
             
-            self.speakers = speakers
-            for (speaker) in self.speakers {
-                player.prepare(speaker)
+            // Test audio files to randomly assign
+            let testAudioFiles = [
+                "msp-cb",
+                "silent disco",
+                "digital folk", 
+                "Duck Wreck"
+            ]
+            
+            // Create all 4 test speakers for debugging
+            var modifiedSpeakers: [Speaker] = []
+            if let firstSpeaker = speakers.first {
+                let testSpeakersConfigs = [
+                    [
+                        "name": "test ping",
+                        "lat": String(firstSpeaker.lat),
+                        "lon": String(firstSpeaker.lon), 
+                        "ele": String(firstSpeaker.ele),
+                        "audiofile": "msp-cb",
+                        "r": "1.0", "g": "0.0", "b": "0.0", "a": "1.0", // Red
+                        "sourceradius": "2.0",
+                        "culldistance": "5.0",
+                        "rollofffactor": "0.5",
+                        "reverbsendLevel": "0.1",
+                        "referencelevel": "90.0"
+                    ],
+                    [
+                        "name": "matt-atlantis-15m",
+                        "lat": String(firstSpeaker.lat),
+                        "lon": String(firstSpeaker.lon), 
+                        "ele": String(firstSpeaker.ele),
+                        "audiofile": "situationists-walkman Atlantis",
+                        "r": "0.0", "g": "1.0", "b": "0.0", "a": "1.0", // Green
+                        "sourceradius": "2.0",
+                        "culldistance": "5.0",
+                        "rollofffactor": "0.5",
+                        "reverbsendLevel": "0.1",
+                        "referencelevel": "90.0"
+                    ],
+                    [
+                        "name": "matt-bela-20m",
+                        "lat": String(firstSpeaker.lat),
+                        "lon": String(firstSpeaker.lon), 
+                        "ele": String(firstSpeaker.ele),
+                        "audiofile": "situationists-walkman Bela",
+                        "r": "0.0", "g": "0.0", "b": "1.0", "a": "1.0", // Blue
+                        "sourceradius": "2.0",
+                        "culldistance": "5.0",
+                        "rollofffactor": "0.5",
+                        "reverbsendLevel": "0.1",
+                        "referencelevel": "90.0"
+                    ],
+                    [
+                        "name": "matt-es8-3-15m",
+                        "lat": String(firstSpeaker.lat),
+                        "lon": String(firstSpeaker.lon), 
+                        "ele": String(firstSpeaker.ele),
+                        "audiofile": "situationists-walkman Es8-3",
+                        "r": "1.0", "g": "1.0", "b": "0.0", "a": "1.0", // Yellow
+                        "sourceradius": "2.0",
+                        "culldistance": "5.0",
+                        "rollofffactor": "0.5",
+                        "reverbsendLevel": "0.1",
+                        "referencelevel": "90.0"
+                    ]
+                ]
+                
+                for config in testSpeakersConfigs {
+                    let testSpeaker = Speaker(config)
+                    modifiedSpeakers.append(testSpeaker)
+                    print("***** SituWalk: Created test speaker \(testSpeaker.name) with audio '\(testSpeaker.audioFile)' *****")
+                }
             }
-            print("\(speakers.count) speakers(s) added.")
+            
+            // TODO - this used to be:
+            // self.speakers = speakers
+            self.speakers = modifiedSpeakers
+            for speaker in self.speakers {
+                player.prepare(speaker)
+                print("***** SituWalk: Loaded speaker: \(speaker.name) at \(speaker.lat), \(speaker.lon) *****")
+            }
+            print("***** SituWalk: \(speakers.count) speakers(s) loaded successfully *****")
+            DispatchQueue.main.async {
+                self.state.speakerCount = speakers.count
+            }
         }
         
         func parseGPXFile(with url: URL) {
+            print("***** SituWalk: Attempting to parse GPX file: \(url.path) *****")
             guard let parser = GPXParser(contentsOf: url) else {
-                print("Unable to open GPX file !!!!!!!!!!!!!!!!!!!!!!!!")
+                print("***** SituWalk: ERROR - Unable to open GPX file: \(url.path) *****")
+                DispatchQueue.main.async {
+                    self.state.speakerCount = 0
+                    self.state.geoTrackingReason = "Failed to load GPX file"
+                }
                 return
             }
             
             parser.delegate = self
             parser.parse()
+            print("***** SituWalk: GPX parsing initiated *****")
+        }
+        
+        func testNonSpatialAudio() {
+            guard let url = Bundle.main.url(forResource: "msp-cb", withExtension: "mp3", subdirectory: "sounds") else {
+                print("***** SituWalk: ERROR - Could not find test audio file *****")
+                return
+            }
+            
+            do {
+                let player = try AVAudioPlayer(contentsOf: url)
+                player.volume = 0.5
+                player.numberOfLoops = 0
+                player.play()
+                print("***** SituWalk: Playing non-spatial test audio: msp-cb *****")
+            } catch {
+                print("***** SituWalk: ERROR - Failed to play non-spatial test audio: \(error.localizedDescription) *****")
+            }
         }
     } // end Coordinator class
     
@@ -98,6 +309,11 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> ARView {
+        // Suppress RealityKit shader warnings FIRST
+        // TODO - not sure this does anything?
+        setenv("OS_ACTIVITY_MODE", "disable", 1)
+        setenv("OS_ACTIVITY_DT_MODE", "NO", 1)
+        
         print("***** SituWalk: Creating view *****")
         
         let url = Bundle.main.url(forResource: "speakers", withExtension: "gpx")!
@@ -139,12 +355,20 @@ struct ARViewContainer: UIViewRepresentable {
         print("***** SituWalk: Restarting session *****")
         ARGeoTrackingConfiguration.checkAvailability { (available, error) in
             if !available {
+                print("***** SituWalk: ERROR - Geo tracking not available at this location *****")
+                if let error = error {
+                    print("***** SituWalk: Error details: \(error.localizedDescription) *****")
+                }
                 self.state.page = .outsideGeoTrackingArea
             } else {
+                print("***** SituWalk: Geo tracking available - starting session *****")
                 let geoTrackingConfig = ARGeoTrackingConfiguration()
                 geoTrackingConfig.planeDetection = [.horizontal]
                 arView.session.run(geoTrackingConfig, options: .removeExistingAnchors)
                 arView.scene.anchors.removeAll()
+                DispatchQueue.main.async {
+                    self.state.geoTrackingStatus = "Starting..."
+                }
             }
         }
     }

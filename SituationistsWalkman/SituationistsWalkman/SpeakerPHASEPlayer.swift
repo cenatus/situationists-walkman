@@ -10,6 +10,8 @@ import PHASE
 import ARKit
 import CoreMotion
 import RealityKit
+import AVFoundation
+import AudioToolbox
 
 class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     
@@ -52,6 +54,8 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         private func makeSpatialMixerDefinition(spatialPipeline : PHASESpatialPipeline, distanceModelParameters: PHASEDistanceModelParameters) -> PHASESpatialMixerDefinition {
             let spatialMixerDefinition = PHASESpatialMixerDefinition(spatialPipeline: spatialPipeline)
             spatialMixerDefinition.distanceModelParameters = distanceModelParameters
+            // this should be read from the GPX file referenceLevel field
+            spatialMixerDefinition.gain = 0.8  // Set explicit gain to fix volume routing
             return spatialMixerDefinition
         }
         
@@ -61,8 +65,10 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                 mixerDefinition: spatialMixerDefinition
             )
             samplerNodeDefinition.playbackMode = .looping
-            samplerNodeDefinition.setCalibrationMode(calibrationMode: .relativeSpl, level: speaker.referenceLevel)
+            // TODO - this should go back to speaker.referenceLevel rather the fixed 80?
+            samplerNodeDefinition.setCalibrationMode(calibrationMode: .relativeSpl, level: 80.0)
             samplerNodeDefinition.cullOption = .sleepWakeAtRealtimeOffset
+            
             return samplerNodeDefinition
         }
         
@@ -78,13 +84,21 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
         func prepare() {
             print("***** SituWalk: preparing audio file \(speaker.audioFile ) and anchor \(speaker.name ) *****")
             if (engine.assetRegistry.asset(forIdentifier: speaker.audioFile) == nil) {
-                let url = Bundle.main.url(forResource: speaker.audioFile
-                                          , withExtension: "mp3"
-                                          , subdirectory: "sounds")!
-                try! engine.assetRegistry.registerSoundAsset(
-                    url: url, identifier: speaker.audioFile, assetType: .streamed,
-                    channelLayout: nil, normalizationMode: .dynamic
-                )
+                guard let url = Bundle.main.url(forResource: speaker.audioFile, withExtension: "mp3", subdirectory: "sounds") else {
+                    print("***** SituWalk: ERROR - Audio file not found: \(speaker.audioFile).mp3 *****")
+                    return
+                }
+                
+                do {
+                    try engine.assetRegistry.registerSoundAsset(
+                        url: url, identifier: speaker.audioFile, assetType: .streamed,
+                        channelLayout: nil, normalizationMode: .dynamic
+                    )
+                    print("***** SituWalk: Successfully registered sound asset: \(speaker.audioFile) *****")
+                } catch {
+                    print("***** SituWalk: ERROR - Failed to register sound asset \(speaker.audioFile): \(error.localizedDescription) *****")
+                    return
+                }
             } else {
                 print("***** SituWalk: asset for audio file \(speaker.audioFile ) already added *****")
             }
@@ -97,34 +111,70 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
             let samplerNodeDefinition = makeSamplerNodeDefinition(spatialMixerDefinition: spatialMixerDefinition)
             
             if (engine.assetRegistry.asset(forIdentifier: speaker.name) == nil) {
-                try! engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: speaker.name)
+                do {
+                    try engine.assetRegistry.registerSoundEventAsset(rootNode: samplerNodeDefinition, identifier: speaker.name)
+                    print("***** SituWalk: Successfully registered sound event asset: \(speaker.name) *****")
+                } catch {
+                    print("***** SituWalk: ERROR - Failed to register sound event asset \(speaker.name): \(error.localizedDescription) *****")
+                    return
+                }
             } else {
                 print("***** SituWalk: sampler node for audio file \(speaker.name ) already added *****")
-
             }
             
-            try! engine.rootObject.addChild(source)
+            do {
+                try engine.rootObject.addChild(source)
+                print("***** SituWalk: Successfully added source to engine for: \(speaker.name) *****")
+            } catch {
+                print("***** SituWalk: ERROR - Failed to add source to engine for \(speaker.name): \(error.localizedDescription) *****")
+                return
+            }
             
             let mixerParameters = makeMixerParameters(
                 spatialMixerDefinition: spatialMixerDefinition,
                 source: source
             )
             
-            self.soundEvent = try! PHASESoundEvent(
-                engine: engine, assetIdentifier: speaker.name,
-                mixerParameters: mixerParameters
-            )
-            self.soundEvent!.prepare()
+            do {
+                self.soundEvent = try PHASESoundEvent(
+                    engine: engine, assetIdentifier: speaker.name,
+                    mixerParameters: mixerParameters
+                )
+                
+                self.soundEvent!.prepare()
+                print("***** SituWalk: Successfully prepared sound event for: \(speaker.name) *****")
+            } catch {
+                print("***** SituWalk: ERROR - Failed to create/prepare sound event for \(speaker.name): \(error.localizedDescription) *****")
+                return
+            }
         }
         
         func play() {
             guard let se = self.soundEvent else {
+                print("***** SituWalk: Sound event not prepared, preparing now for: \(speaker.name) *****")
                 self.prepare()
                 self.play()
                 return
             }
             print("***** SituWalk: playing audio file \(speaker.audioFile ) and anchor \(speaker.name ) *****")
-            se.start()
+            
+            do {
+                try se.start()
+                print("***** SituWalk: Successfully called se.start() for: \(speaker.name) *****")
+                
+                // Test if we can call start again (should fail if already playing)
+                // TODO - do we need this restart block?
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    do {
+                        try se.start()
+                        print("***** SituWalk: WARNING - Second start() call succeeded (shouldn't happen) *****")
+                    } catch {
+                        print("***** SituWalk: Good - Second start() failed as expected: \(error.localizedDescription) *****")
+                    }
+                }
+            } catch {
+                print("***** SituWalk: ERROR - Failed to start audio playback for \(speaker.name): \(error.localizedDescription) *****")
+            }
         }
         
         func updatePosition(_ position : float4x4) {
@@ -165,16 +215,72 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
     private var headPosition: simd_float4x4 = matrix_identity_float4x4;
     
     init(headTracking: Bool = false) {
-        self.engine = PHASEEngine(updateMode: .automatic)
+        // Configure audio session BEFORE creating PHASE engine - try playAndRecord for iOS 18 compatibility
+        // TODO - do we still need to do this?
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playAndRecord, options: [.defaultToSpeaker, .allowBluetoothA2DP])
+            try audioSession.setActive(true, options: [])
+            print("***** SituWalk: Audio session configured with playAndRecord category *****")
+        } catch {
+            print("***** SituWalk: ERROR - Failed to configure audio session in init: \(error.localizedDescription) *****")
+        }
+        
+        // Try automatic mode first, fallback to manual if needed
+        do {
+            self.engine = PHASEEngine(updateMode: .automatic)
+            print("***** SituWalk: PHASE engine created with automatic update mode *****")
+        } catch {
+            print("***** SituWalk: Automatic mode failed, trying manual mode: \(error.localizedDescription) *****")
+            self.engine = PHASEEngine(updateMode: .manual)
+            print("***** SituWalk: PHASE engine created with manual update mode *****")
+        }
+        
         self.listener = PHASEListener(engine: self.engine)
         self.listener.worldTransform = matrix_identity_float4x4
         self.headTracking = headTracking
     }
     
     func setup() {
-        try! self.engine.rootObject.addChild(self.listener)
+        print("***** SituWalk: Setting up PHASE audio engine *****")
+        
+        // Audio session already configured in init() - just log current state
+        // TODO - do we still need to config an AVAudioSession?
+        let audioSession = AVAudioSession.sharedInstance()
+        print("***** SituWalk: Audio session route: \(audioSession.currentRoute) *****")
+        print("***** SituWalk: Audio session sample rate: \(audioSession.sampleRate) *****")
+        print("***** SituWalk: Audio session output volume: \(audioSession.outputVolume) *****")
+        
+        do {
+            try self.engine.rootObject.addChild(self.listener)
+            print("***** SituWalk: Added listener to engine root object *****")
+        } catch {
+            print("***** SituWalk: ERROR - Failed to add listener to engine: \(error.localizedDescription) *****")
+        }
+        
         self.engine.defaultReverbPreset = REVERB_PRESETS["largeRoom"]!
-        try! self.engine.start()
+        print("***** SituWalk: Set default reverb preset *****")
+        
+        do {
+            try self.engine.start()
+            print("***** SituWalk: PHASE engine started successfully *****")
+            
+            // Try restarting after a brief delay to fix volume routing
+            // TODO - do we need to execute this restart?
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                print("***** SituWalk: Attempting PHASE engine restart to fix volume routing *****")
+                do {
+                    self.engine.pause()
+                    try self.engine.start()
+                    print("***** SituWalk: PHASE engine restarted successfully *****")
+                } catch {
+                    print("***** SituWalk: ERROR - Failed to restart PHASE engine: \(error.localizedDescription) *****")
+                }
+            }
+        } catch {
+            print("***** SituWalk: ERROR - Failed to start PHASE engine: \(error.localizedDescription) *****")
+            print("***** SituWalk: ERROR - Error code: \(error._code) *****")
+        }
         if hmm.isDeviceMotionAvailable {
             hmm.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: {[weak self] motion, error in
                 guard let motion = motion, error == nil else { return }
