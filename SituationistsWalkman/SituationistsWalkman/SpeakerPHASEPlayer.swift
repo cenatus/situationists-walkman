@@ -65,8 +65,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                 mixerDefinition: spatialMixerDefinition
             )
             samplerNodeDefinition.playbackMode = .looping
-            // TODO - this should go back to speaker.referenceLevel rather the fixed 80?
-            samplerNodeDefinition.setCalibrationMode(calibrationMode: .relativeSpl, level: 80.0)
+            samplerNodeDefinition.setCalibrationMode(calibrationMode: .relativeSpl, level: speaker.referenceLevel)
             samplerNodeDefinition.cullOption = .sleepWakeAtRealtimeOffset
             
             return samplerNodeDefinition
@@ -103,6 +102,7 @@ class SpeakerPHASEPlayer : NSObject, SpeakerPlayer {
                 print("***** SituWalk: asset for audio file \(speaker.audioFile ) already added *****")
             }
             
+            // TODO - do we still need this?
             let spatialMixerDefinition = makeSpatialMixerDefinition(
                 spatialPipeline: makeSpatialPipeline(),
                 distanceModelParameters: makeDistanceModelParameters()

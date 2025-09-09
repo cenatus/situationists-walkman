@@ -107,24 +107,9 @@ struct ARViewContainer: UIViewRepresentable {
                     print("***** SituWalk: Starting audio for speaker: \(speaker.name) *****")
                     player.play(speaker)
                     print("***** SituWalk: Creating visual entity for speaker: \(speaker.name) *****")
-                    let visualEntity = SpeakerVisualiser.createEntity(for: speaker)
-                    visualEntity.name = speaker.name
-                    
-                    // Override GPS positioning with close test positions
-                    let testPositions: [String: SIMD3<Float>] = [
-                        "test ping": SIMD3<Float>(0, 0, -5),        // 5m in front
-                        "matt-atlantis-15m": SIMD3<Float>(5, 0, 0), // 5m to the right  
-                        "matt-bela-20m": SIMD3<Float>(-5, 0, 0),    // 5m to the left
-                        "matt-es8-3-15m": SIMD3<Float>(0, 3, 0)     // 3m above
-                    ]
-                    
-                    if let testPos = testPositions[speaker.name] {
-                        visualEntity.position = testPos
-                        print("***** SituWalk: Positioned \(speaker.name) at test position: \(testPos) *****")
-                    }
-                    
-                    visualEntities[speaker.name] = visualEntity
-                    arView.scene.addAnchor(visualEntity)
+                    arView.scene.addAnchor(
+                        SpeakerVisualiser.createEntity(for: speaker)
+                    )
                     print("***** SituWalk: Added visual entity to scene for speaker: \(speaker.name) *****")
                 }
             } else if geoTrackingStatus.state == .notAvailable {
@@ -133,20 +118,10 @@ struct ARViewContainer: UIViewRepresentable {
         }
         
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-            // Skip GPS anchor updates - we're using manual test positions
-            // Update PHASE positions to match visual entities instead
-            // TODO - this needs to be something like the old code below when running from GPS
-            //if let name = anchor.name {
-            //  player.updateAnchorPosition(for: name, position: anchor.transform)
-            //}
-            for (name, visualEntity) in visualEntities {
-                // Convert visual entity position to transform matrix
-                var transform = matrix_identity_float4x4
-                transform.columns.3.x = visualEntity.position.x
-                transform.columns.3.y = visualEntity.position.y
-                transform.columns.3.z = visualEntity.position.z
-                
-                player.updateAnchorPosition(for: name, position: transform)
+            for anchor in anchors {
+                if let name = anchor.name {
+                    player.updateAnchorPosition(for: name, position: anchor.transform)
+                }
             }
         }
         
@@ -183,86 +158,15 @@ struct ARViewContainer: UIViewRepresentable {
                 }
                 return
             }
-            
-            // Test audio files to randomly assign
-            let testAudioFiles = [
-                "msp-cb",
-                "silent disco",
-                "digital folk", 
-                "Duck Wreck"
-            ]
-            
-            // Create all 4 test speakers for debugging
-            var modifiedSpeakers: [Speaker] = []
-            if let firstSpeaker = speakers.first {
-                let testSpeakersConfigs = [
-                    [
-                        "name": "test ping",
-                        "lat": String(firstSpeaker.lat),
-                        "lon": String(firstSpeaker.lon), 
-                        "ele": String(firstSpeaker.ele),
-                        "audiofile": "msp-cb",
-                        "r": "1.0", "g": "0.0", "b": "0.0", "a": "1.0", // Red
-                        "sourceradius": "2.0",
-                        "culldistance": "5.0",
-                        "rollofffactor": "0.5",
-                        "reverbsendLevel": "0.1",
-                        "referencelevel": "90.0"
-                    ],
-                    [
-                        "name": "matt-atlantis-15m",
-                        "lat": String(firstSpeaker.lat),
-                        "lon": String(firstSpeaker.lon), 
-                        "ele": String(firstSpeaker.ele),
-                        "audiofile": "situationists-walkman Atlantis",
-                        "r": "0.0", "g": "1.0", "b": "0.0", "a": "1.0", // Green
-                        "sourceradius": "2.0",
-                        "culldistance": "5.0",
-                        "rollofffactor": "0.5",
-                        "reverbsendLevel": "0.1",
-                        "referencelevel": "90.0"
-                    ],
-                    [
-                        "name": "matt-bela-20m",
-                        "lat": String(firstSpeaker.lat),
-                        "lon": String(firstSpeaker.lon), 
-                        "ele": String(firstSpeaker.ele),
-                        "audiofile": "situationists-walkman Bela",
-                        "r": "0.0", "g": "0.0", "b": "1.0", "a": "1.0", // Blue
-                        "sourceradius": "2.0",
-                        "culldistance": "5.0",
-                        "rollofffactor": "0.5",
-                        "reverbsendLevel": "0.1",
-                        "referencelevel": "90.0"
-                    ],
-                    [
-                        "name": "matt-es8-3-15m",
-                        "lat": String(firstSpeaker.lat),
-                        "lon": String(firstSpeaker.lon), 
-                        "ele": String(firstSpeaker.ele),
-                        "audiofile": "situationists-walkman Es8-3",
-                        "r": "1.0", "g": "1.0", "b": "0.0", "a": "1.0", // Yellow
-                        "sourceradius": "2.0",
-                        "culldistance": "5.0",
-                        "rollofffactor": "0.5",
-                        "reverbsendLevel": "0.1",
-                        "referencelevel": "90.0"
-                    ]
-                ]
-                
-                for config in testSpeakersConfigs {
-                    let testSpeaker = Speaker(config)
-                    modifiedSpeakers.append(testSpeaker)
-                    print("***** SituWalk: Created test speaker \(testSpeaker.name) with audio '\(testSpeaker.audioFile)' *****")
-                }
-            }
-            
-            // TODO - this used to be:
-            // self.speakers = speakers
-            self.speakers = modifiedSpeakers
+                                    
+            self.speakers = speakers
             for speaker in self.speakers {
                 player.prepare(speaker)
                 print("***** SituWalk: Loaded speaker: \(speaker.name) at \(speaker.lat), \(speaker.lon) *****")
+                print("***** SituWalk: Speaker color: \(speaker.color) *****")
+                print("***** SituWalk: Speaker audioFile: \(speaker.audioFile) *****")
+                print("***** SituWalk: Speaker cullDistance: \(speaker.cullDistance) *****")
+                print("***** SituWalk: Speaker referenceLevel: \(speaker.referenceLevel) *****")
             }
             print("***** SituWalk: \(speakers.count) speakers(s) loaded successfully *****")
             DispatchQueue.main.async {

@@ -16,29 +16,26 @@ struct SpeakerVisualiser {
         let speakerMaterial = SimpleMaterial(color: UIColor.black, isMetallic: true)
         let speakerEntity = ModelEntity(mesh: speakerResource, materials: [speakerMaterial])
         
-        // Sphere using speaker's color and cullDistance for radius (clamped to reasonable size)
-        let clampedRadius = Float(min(max(speaker.cullDistance, 0.5), 3.0)) // Between 0.5m and 3m
-        let sphereResource = MeshResource.generateSphere(radius: clampedRadius)
+        // Sphere using speaker's color and cullDistance for radius
+        let sphereResource = MeshResource.generateSphere(radius: Float(speaker.cullDistance))
         let sphereMaterial = SimpleMaterial(color: speaker.color, roughness: 0, isMetallic: false)
         let sphereEntity = ModelEntity(mesh: sphereResource, materials: [sphereMaterial])
         
-        // Text showing speaker name - original design but larger
+        // Text showing speaker name
         let textResource = MeshResource.generateText(speaker.name,
-                                                     extrusionDepth: 0.02,
-                                                     font: .systemFont(ofSize: 0.4),
+                                                     extrusionDepth: 0.01,
+                                                     font: .systemFont(ofSize: 0.25),
                                                      containerFrame: .zero,
                                                      alignment: .center,
                                                      lineBreakMode: .byWordWrapping)
         
-        let textMaterial = SimpleMaterial(color: UIColor.white, isMetallic: false)
-        let textEntity = ModelEntity(mesh: textResource, materials: [textMaterial])
-        textEntity.position.z += Float(clampedRadius + 0.5) // Position text outside the sphere
+        let textEntity = ModelEntity(mesh: textResource)
+        textEntity.position.z += 0.5
         
         speakerEntity.addChild(textEntity)
         speakerEntity.addChild(sphereEntity)
         
-        // TODO - this used to be "anchor: speaker.geoAnchor", rather than "matrix_identity_float4x4"
-        let anchorEntity = AnchorEntity(.world(transform: matrix_identity_float4x4))
+        let anchorEntity = AnchorEntity(anchor: speaker.geoAnchor)
         anchorEntity.addChild(speakerEntity)
         
         return anchorEntity
