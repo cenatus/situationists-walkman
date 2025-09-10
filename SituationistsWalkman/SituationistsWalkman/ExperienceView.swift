@@ -23,6 +23,10 @@ struct ExperienceView: View {
                     Spacer()
                     HStack {
                         VStack(alignment: .leading) {
+                            Text("Coverage: \(state.geoTrackingAvailable)")
+                                .foregroundColor(state.geoTrackingAvailable.contains("✅") ? .green : .red)
+                                .padding(4)
+                                .background(Color.black.opacity(0.7))
                             Text("Status: \(state.geoTrackingStatus)")
                                 .foregroundColor(.white)
                                 .padding(4)
@@ -34,6 +38,12 @@ struct ExperienceView: View {
                             if !state.geoTrackingReason.isEmpty {
                                 Text("Reason: \(state.geoTrackingReason)")
                                     .foregroundColor(.yellow)
+                                    .padding(4)
+                                    .background(Color.black.opacity(0.7))
+                            }
+                            if !state.geoTrackingError.isEmpty {
+                                Text("Error: \(state.geoTrackingError)")
+                                    .foregroundColor(.red)
                                     .padding(4)
                                     .background(Color.black.opacity(0.7))
                             }

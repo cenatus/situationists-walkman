@@ -258,19 +258,25 @@ struct ARViewContainer: UIViewRepresentable {
     func restartSession(arView : ARView) {
         print("***** SituWalk: Restarting session *****")
         ARGeoTrackingConfiguration.checkAvailability { (available, error) in
-            if !available {
-                print("***** SituWalk: ERROR - Geo tracking not available at this location *****")
-                if let error = error {
-                    print("***** SituWalk: Error details: \(error.localizedDescription) *****")
-                }
-                self.state.page = .outsideGeoTrackingArea
-            } else {
-                print("***** SituWalk: Geo tracking available - starting session *****")
-                let geoTrackingConfig = ARGeoTrackingConfiguration()
-                geoTrackingConfig.planeDetection = [.horizontal]
-                arView.session.run(geoTrackingConfig, options: .removeExistingAnchors)
-                arView.scene.anchors.removeAll()
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                if !available {
+                    print("***** SituWalk: ERROR - Geo tracking not available at this location *****")
+                    self.state.geoTrackingAvailable = "❌ NOT AVAILABLE"
+                    if let error = error {
+                        print("***** SituWalk: Error details: \(error.localizedDescription) *****")
+                        self.state.geoTrackingError = error.localizedDescription
+                    } else {
+                        self.state.geoTrackingError = "No error details provided"
+                    }
+                    self.state.page = .outsideGeoTrackingArea
+                } else {
+                    print("***** SituWalk: Geo tracking available - starting session *****")
+                    self.state.geoTrackingAvailable = "✅ AVAILABLE"
+                    self.state.geoTrackingError = ""
+                    let geoTrackingConfig = ARGeoTrackingConfiguration()
+                    geoTrackingConfig.planeDetection = [.horizontal]
+                    arView.session.run(geoTrackingConfig, options: .removeExistingAnchors)
+                    arView.scene.anchors.removeAll()
                     self.state.geoTrackingStatus = "Starting..."
                 }
             }

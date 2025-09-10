@@ -23,4 +23,6 @@ class AppState: ObservableObject {
     @Published var geoTrackingStatus = "Unknown"
     @Published var geoTrackingReason = ""
     @Published var speakerCount = 0
+    @Published var geoTrackingAvailable = "Unknown"
+    @Published var geoTrackingError = ""
 }
