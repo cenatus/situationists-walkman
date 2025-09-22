@@ -35,7 +35,13 @@ struct SpeakerVisualiser {
         speakerEntity.addChild(textEntity)
         speakerEntity.addChild(sphereEntity)
         
-        let anchorEntity = AnchorEntity(anchor: speaker.geoAnchor)
+        #if targetEnvironment(simulator)
+        // Simulator fallback - create a world anchor at origin since AR doesn't work
+        let anchorEntity = AnchorEntity(.world(transform: matrix_identity_float4x4))
+        #else
+        // Device - use the actual geo anchor
+        let anchorEntity = AnchorEntity(.anchor(identifier: speaker.geoAnchor.identifier))
+        #endif
         anchorEntity.addChild(speakerEntity)
         
         return anchorEntity
