@@ -126,8 +126,63 @@ struct ARViewContainer: UIViewRepresentable {
         }
         
         func session(_ session: ARSession, didUpdate frame: ARFrame) {
-            let position = frame.camera.transform
-            player.updateDevicePosition(position)
+            let cameraTransform = frame.camera.transform
+
+            // PHASE audio expects landscape-left orientation (cameras top-left)
+            // Apply orientation-specific transform based on device orientation
+            // For lanyard usage: portrait upright (onboarding) vs portrait inverted (experience)
+
+            let orientationTransform: simd_float4x4
+            let deviceOrientation = UIDevice.current.orientation
+
+            switch deviceOrientation {
+            case .portrait:
+                // Portrait upright: cameras top-right -> landscape-left equivalent
+                orientationTransform = simd_float4x4(
+                    columns: (
+                        simd_float4(0, 1, 0, 0),   // X becomes Y
+                        simd_float4(-1, 0, 0, 0),  // Y becomes -X
+                        simd_float4(0, 0, 1, 0),   // Z unchanged
+                        simd_float4(0, 0, 0, 1)    // Translation unchanged
+                    )
+                )
+            case .portraitUpsideDown:
+                // Portrait inverted: cameras bottom-left (lanyard position) -> landscape-left equivalent
+                orientationTransform = simd_float4x4(
+                    columns: (
+                        simd_float4(0, -1, 0, 0),  // X becomes -Y
+                        simd_float4(1, 0, 0, 0),   // Y becomes X
+                        simd_float4(0, 0, 1, 0),   // Z unchanged
+                        simd_float4(0, 0, 0, 1)    // Translation unchanged
+                    )
+                )
+            case .landscapeLeft:
+                // Already in expected orientation (cameras top-left)
+                orientationTransform = matrix_identity_float4x4
+            case .landscapeRight:
+                // Landscape right: cameras top-right -> landscape-left equivalent
+                orientationTransform = simd_float4x4(
+                    columns: (
+                        simd_float4(-1, 0, 0, 0),  // X becomes -X
+                        simd_float4(0, -1, 0, 0),  // Y becomes -Y
+                        simd_float4(0, 0, 1, 0),   // Z unchanged
+                        simd_float4(0, 0, 0, 1)    // Translation unchanged
+                    )
+                )
+            default:
+                // Fallback to portrait transform
+                orientationTransform = simd_float4x4(
+                    columns: (
+                        simd_float4(0, 1, 0, 0),
+                        simd_float4(-1, 0, 0, 0),
+                        simd_float4(0, 0, 1, 0),
+                        simd_float4(0, 0, 0, 1)
+                    )
+                )
+            }
+
+            let correctedTransform = simd_mul(cameraTransform, orientationTransform)
+            player.updateDevicePosition(correctedTransform)
             
             // Debug distance to single test speaker (once per 10 seconds) - check visual entity position
             // TODO - remove this whole block when tidying up.
