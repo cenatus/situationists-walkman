@@ -41,7 +41,7 @@ class Speaker {
         self.lat = Double(config["lat"]!)!
         self.lon = Double(config["lon"]!)!
         self.ele = Double(config["ele"]!)!
-        self.audioFile = config["audiofile"] ?? "msp-cb.mp3"
+        self.audioFile = config["audiofile"] ?? config["audioFile"] ?? "msp-cb.mp3"
         
         self.color = UIColor(red:   Double(config["r"] ?? "0.0")!,
                              green: Double(config["g"] ?? "0.0")!,
