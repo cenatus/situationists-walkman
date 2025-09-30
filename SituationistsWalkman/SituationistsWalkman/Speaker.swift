@@ -59,7 +59,7 @@ class Speaker {
         
         self.sourceRadius = Float(config["sourceradius"] ?? "1.0")
         self.cullDistance = Double(config["culldistance"] ?? "1")
-        self.rolloffFactor = Double(config["rollofffactor"] ?? "1.0")
+        self.rolloffFactor = Double(config["rollofffactor"] ?? "0.5")
         self.reverbSendLevel = Double(config["reverbsendLevel"] ?? "0")
         self.referenceLevel = Double(config["referencelevel"] ?? "0.4")
     }
