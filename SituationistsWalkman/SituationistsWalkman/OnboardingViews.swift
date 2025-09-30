@@ -6,8 +6,31 @@
 //
 
 import SwiftUI
+import WebKit
 
 // MARK: - Reusable Components
+
+struct YouTubePlayerView: UIViewRepresentable {
+    let videoID: String
+
+    func makeUIView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        webView.scrollView.isScrollEnabled = false
+        webView.configuration.allowsInlineMediaPlayback = true
+
+        // YouTube embed URL
+        let embedURL = "https://www.youtube.com/embed/\(videoID)?playsinline=1&rel=0&showinfo=0&controls=1"
+        if let url = URL(string: embedURL) {
+            webView.load(URLRequest(url: url))
+        }
+
+        return webView
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        // No updates needed
+    }
+}
 
 struct OnboardingTitle: View {
     var body: some View {
@@ -211,22 +234,12 @@ struct VideoPlaceholderView: View {
         OnboardingContainer {
             VStack(spacing: 25) {
 
-            // Video placeholder - portrait optimized
+            // YouTube video - portrait optimized
             VStack(spacing: 20) {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(textColor).opacity(0.3))
+                YouTubePlayerView(videoID: "nrmiL575ntI")
                     .frame(height: 200)
                     .frame(maxWidth: 320)
-                    .overlay(
-                        VStack(spacing: 12) {
-                            Image(systemName: "play.circle.fill")
-                                .font(.system(size: 60))
-                                .foregroundColor(Color(highlightColor))
-                            Text("Onboarding Video")
-                                .foregroundColor(Color(textColor))
-                                .font(.system(size: 20, weight: .medium))
-                        }
-                    )
+                    .cornerRadius(16)
                     .opacity(showContent ? 1 : 0)
                     .scaleEffect(showContent ? 1 : 0.8)
                     .animation(.spring().delay(0.3), value: showContent)
@@ -246,7 +259,7 @@ struct VideoPlaceholderView: View {
                 print("Next tab button tapped")
                 currentPage = 2 // Go to BlurbView (final tab)
             }) {
-                Text("Skip to Experience")
+                Text("Continue")
                     .font(.headline)
                     .foregroundColor(Color(backgroundColor))
                     .padding(.vertical, 16)
