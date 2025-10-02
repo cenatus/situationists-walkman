@@ -9,25 +9,28 @@ import SwiftUI
 
 struct IntroView: View {
     @EnvironmentObject var state : AppState
-    @State private var currentPage = 0
     
     var body: some View {
         ZStack {
             Color(backgroundColor).edgesIgnoringSafeArea(.all)
             
-            TabView(selection: $currentPage) {
+            TabView(selection: $state.introTabIndex) {
                 QuotesView()
                     .environmentObject(state)
                     .tag(0)
                 
                 
-                VideoPlaceholderView(currentPage: $currentPage)
+                VideoPlaceholderView(currentPage: $state.introTabIndex)
                     .environmentObject(state)
                     .tag(1)
 
-                BlurbView()
+                OrientationView(currentPage: $state.introTabIndex)
                     .environmentObject(state)
                     .tag(2)
+
+                BlurbView()
+                    .environmentObject(state)
+                    .tag(3)
 
             }
             .tabViewStyle(.page(indexDisplayMode: .always))

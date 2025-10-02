@@ -10,6 +10,8 @@ import Foundation
 enum NavState {
     case intro
     case experience
+    case checkingLocation
+    case locationTimeout
     case unsupportedDevice
     case outsideGeoTrackingArea
     case credits
@@ -25,4 +27,7 @@ class AppState: ObservableObject {
     @Published var speakerCount = 0
     @Published var geoTrackingAvailable = "Unknown"
     @Published var geoTrackingError = ""
+    @Published var locationCheckPassed = false
+    @Published var insideOlympicPark = false
+    @Published var introTabIndex = 0
 }

@@ -10,23 +10,63 @@ import ARKit
 import AVFAudio
 import AudioToolbox
 import AVFoundation
+import CoreLocation
 
 struct ARViewContainer: UIViewRepresentable {
-    
+
     @EnvironmentObject var state : AppState
+
+    // Olympic Park boundary polygon (counter-clockwise from SW)
+    private static let olympicParkBoundary = [
+        CLLocationCoordinate2D(latitude: 51.54368, longitude: -0.01909), // SW
+        CLLocationCoordinate2D(latitude: 51.54552, longitude: -0.01113), // SE
+        CLLocationCoordinate2D(latitude: 51.55181, longitude: -0.01673), // NE
+        CLLocationCoordinate2D(latitude: 51.55069, longitude: -0.02392)  // NW
+    ]
+
+    // Point-in-polygon algorithm
+    private static func isInsideOlympicPark(_ location: CLLocationCoordinate2D) -> Bool {
+        let x = location.longitude
+        let y = location.latitude
+        let polygon = olympicParkBoundary
+
+        var inside = false
+        var j = polygon.count - 1
+
+        for i in 0..<polygon.count {
+            let xi = polygon[i].longitude
+            let yi = polygon[i].latitude
+            let xj = polygon[j].longitude
+            let yj = polygon[j].latitude
+
+            if ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi) {
+                inside = !inside
+            }
+            j = i
+        }
+
+        return inside
+    }
     
-    class Coordinator : NSObject, ARSessionDelegate, ARCoachingOverlayViewDelegate, GPXParserDelegate {
+    class Coordinator : NSObject, ARSessionDelegate, ARCoachingOverlayViewDelegate, GPXParserDelegate, CLLocationManagerDelegate {
         var state : AppState!
         var arView : ARView!
         var container : ARViewContainer!
         var player: SpeakerPlayer!
         let alertPlayer: AVAudioPlayer!
+        var locationManager: CLLocationManager!
+        var locationTimer: Timer?
         
         override init() {
             let alertURL = Bundle.main.url(forResource: "need_tracking_alert", withExtension: "mp3", subdirectory: "sounds")!
             self.alertPlayer = try! AVAudioPlayer(contentsOf: alertURL)
             alertPlayer.volume = 0.75
             super.init()
+
+            // Initialize location manager
+            self.locationManager = CLLocationManager()
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         }
         
         var speakers: [Speaker] = []
@@ -200,7 +240,7 @@ struct ARViewContainer: UIViewRepresentable {
         // MARK: - ARCoachingOverlayViewDelegate
         func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
             print("***** SituWalk: Coaching overlay requested session reset *****")
-            self.container.restartSession(arView: self.arView)
+            self.checkLocationAndStartSession(arView: self.arView)
         }
         
         // MARK: - GPXParserDelegate
@@ -261,6 +301,121 @@ struct ARViewContainer: UIViewRepresentable {
                 print("***** SituWalk: ERROR - Failed to play non-spatial test audio: \(error.localizedDescription) *****")
             }
         }
+
+        // MARK: - Location checking methods
+        func checkLocationAndStartSession(arView: ARView) {
+            print("***** SituWalk: Checking location and starting session *****")
+
+            // Request location permission if needed
+            switch locationManager.authorizationStatus {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+                return
+            case .denied, .restricted:
+                print("***** SituWalk: Location permission denied *****")
+                DispatchQueue.main.async {
+                    self.state.page = .outsideGeoTrackingArea
+                }
+                return
+            case .authorizedWhenInUse, .authorizedAlways:
+                break
+            @unknown default:
+                break
+            }
+
+            // Request current location with timeout
+            locationManager.requestLocation()
+
+            // Start timeout timer (15 seconds)
+            locationTimer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { _ in
+                DispatchQueue.main.async {
+                    print("***** SituWalk: Location request timed out *****")
+                    self.state.page = .locationTimeout
+                }
+            }
+        }
+
+        // MARK: - CLLocationManagerDelegate
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.last else { return }
+
+            print("***** SituWalk: Got location: \(location.coordinate.latitude), \(location.coordinate.longitude) *****")
+
+            // Cancel timeout timer
+            locationTimer?.invalidate()
+            locationTimer = nil
+
+            // Check if user is within Olympic Park boundary
+            if ARViewContainer.isInsideOlympicPark(location.coordinate) {
+                print("***** SituWalk: User is inside Olympic Park - checking ARKit availability *****")
+                DispatchQueue.main.async {
+                    self.state.insideOlympicPark = true
+                }
+                checkARKitAvailability()
+            } else {
+                print("***** SituWalk: User is outside Olympic Park boundary *****")
+                DispatchQueue.main.async {
+                    self.state.insideOlympicPark = false
+                    self.state.page = .outsideGeoTrackingArea
+                }
+            }
+        }
+
+        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+            print("***** SituWalk: Location error: \(error.localizedDescription) *****")
+
+            // Cancel timeout timer
+            locationTimer?.invalidate()
+            locationTimer = nil
+
+            DispatchQueue.main.async {
+                self.state.page = .locationTimeout
+            }
+        }
+
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            if status == .authorizedWhenInUse || status == .authorizedAlways {
+                locationManager.requestLocation()
+            } else if status == .denied || status == .restricted {
+                DispatchQueue.main.async {
+                    self.state.page = .outsideGeoTrackingArea
+                }
+            }
+        }
+
+        private func checkARKitAvailability() {
+            ARGeoTrackingConfiguration.checkAvailability { (available, error) in
+                DispatchQueue.main.async {
+                    if !available {
+                        print("***** SituWalk: ERROR - Geo tracking not available at this location *****")
+                        self.state.geoTrackingAvailable = "❌ NOT AVAILABLE"
+                        if let error = error {
+                            print("***** SituWalk: Error details: \(error.localizedDescription) *****")
+                            self.state.geoTrackingError = error.localizedDescription
+                        } else {
+                            self.state.geoTrackingError = "No error details provided"
+                        }
+                        self.state.page = .outsideGeoTrackingArea
+                    } else {
+                        print("***** SituWalk: Geo tracking available - starting session *****")
+                        self.state.geoTrackingAvailable = "✅ AVAILABLE"
+                        self.state.geoTrackingError = ""
+                        self.state.locationCheckPassed = true
+
+                        // Transition to experience view if we're currently checking location
+                        if self.state.page == .checkingLocation {
+                            self.state.page = .experience
+                        }
+
+                        let geoTrackingConfig = ARGeoTrackingConfiguration()
+                        geoTrackingConfig.planeDetection = [.horizontal]
+                        self.arView.session.run(geoTrackingConfig, options: .removeExistingAnchors)
+                        self.arView.scene.anchors.removeAll()
+                        self.state.geoTrackingStatus = "Starting..."
+                    }
+                }
+            }
+        }
     } // end Coordinator class
     
     func makeCoordinator() -> Coordinator {
@@ -293,7 +448,7 @@ struct ARViewContainer: UIViewRepresentable {
         context.coordinator.parseGPXFile(with: url)
         
         setupCoachingOverlay(arView: arView, context: context)
-        restartSession(arView: arView)
+        context.coordinator.checkLocationAndStartSession(arView: arView)
         
         UIApplication.shared.isIdleTimerDisabled = true
         
@@ -310,34 +465,7 @@ struct ARViewContainer: UIViewRepresentable {
     
     func updateUIView(_ uiView: ARView, context: Context) {}
     
-    func restartSession(arView : ARView) {
-        print("***** SituWalk: Restarting session *****")
-        ARGeoTrackingConfiguration.checkAvailability { (available, error) in
-            DispatchQueue.main.async {
-                if !available {
-                    print("***** SituWalk: ERROR - Geo tracking not available at this location *****")
-                    self.state.geoTrackingAvailable = "❌ NOT AVAILABLE"
-                    if let error = error {
-                        print("***** SituWalk: Error details: \(error.localizedDescription) *****")
-                        self.state.geoTrackingError = error.localizedDescription
-                    } else {
-                        self.state.geoTrackingError = "No error details provided"
-                    }
-                    self.state.page = .outsideGeoTrackingArea
-                } else {
-                    print("***** SituWalk: Geo tracking available - starting session *****")
-                    self.state.geoTrackingAvailable = "✅ AVAILABLE"
-                    self.state.geoTrackingError = ""
-                    let geoTrackingConfig = ARGeoTrackingConfiguration()
-                    geoTrackingConfig.planeDetection = [.horizontal]
-                    arView.session.run(geoTrackingConfig, options: .removeExistingAnchors)
-                    arView.scene.anchors.removeAll()
-                    self.state.geoTrackingStatus = "Starting..."
-                }
-            }
-        }
-    }
-    
+
     func setupCoachingOverlay(arView : ARView, context : Context) {
         let coachingOverlay = ARCoachingOverlayView()
         coachingOverlay.delegate = context.coordinator

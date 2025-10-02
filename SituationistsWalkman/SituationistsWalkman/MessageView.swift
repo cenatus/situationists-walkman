@@ -8,44 +8,81 @@ import SwiftUI
 
 struct MessageView: View {
     @EnvironmentObject var state : AppState
-    
+
     let message : LocalizedStringKey
     var buttonText = "Back"
+
+    // Eastcross Bridge coordinates for Apple Maps (start point)
+    private let eastcrossBridgeCoordinate = "51.54597,-0.0169"
     
     var body: some View {
         ZStack {
             Color(backgroundColor).edgesIgnoringSafeArea(.all)
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("app-title")
-                        .fontWeight(.bold)
-                        .font(.title)
-                        .foregroundColor(Color(highlightColor))
-                    Spacer()
-                }.padding(.trailing)
-                VStack(alignment: .center) {
-                    Spacer()
+
+            OnboardingContainer {
+                VStack(spacing: 30) {
+
+                    // Message content - portrait optimized
                     Text(message)
                         .foregroundColor(Color(textColor))
-                    Spacer()
-                    
-                }.padding(.trailing)
-                VStack(alignment: .trailing) {
-                    Spacer()
-                    Button(buttonText) {
-                        self.state.page = .intro
-                        self.state.localized = false
+                        .font(.body)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.leading)
+
+                    Spacer(minLength: 20)
+
+                    // Buttons - portrait optimized
+                    VStack(spacing: 12) {
+                        // Show special buttons for out-of-range error
+                        if message == "out-of-range-error" {
+                            Button("Get Directions") {
+                                // Open Apple Maps with Eastcross Bridge location
+                                let mapsURL = "maps://maps.apple.com/?q=Eastcross+Bridge,+Queen+Elizabeth+Olympic+Park&ll=\(eastcrossBridgeCoordinate)"
+                                if let url = URL(string: mapsURL) {
+                                    UIApplication.shared.open(url)
+                                }
+                            }
+                            .font(.headline)
+                            .foregroundColor(Color(backgroundColor))
+                            .padding(.vertical, 16)
+                            .padding(.horizontal, 32)
+                            .frame(maxWidth: 280)
+                            .background(Color(highlightColor))
+                            .cornerRadius(12)
+
+                            Button(buttonText) {
+                                self.state.page = .intro
+                                self.state.localized = false
+                            }
+                            .font(.system(size: 17, weight: .medium))
+                            .foregroundColor(Color(textColor))
+                            .padding(.vertical, 14)
+                            .padding(.horizontal, 32)
+                            .frame(maxWidth: 280)
+                            .background(Color(textColor).opacity(0.2))
+                            .cornerRadius(12)
+                        } else {
+                            Button(buttonText) {
+                                self.state.page = .intro
+                                self.state.localized = false
+                            }
+                            .font(.headline)
+                            .foregroundColor(Color(backgroundColor))
+                            .padding(.vertical, 16)
+                            .padding(.horizontal, 32)
+                            .frame(maxWidth: 280)
+                            .background(Color(textColor))
+                            .cornerRadius(12)
+                        }
                     }
-                    .padding(.all)
-                    .frame(maxWidth: .infinity)
-                    .background(Color(textColor))
-                    .foregroundColor((Color(backgroundColor)))
-                    
-                }.frame(maxWidth: .infinity)
-            }.padding(.all)
+                }
+                .padding(.bottom, 80) // Space for safe area
+            }
             
-            // Debug overlay for field testing - same as ExperienceView
-            if state.debugMode {
+            // Debug overlay for field testing - only show after both location and boundary checks pass
+            if state.debugMode && state.locationCheckPassed && state.insideOlympicPark {
                 VStack {
                     Spacer()
                     HStack {

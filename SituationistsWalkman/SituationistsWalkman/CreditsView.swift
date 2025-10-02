@@ -61,6 +61,8 @@ struct CreditsView: View {
 
                     // Back button - portrait optimized
                     Button(action: {
+                        // Return to the tab they came from (tab 3 = BlurbView with credits button)
+                        state.introTabIndex = 3
                         state.page = .intro
                     }) {
                         Text("Back")

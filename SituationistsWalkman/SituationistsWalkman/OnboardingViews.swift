@@ -181,7 +181,7 @@ struct BlurbView: View {
             VStack(spacing: 12) {
                 Button(action: {
                     print("Start Experience button tapped")
-                    state.page = .experience
+                    state.page = .checkingLocation
                 }) {
                     Text("Start Experience")
                         .font(.headline)
@@ -257,7 +257,7 @@ struct VideoPlaceholderView: View {
             // Next tab button - portrait optimized
             Button(action: {
                 print("Next tab button tapped")
-                currentPage = 2 // Go to BlurbView (final tab)
+                currentPage = 2 // Go to OrientationView (next tab)
             }) {
                 Text("Continue")
                     .font(.headline)

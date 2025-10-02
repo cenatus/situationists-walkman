@@ -17,8 +17,8 @@ struct ExperienceView: View {
             Color(backgroundColor).edgesIgnoringSafeArea(.all)
             ARViewContainer()
             
-            // Debug overlay for field testing
-            if state.debugMode {
+            // Debug overlay for field testing - only show after both location and boundary checks pass
+            if state.debugMode && state.locationCheckPassed && state.insideOlympicPark {
                 VStack {
                     Spacer()
                     HStack {
