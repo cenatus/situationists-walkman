@@ -6,7 +6,7 @@
   
 */
 /* Intro screen */
-"app-title" = "The Situationist's Walkman";
+"app-title" = "The Situationists' Walkman";
 "quote-one" = "“We want a wild and ephemeral music.\nWe propose a fundamental regeneration:\nconcert strikes,\nsound gatherings with collective investigation.”";
 "quote-one-attribution" = "— Anonymous graffiti artist, Paris, May 1968";
 "quote-two" = "“La beauté est dans la rue”";
@@ -21,7 +21,7 @@
 /* Start experience screen */
 "start-experience"= "Now listen, and get lost - we’ll handle the navigation. Hold your phone in landscape orientation in front of your chest (we need to see where we’re going!), and remember to stay aware of your surroundings, and stay safe. We’ll tell you via your headphones if you leave the installation, or if we need help locating you.";
 /* Errors */
-"out-of-range-error"= "The Situationist's Walkman takes place in Queen Elizabeth Olympic Park, Stratford, London.
+"out-of-range-error"= "The Situationists' Walkman takes place in Queen Elizabeth Olympic Park, Stratford, London.
 
 Please visit the park to experience this. We'll meet you by the Eastcross Bridge.
 
