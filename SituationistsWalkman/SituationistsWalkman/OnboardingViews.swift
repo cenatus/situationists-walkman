@@ -236,7 +236,7 @@ struct VideoPlaceholderView: View {
 
             // YouTube video - portrait optimized
             VStack(spacing: 20) {
-                YouTubePlayerView(videoID: "nrmiL575ntI")
+                YouTubePlayerView(videoID: "wYbDnwNj524")
                     .frame(height: 200)
                     .frame(maxWidth: 320)
                     .cornerRadius(16)
