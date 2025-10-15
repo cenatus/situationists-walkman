@@ -12,7 +12,7 @@ import SwiftUI
 // MARK - ContentView
 
 struct ContentView: View {
-    @StateObject var state = AppState()
+    @EnvironmentObject var state: AppState
     
     var body: some View {
         VStack {
