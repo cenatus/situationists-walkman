@@ -34,4 +34,5 @@ Please check that:
 • You're not in airplane mode
 
 Then try again.";
-"unsupported-device-error"= "We're sorry, but The Situationists Walkman requires iOS 15.0+ and a device with A12 chip or newer for ARKit geo-tracking:\n\t—iPhone XS/XR or newer\n\t—iPad (8th gen or newer), iPad Air (3rd gen or newer), iPad mini (5th gen or newer), or iPad Pro (11-inch/12.9-inch 3rd gen or newer)\n\nThis ensures precise spatial audio positioning in Queen Elizabeth Olympic Park.";
+"unsupported-device-error"= "We're sorry, but The Situationists Walkman requires iOS 15.0+ and a device with A12 chip or newer for ARKit geo-tracking:\n\t—iPhone XS/XR or newer\n\t—iPad (8th gen or newer), iPad Air (3rd gen or newer), iPad mini (5th gen or newer), or iPad Pro (11-inch/12.9-inch 3rd gen or newer)\n\nThis ensures precise spatial audio positioning in Queen Elizabeth Olympic Park.\n\nNote: If you're using a supported device, this may indicate an ARKit compatibility issue with your current iOS/iPadOS version.";
+"ipados26-error"= "We're sorry, but The Situationists Walkman is temporarily incompatible with iPadOS 26.x due to a system bug affecting ARKit geo-tracking.\n\nPlease check the App Store for updates, or use an iPhone or iPad running iPadOS 18.x for the full experience.\n\nWe're working with Apple to resolve this issue.";
