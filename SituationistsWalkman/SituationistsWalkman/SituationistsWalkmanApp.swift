@@ -34,9 +34,14 @@ struct ContentViewWrapper: View {
 
         // Debug logging for App Store review
         let _ = {
+            var systemInfo = utsname()
+            uname(&systemInfo)
+            let modelIdentifier = String(bytes: Data(bytes: &systemInfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)?.trimmingCharacters(in: .controlCharacters) ?? "Unknown"
+
             print("========================================")
             print("🔍 ARKit Debug Info:")
             print("   Device: \(deviceModel)")
+            print("   Model ID: \(modelIdentifier)")
             print("   iOS/iPadOS: \(systemVersion)")
             print("   ARGeoTrackingConfiguration.isSupported: \(isSupported)")
             print("   iPadOS 26.x Detected: \(isiPadOS26)")

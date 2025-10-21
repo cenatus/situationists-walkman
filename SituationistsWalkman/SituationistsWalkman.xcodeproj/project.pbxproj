@@ -28,6 +28,7 @@
 		7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255EC3E279EE84300B59670 /* GPXParser.swift */; };
 		7255EC46279F011C00B59670 /* speakers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7255EC45279F011C00B59670 /* speakers.gpx */; };
 		7286F70D27A013960062B674 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7286F70C27A013960062B674 /* sounds */; };
+		729B81D22EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729B81D12EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift */; };
 		72BF2F252E8D996A00FA2979 /* CheckingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BF2F242E8D996A00FA2979 /* CheckingLocationView.swift */; };
 		72BF2F272E8DA51800FA2979 /* OrientationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BF2F262E8DA51800FA2979 /* OrientationView.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		7255EC3E279EE84300B59670 /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
 		7255EC45279F011C00B59670 /* speakers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speakers.gpx; sourceTree = "<group>"; };
 		7286F70C27A013960062B674 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
+		729B81D12EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARGeoTrackingBugTest.swift; sourceTree = "<group>"; };
 		72BF2F242E8D996A00FA2979 /* CheckingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckingLocationView.swift; sourceTree = "<group>"; };
 		72BF2F262E8DA51800FA2979 /* OrientationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 				2209D63A27980E8E00329FD7 /* ARViewContainer.swift */,
 				222259C627A4133500BDA0F3 /* MessageView.swift */,
 				72BF2F242E8D996A00FA2979 /* CheckingLocationView.swift */,
+				729B81D12EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift */,
 				228EDA3B278F385200D2838A /* ContentView.swift */,
 				22BBBE6327A2BB2200A8DA11 /* CreditsView.swift */,
 				22D4F50D27908CFF00012377 /* ExperienceView.swift */,
@@ -199,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729B81D22EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift in Sources */,
 				2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */,
 				7213AC062E7883EA008756BE /* OnboardingViews.swift in Sources */,
 				22BBBE6427A2BB2200A8DA11 /* CreditsView.swift in Sources */,
