@@ -134,7 +134,11 @@ struct ARViewContainer: UIViewRepresentable {
             } else if geoTrackingStatus.state == .localized && !state.localized {
                 print("***** SituWalk: Geotracking status LOCALIZED *****")
                 state.localized = true
-                
+
+                // Dim screen now that coaching is complete - save battery for lanyard usage
+                UIScreen.main.brightness = 0.3
+                print("***** SituWalk: Screen dimmed for lanyard 'third eye' usage *****")
+
                 // Test system audio after localization
                 // TODO - remove me when happy with audio later
                 AudioServicesPlaySystemSound(1007) // SMS sound
@@ -177,6 +181,7 @@ struct ARViewContainer: UIViewRepresentable {
                 }
             }
         }
+
         
         func session(_ session: ARSession, didUpdate frame: ARFrame) {
             let cameraTransform = frame.camera.transform
@@ -467,8 +472,8 @@ struct ARViewContainer: UIViewRepresentable {
         
         UIApplication.shared.isIdleTimerDisabled = true
 
-        // Dim screen for lanyard "third eye" usage - save battery while keeping ARKit active
-        UIScreen.main.brightness = 0.2  // Dim but still functional
+        // Prevent proximity sensor from turning off screen when against chest
+        UIDevice.current.isProximityMonitoringEnabled = false
         
         return arView
     }
@@ -480,8 +485,9 @@ struct ARViewContainer: UIViewRepresentable {
         coordinator.player.teardown()
         UIApplication.shared.isIdleTimerDisabled = false
 
-        // Restore original screen brightness when experience ends
-        UIScreen.main.brightness = 0.5  // Return to reasonable default
+        // Restore original screen brightness and proximity monitoring when experience ends
+        UIScreen.main.brightness = 0.6  // Return to reasonable default
+        UIDevice.current.isProximityMonitoringEnabled = true  // Re-enable for normal phone usage
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {}
