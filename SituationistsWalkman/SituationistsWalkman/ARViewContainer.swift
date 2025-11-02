@@ -73,6 +73,7 @@ struct ARViewContainer: UIViewRepresentable {
         // TODO - do we still need to track this visualEntities?
         var visualEntities: [String: AnchorEntity] = [:]
         var positionedEntities: Set<String> = []
+        var audioStartedSpeakers: Set<String> = []
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
@@ -127,6 +128,8 @@ struct ARViewContainer: UIViewRepresentable {
             if geoTrackingStatus.state == .localizing && state.localized {
                 print("***** SituWalk: Geotracking status: RELOCALIZING *****")
                 state.localized = false
+                audioStartedSpeakers.removeAll()
+                print("***** SituWalk: Cleared audioStartedSpeakers for relocalization *****")
                 alertPlayer.play()
             } else if geoTrackingStatus.state == .localized && !state.localized {
                 print("***** SituWalk: Geotracking status LOCALIZED *****")
@@ -144,14 +147,15 @@ struct ARViewContainer: UIViewRepresentable {
                 for (speaker) in self.speakers {
                     print("***** SituWalk: Adding geo anchor for speaker: \(speaker.name) *****")
                     arView.session.add(anchor: speaker.geoAnchor)
-                    print("***** SituWalk: Starting audio for speaker: \(speaker.name) *****")
-                    player.play(speaker)
+                    print("***** SituWalk: Audio for \(speaker.name) will start when anchor is positioned *****")
                     print("***** SituWalk: Creating visual entity for speaker: \(speaker.name) *****")
                     arView.scene.addAnchor(
                         SpeakerVisualiser.createEntity(for: speaker)
                     )
                     print("***** SituWalk: Added visual entity to scene for speaker: \(speaker.name) *****")
                 }
+
+                print("***** SituWalk: Re-localization complete - audio will restart when anchors repositioned *****")
             } else if geoTrackingStatus.state == .notAvailable {
                 print("***** SituWalk: Geo tracking NOT AVAILABLE at this location *****")
             }
@@ -161,6 +165,15 @@ struct ARViewContainer: UIViewRepresentable {
             for anchor in anchors {
                 if let name = anchor.name {
                     player.updateAnchorPosition(for: name, position: anchor.transform)
+
+                    // Start audio when anchor gets its first real position (not identity matrix)
+                    if !audioStartedSpeakers.contains(name) && anchor.transform != matrix_identity_float4x4 {
+                        if let speaker = speakers.first(where: { $0.name == name }) {
+                            print("***** SituWalk: Anchor positioned - starting audio for speaker: \(name) *****")
+                            player.play(speaker)
+                            audioStartedSpeakers.insert(name)
+                        }
+                    }
                 }
             }
         }
@@ -240,6 +253,8 @@ struct ARViewContainer: UIViewRepresentable {
         // MARK: - ARCoachingOverlayViewDelegate
         func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
             print("***** SituWalk: Coaching overlay requested session reset *****")
+            audioStartedSpeakers.removeAll()
+            print("***** SituWalk: Cleared audioStartedSpeakers for session reset *****")
             self.checkLocationAndStartSession(arView: self.arView)
         }
         
