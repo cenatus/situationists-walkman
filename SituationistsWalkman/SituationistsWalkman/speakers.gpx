@@ -738,6 +738,20 @@
     </wpt>
     <!-- END Sally -->
     <!-- START Perimeter markers -->
+    <wpt lat="51.54449" lon="-0.01755">
+        <ele>10</ele>
+        <name>perimeter-marker-middlesex-15m</name>
+        <audioFile>perimeter_alert</audioFile>
+        <color>
+            <r>0.2</r>
+            <g>0.2</g>
+            <b>0.2</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>15.0</cullDistance>
+        </phaseAudio>
+    </wpt>
     <wpt lat="51.5476152" lon="-0.0145113">
         <ele>10</ele>
         <name>perimeter-marker-brick-7m</name>
