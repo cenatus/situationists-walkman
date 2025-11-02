@@ -14,15 +14,48 @@ struct YouTubePlayerView: UIViewRepresentable {
     let videoID: String
 
     func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
-        webView.scrollView.isScrollEnabled = false
-        webView.configuration.allowsInlineMediaPlayback = true
-
-        // YouTube embed URL
-        let embedURL = "https://www.youtube.com/embed/\(videoID)?playsinline=1&rel=0&showinfo=0&controls=1"
-        if let url = URL(string: embedURL) {
-            webView.load(URLRequest(url: url))
+        let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback = true
+        if #available(iOS 10.0, *) {
+            config.mediaTypesRequiringUserActionForPlayback = []
         }
+
+        let webView = WKWebView(frame: .zero, configuration: config)
+        webView.scrollView.isScrollEnabled = false
+
+        let html = """
+        <!doctype html>
+        <html>
+          <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="referrer" content="strict-origin-when-cross-origin">
+            <style>
+              html, body, iframe {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                width: 100%;
+                background: #000;
+              }
+            </style>
+          </head>
+          <body>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube-nocookie.com/embed/\(videoID)?playsinline=1&enablejsapi=1&origin=https://localhost"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </body>
+        </html>
+        """
+
+        // Provide proper HTTPS origin so YouTube sees valid Referer
+        let baseURL = URL(string: "https://localhost")!
+        webView.loadHTMLString(html, baseURL: baseURL)
 
         return webView
     }
@@ -243,7 +276,7 @@ struct VideoPlaceholderView: View {
                     .opacity(showContent ? 1 : 0)
                     .scaleEffect(showContent ? 1 : 0.8)
                     .animation(.spring().delay(0.3), value: showContent)
-                
+
                 Text("Watch to learn about the experience")
                     .foregroundColor(Color(textColor))
                     .font(.body)
