@@ -466,6 +466,9 @@ struct ARViewContainer: UIViewRepresentable {
         context.coordinator.checkLocationAndStartSession(arView: arView)
         
         UIApplication.shared.isIdleTimerDisabled = true
+
+        // Dim screen for lanyard "third eye" usage - save battery while keeping ARKit active
+        UIScreen.main.brightness = 0.2  // Dim but still functional
         
         return arView
     }
@@ -476,6 +479,9 @@ struct ARViewContainer: UIViewRepresentable {
         arView.removeFromSuperview()
         coordinator.player.teardown()
         UIApplication.shared.isIdleTimerDisabled = false
+
+        // Restore original screen brightness when experience ends
+        UIScreen.main.brightness = 0.5  // Return to reasonable default
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {}
