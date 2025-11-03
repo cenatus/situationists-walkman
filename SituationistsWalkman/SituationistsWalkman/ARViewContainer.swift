@@ -135,14 +135,10 @@ struct ARViewContainer: UIViewRepresentable {
                 print("***** SituWalk: Geotracking status LOCALIZED *****")
                 state.localized = true
 
-                // Dim screen now that coaching is complete - save battery for lanyard usage
-                UIScreen.main.brightness = 0.3
-                print("***** SituWalk: Screen dimmed for lanyard 'third eye' usage *****")
-
                 // Test system audio after localization
                 // TODO - remove me when happy with audio later
-                AudioServicesPlaySystemSound(1007) // SMS sound
-                print("***** SituWalk: Playing test SMS sound after localization *****")
+                AudioServicesPlaySystemSound(1256) // Pop sound - definitely works, playful
+                print("***** SituWalk: Playing test pop sound after localization *****")
                 
                 // Test non-spatial audio playback to verify files work
                 // TODO - remove me (and implementation) when happy with audio later
@@ -484,9 +480,6 @@ struct ARViewContainer: UIViewRepresentable {
         arView.removeFromSuperview()
         coordinator.player.teardown()
         UIApplication.shared.isIdleTimerDisabled = false
-
-        // Restore original screen brightness and proximity monitoring when experience ends
-        UIScreen.main.brightness = 0.6  // Return to reasonable default
         UIDevice.current.isProximityMonitoringEnabled = true  // Re-enable for normal phone usage
     }
     
