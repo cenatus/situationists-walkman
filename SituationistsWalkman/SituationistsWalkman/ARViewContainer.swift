@@ -74,6 +74,9 @@ struct ARViewContainer: UIViewRepresentable {
         var visualEntities: [String: AnchorEntity] = [:]
         var positionedEntities: Set<String> = []
         var audioStartedSpeakers: Set<String> = []
+        var lastAudioCheckTime: TimeInterval = 0
+        var unpositionedAnchors: Set<String> = []
+        var positionedAnchors: Set<String> = []
         
         //- MARK: ARSessionDelegate
         func session(_ session: ARSession, didChange geoTrackingStatus: ARGeoTrackingStatus) {
@@ -128,8 +131,11 @@ struct ARViewContainer: UIViewRepresentable {
             if geoTrackingStatus.state == .localizing && state.localized {
                 print("***** SituWalk: Geotracking status: RELOCALIZING *****")
                 state.localized = false
+                // Clear all tracking sets for fresh restart
                 audioStartedSpeakers.removeAll()
-                print("***** SituWalk: Cleared audioStartedSpeakers for relocalization *****")
+                unpositionedAnchors.removeAll()
+                positionedAnchors.removeAll()
+                print("***** SituWalk: Cleared all tracking sets for relocalization *****")
                 alertPlayer.play()
             } else if geoTrackingStatus.state == .localized && !state.localized {
                 print("***** SituWalk: Geotracking status LOCALIZED *****")
@@ -144,9 +150,14 @@ struct ARViewContainer: UIViewRepresentable {
                 // TODO - remove me (and implementation) when happy with audio later
                 self.testNonSpatialAudio()
                 
+                // Clear and repopulate tracking sets
+                unpositionedAnchors.removeAll()
+                positionedAnchors.removeAll()
+
                 for (speaker) in self.speakers {
                     print("***** SituWalk: Adding geo anchor for speaker: \(speaker.name) *****")
                     arView.session.add(anchor: speaker.geoAnchor)
+                    unpositionedAnchors.insert(speaker.name)
                     print("***** SituWalk: Audio for \(speaker.name) will start when anchor is positioned *****")
                     print("***** SituWalk: Creating visual entity for speaker: \(speaker.name) *****")
                     arView.scene.addAnchor(
@@ -164,12 +175,18 @@ struct ARViewContainer: UIViewRepresentable {
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
             for anchor in anchors {
                 if let name = anchor.name {
+                    // Always update position for spatial audio
                     player.updateAnchorPosition(for: name, position: anchor.transform)
 
-                    // Start audio when anchor gets its first real position (not identity matrix)
-                    if !audioStartedSpeakers.contains(name) && anchor.transform != matrix_identity_float4x4 {
+                    // Check if this anchor just got positioned for the first time
+                    if unpositionedAnchors.contains(name) && anchor.transform != matrix_identity_float4x4 {
+                        // Move from unpositioned to positioned
+                        unpositionedAnchors.remove(name)
+                        positionedAnchors.insert(name)
+
+                        // Start audio for this newly positioned anchor
                         if let speaker = speakers.first(where: { $0.name == name }) {
-                            print("***** SituWalk: Anchor positioned - starting audio for speaker: \(name) *****")
+                            print("***** SituWalk: Anchor positioned (\(positionedAnchors.count)/\(speakers.count)) - starting audio for: \(name) *****")
                             player.play(speaker)
                             audioStartedSpeakers.insert(name)
                         }
@@ -255,7 +272,9 @@ struct ARViewContainer: UIViewRepresentable {
         func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
             print("***** SituWalk: Coaching overlay requested session reset *****")
             audioStartedSpeakers.removeAll()
-            print("***** SituWalk: Cleared audioStartedSpeakers for session reset *****")
+            unpositionedAnchors.removeAll()
+            positionedAnchors.removeAll()
+            print("***** SituWalk: Cleared all tracking sets for session reset *****")
             self.checkLocationAndStartSession(arView: self.arView)
         }
         
