@@ -43,7 +43,7 @@ struct YouTubePlayerView: UIViewRepresentable {
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube-nocookie.com/embed/\(videoID)?playsinline=1&enablejsapi=1&origin=https://localhost"
+              src="https://www.youtube-nocookie.com/embed/\(videoID)?playsinline=1&enablejsapi=1&origin=https://localhost&rel=0&modestbranding=1&iv_load_policy=3"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -269,7 +269,7 @@ struct VideoPlaceholderView: View {
 
             // YouTube video - portrait optimized
             VStack(spacing: 20) {
-                YouTubePlayerView(videoID: "wYbDnwNj524")
+                YouTubePlayerView(videoID: "tuo5f6m4qZA")
                     .frame(height: 200)
                     .frame(maxWidth: 320)
                     .cornerRadius(16)
@@ -277,12 +277,30 @@ struct VideoPlaceholderView: View {
                     .scaleEffect(showContent ? 1 : 0.8)
                     .animation(.spring().delay(0.3), value: showContent)
 
-                Text("Watch to learn about the experience")
-                    .foregroundColor(Color(textColor))
-                    .font(.body)
-                    .multilineTextAlignment(.center)
+                VStack(spacing: 15) {
+                    Text("Watch to learn about the experience")
+                        .foregroundColor(Color(textColor))
+                        .font(.body)
+                        .multilineTextAlignment(.center)
+                        .opacity(showContent ? 1 : 0)
+                        .animation(.easeOut(duration: 0.8).delay(0.8), value: showContent)
+
+                    Button(action: {
+                        if let url = URL(string: "https://youtube.com/shorts/tuo5f6m4qZA") {
+                            UIApplication.shared.open(url)
+                        }
+                    }) {
+                        Text("📺 Open in YouTube")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(Color(highlightColor))
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .background(Color(highlightColor).opacity(0.1))
+                            .cornerRadius(8)
+                    }
                     .opacity(showContent ? 1 : 0)
-                    .animation(.easeOut(duration: 0.8).delay(0.8), value: showContent)
+                    .animation(.easeOut(duration: 0.8).delay(1.0), value: showContent)
+                }
             }
 
             Spacer(minLength: 20)
