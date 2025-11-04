@@ -17,7 +17,7 @@
     </wpt>
     <!-- END MSP test -->
     <!-- START Ruaridh -->
-    <wpt lat="51.5474022" lon="-0.0100453">
+    <wpt lat="51.5479143" lon="-0.0115366">
         <ele>10</ele>
         <name>ruaridh-1-20m</name>
         <audioFile>1 ra</audioFile>
@@ -31,7 +31,7 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.5475818" lon="-0.0105035">
+    <wpt lat="51.5481806" lon="-0.0098732">
         <ele>10</ele>
         <name>ruaridh-2-15m</name>
         <audioFile>2 ai</audioFile>
@@ -45,7 +45,7 @@
             <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.5473729" lon="-0.0109266">
+    <wpt lat="51.5477282" lon="-0.0113115">
         <ele>10</ele>
         <name>ruaridh-3-20m</name>
         <audioFile>3 fi1</audioFile>
@@ -59,7 +59,7 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.5470368" lon="-0.0115346">
+    <wpt lat="51.5476923" lon="-0.0108667">
         <ele>10</ele>
         <name>ruaridh-4-20m</name>
         <audioFile>4 fi2</audioFile>
@@ -73,7 +73,7 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.5469197" lon="-0.0111153">
+    <wpt lat="51.5479359" lon="-0.0112172">
         <ele>10</ele>
         <name>ruaridh-5-20m</name>
         <audioFile>5 tl</audioFile>
@@ -87,7 +87,7 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.5472253" lon="-0.0112276">
+    <wpt lat="51.5477199" lon="-0.0110734">
         <ele>10</ele>
         <name>ruaridh-6-20m</name>
         <audioFile>6 bl</audioFile>
@@ -101,7 +101,7 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.5472248" lon="-0.0105626">
+    <wpt lat="51.5484954" lon="-0.0101469">
         <ele>10</ele>
         <name>ruaridh-7-20m</name>
         <audioFile>7 bld</audioFile>
@@ -115,7 +115,7 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.5476385" lon="-0.0110078">
+    <wpt lat="51.5482827" lon="-0.0101388">
         <ele>10</ele>
         <name>ruaridh-8-10m</name>
         <audioFile>8 ma</audioFile>
@@ -126,7 +126,7 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>10.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
     <!-- END Ruaridh -->
