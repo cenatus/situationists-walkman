@@ -16,19 +16,19 @@ struct ARViewContainer: UIViewRepresentable {
 
     @EnvironmentObject var state : AppState
 
-    // Olympic Park boundary polygon (counter-clockwise from SW)
-    private static let olympicParkBoundary = [
-        CLLocationCoordinate2D(latitude: 51.54368, longitude: -0.01909), // SW
-        CLLocationCoordinate2D(latitude: 51.54552, longitude: -0.01113), // SE
-        CLLocationCoordinate2D(latitude: 51.55181, longitude: -0.01673), // NE
-        CLLocationCoordinate2D(latitude: 51.55069, longitude: -0.02392)  // NW
+    // Play zone boundary polygon (counter-clockwise from SW)
+    private static let playZoneBoundary = [
+        CLLocationCoordinate2D(latitude: 51.54444, longitude: -0.01336), // SW
+        CLLocationCoordinate2D(latitude: 51.54693, longitude: -0.00431), // SE
+        CLLocationCoordinate2D(latitude: 51.55088, longitude: -0.00727), // NE
+        CLLocationCoordinate2D(latitude: 51.54845, longitude: -0.01585)  // NW
     ]
 
     // Point-in-polygon algorithm
-    private static func isInsideOlympicPark(_ location: CLLocationCoordinate2D) -> Bool {
+    private static func isInsidePlayZone(_ location: CLLocationCoordinate2D) -> Bool {
         let x = location.longitude
         let y = location.latitude
-        let polygon = olympicParkBoundary
+        let polygon = playZoneBoundary
 
         var inside = false
         var j = polygon.count - 1
@@ -380,17 +380,17 @@ struct ARViewContainer: UIViewRepresentable {
             locationTimer?.invalidate()
             locationTimer = nil
 
-            // Check if user is within Olympic Park boundary
-            if ARViewContainer.isInsideOlympicPark(location.coordinate) {
-                print("***** SituWalk: User is inside Olympic Park - checking ARKit availability *****")
+            // Check if user is within play zone boundary
+            if ARViewContainer.isInsidePlayZone(location.coordinate) {
+                print("***** SituWalk: User is inside play zone - checking ARKit availability *****")
                 DispatchQueue.main.async {
-                    self.state.insideOlympicPark = true
+                    self.state.insidePlayZone = true
                 }
                 checkARKitAvailability()
             } else {
-                print("***** SituWalk: User is outside Olympic Park boundary *****")
+                print("***** SituWalk: User is outside play zone boundary *****")
                 DispatchQueue.main.async {
-                    self.state.insideOlympicPark = false
+                    self.state.insidePlayZone = false
                     self.state.page = .outsideGeoTrackingArea
                 }
             }

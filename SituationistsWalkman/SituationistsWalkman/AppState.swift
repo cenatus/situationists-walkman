@@ -28,6 +28,6 @@ class AppState: ObservableObject {
     @Published var geoTrackingAvailable = "Unknown"
     @Published var geoTrackingError = ""
     @Published var locationCheckPassed = false
-    @Published var insideOlympicPark = false
+    @Published var insidePlayZone = false
     @Published var introTabIndex = 0
 }

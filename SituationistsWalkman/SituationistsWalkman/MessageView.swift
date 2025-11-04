@@ -12,8 +12,8 @@ struct MessageView: View {
     let message : LocalizedStringKey
     var buttonText = "Back"
 
-    // Eastcross Bridge coordinates for Apple Maps (start point)
-    private let eastcrossBridgeCoordinate = "51.54597,-0.0169"
+    // Start location coordinates for Apple Maps
+    private let startLocationCoordinate = "51.54753,-0.01044"
     
     var body: some View {
         ZStack {
@@ -38,8 +38,8 @@ struct MessageView: View {
                         // Show special buttons for out-of-range error
                         if message == "out-of-range-error" {
                             Button("Get Directions") {
-                                // Open Apple Maps with Eastcross Bridge location
-                                let mapsURL = "maps://maps.apple.com/?q=Eastcross+Bridge,+Queen+Elizabeth+Olympic+Park&ll=\(eastcrossBridgeCoordinate)"
+                                // Open Apple Maps with start location
+                                let mapsURL = "maps://maps.apple.com/?q=Victory+Park&ll=\(startLocationCoordinate)"
                                 if let url = URL(string: mapsURL) {
                                     UIApplication.shared.open(url)
                                 }
@@ -82,7 +82,7 @@ struct MessageView: View {
             }
             
             // Debug overlay for field testing - only show after both location and boundary checks pass
-            if state.debugMode && state.locationCheckPassed && state.insideOlympicPark {
+            if state.debugMode && state.locationCheckPassed && state.insidePlayZone {
                 VStack {
                     Spacer()
                     HStack {

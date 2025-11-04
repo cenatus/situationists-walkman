@@ -11,7 +11,7 @@
 "quote-one-attribution" = "— Anonymous graffiti artist, Paris, May 1968";
 "quote-two" = "“La beauté est dans la rue”";
 "quote-two-attribution" = "— L'Atelier Populaire";
-"blurb" = "The Situationists Walkman is a collaborative, immersive sound art experience, centred around the Olympic Park in London E9. Featuring the work of eight sound artists, musicians and collectives, it invites us to consider the radical possibilities of augmented reality technologies for creative expression and public space,  as well as to meditate on the uncanny, aleatoric, and often beautiful contrasts of the urban soundscape.";
+"blurb" = "The Situationists Walkman is a collaborative, immersive sound art experience, centred around Victory Park in East London. Featuring the work of eight sound artists, musicians and collectives, it invites us to consider the radical possibilities of augmented reality technologies for creative expression and public space,  as well as to meditate on the uncanny, aleatoric, and often beautiful contrasts of the urban soundscape.";
 "cta" = "Meet us there, connect your headphones, and explore.";
 /* Credits screen */
 "app-credits"= "Concept, Design and Development:\nMatt Spendlove";
@@ -21,9 +21,9 @@
 /* Start experience screen */
 "start-experience"= "Now listen, and get lost - we’ll handle the navigation. Hold your phone in landscape orientation in front of your chest (we need to see where we’re going!), and remember to stay aware of your surroundings, and stay safe. We’ll tell you via your headphones if you leave the installation, or if we need help locating you.";
 /* Errors */
-"out-of-range-error"= "The Situationists' Walkman takes place in Queen Elizabeth Olympic Park, Stratford, London.
+"out-of-range-error"= "The Situationists' Walkman takes place in Victory Park, East London.
 
-Please visit the park to experience this. We'll meet you by the Eastcross Bridge.
+Please visit the park to experience this.
 
 Tap 'Get Directions' to open Apple Maps.";
 "location-timeout-error"= "We couldn't determine your location.
@@ -34,4 +34,4 @@ Please check that:
 • You're not in airplane mode
 
 Then try again.";
-"unsupported-device-error"= "We're sorry, but The Situationists Walkman requires iOS 15.0+ and a device with A12 chip and GPS for ARKit geo-tracking:\n\t—iPhone XS/XR or newer\n\t—iPad with WiFi + Cellular (8th gen or newer), iPad Air (3rd gen or newer), iPad mini (5th gen or newer), or iPad Pro (11-inch/12.9-inch 3rd gen or newer)\n\nThis ensures precise spatial audio positioning in Queen Elizabeth Olympic Park.";
+"unsupported-device-error"= "We're sorry, but The Situationists Walkman requires iOS 15.0+ and a device with A12 chip and GPS for ARKit geo-tracking:\n\t—iPhone XS/XR or newer\n\t—iPad with WiFi + Cellular (8th gen or newer), iPad Air (3rd gen or newer), iPad mini (5th gen or newer), or iPad Pro (11-inch/12.9-inch 3rd gen or newer)\n\nThis ensures precise spatial audio positioning in Victory Park.";

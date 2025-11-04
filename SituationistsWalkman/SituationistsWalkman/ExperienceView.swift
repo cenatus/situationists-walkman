@@ -18,7 +18,7 @@ struct ExperienceView: View {
             ARViewContainer()
             
             // Debug overlay for field testing - only show after both location and boundary checks pass
-            if state.debugMode && state.locationCheckPassed && state.insideOlympicPark {
+            if state.debugMode && state.locationCheckPassed && state.insidePlayZone {
                 VStack {
                     Spacer()
                     HStack {

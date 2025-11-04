@@ -12,8 +12,8 @@ struct OrientationView: View {
     @EnvironmentObject var state: AppState
     @State private var showContent = false
 
-    // Eastcross Bridge coordinates for Apple Maps (start point)
-    private let eastcrossBridgeCoordinate = "51.54597,-0.0169"
+    // Start location coordinates for Apple Maps
+    private let startLocationCoordinate = "51.54753,-0.01044"
 
     var body: some View {
         OnboardingContainer {
@@ -30,7 +30,7 @@ struct OrientationView: View {
 //                        .animation(.easeOut(duration: 0.8), value: showContent)
 
                     // Location photo
-                    Image("eastcross-bridge")
+                    Image("victory-parade")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(height: 250)
@@ -41,7 +41,7 @@ struct OrientationView: View {
                         .scaleEffect(showContent ? 1 : 0.9)
                         .animation(.easeOut(duration: 0.8).delay(0.3), value: showContent)
 
-                    Text("Head to **Eastcross Bridge** in the Olympic Park to begin the experience.")
+                    Text("Head to **Victory Park** to begin the experience.")
                         .foregroundColor(Color(textColor))
                         .font(.body)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -67,8 +67,8 @@ struct OrientationView: View {
                 // Navigation buttons - portrait optimized
                 VStack(spacing: 12) {
                     Button("Get Directions") {
-                        // Open Apple Maps with Eastcross Bridge location
-                        let mapsURL = "maps://maps.apple.com/?q=Eastcross+Bridge,+Queen+Elizabeth+Olympic+Park&ll=\(eastcrossBridgeCoordinate)"
+                        // Open Apple Maps with start location
+                        let mapsURL = "maps://maps.apple.com/?q=Victory+Park&ll=\(startLocationCoordinate)"
                         if let url = URL(string: mapsURL) {
                             UIApplication.shared.open(url)
                         }
