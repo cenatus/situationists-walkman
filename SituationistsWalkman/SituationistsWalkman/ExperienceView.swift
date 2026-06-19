@@ -16,6 +16,44 @@ struct ExperienceView: View {
         ZStack {
             Color(backgroundColor).edgesIgnoringSafeArea(.all)
             ARViewContainer()
+            
+            // Debug overlay for field testing - only show after both location and boundary checks pass
+            if state.debugMode && state.locationCheckPassed && state.insidePlayZone {
+                VStack {
+                    Spacer()
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Coverage: \(state.geoTrackingAvailable)")
+                                .foregroundColor(state.geoTrackingAvailable.contains("✅") ? .green : .red)
+                                .padding(4)
+                                .background(Color.black.opacity(0.7))
+                            Text("Status: \(state.geoTrackingStatus)")
+                                .foregroundColor(.white)
+                                .padding(4)
+                                .background(Color.black.opacity(0.7))
+                            Text("Speakers: \(state.speakerCount)")
+                                .foregroundColor(.green)
+                                .padding(4)
+                                .background(Color.black.opacity(0.7))
+                            if !state.geoTrackingReason.isEmpty {
+                                Text("Reason: \(state.geoTrackingReason)")
+                                    .foregroundColor(.yellow)
+                                    .padding(4)
+                                    .background(Color.black.opacity(0.7))
+                            }
+                            if !state.geoTrackingError.isEmpty {
+                                Text("Error: \(state.geoTrackingError)")
+                                    .foregroundColor(.red)
+                                    .padding(4)
+                                    .background(Color.black.opacity(0.7))
+                            }
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                }
+            }
+            
             if(state.localized && !state.debugMode) {
                 MessageView(
                     message: "start-experience",

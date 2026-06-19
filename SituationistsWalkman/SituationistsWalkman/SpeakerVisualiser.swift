@@ -11,15 +11,18 @@ import RealityKit
 struct SpeakerVisualiser {
     
     static func createEntity(for speaker: Speaker) -> AnchorEntity {
-        let speakerResource = MeshResource.generateBox(size: 0.4)
+        // Speaker box - use original design but make it visible
+        let speakerResource = MeshResource.generateBox(size: 0.8)
         let speakerMaterial = SimpleMaterial(color: UIColor.black, isMetallic: true)
         let speakerEntity = ModelEntity(mesh: speakerResource, materials: [speakerMaterial])
         
+        // Sphere using speaker's color and cullDistance for radius
         let sphereResource = MeshResource.generateSphere(radius: Float(speaker.cullDistance))
-        let spehereMaterial = SimpleMaterial(color: speaker.color, roughness: 0, isMetallic: false)
-        let sphereEntity = ModelEntity(mesh: sphereResource, materials: [spehereMaterial])
+        let sphereMaterial = SimpleMaterial(color: speaker.color, roughness: 0, isMetallic: false)
+        let sphereEntity = ModelEntity(mesh: sphereResource, materials: [sphereMaterial])
         
-        let textResource = MeshResource.generateText(speaker.name ,
+        // Text showing speaker name
+        let textResource = MeshResource.generateText(speaker.name,
                                                      extrusionDepth: 0.01,
                                                      font: .systemFont(ofSize: 0.25),
                                                      containerFrame: .zero,
@@ -32,7 +35,13 @@ struct SpeakerVisualiser {
         speakerEntity.addChild(textEntity)
         speakerEntity.addChild(sphereEntity)
         
-        let anchorEntity = AnchorEntity(anchor: speaker.geoAnchor)
+        #if targetEnvironment(simulator)
+        // Simulator fallback - create a world anchor at origin since AR doesn't work
+        let anchorEntity = AnchorEntity(.world(transform: matrix_identity_float4x4))
+        #else
+        // Device - use the actual geo anchor
+        let anchorEntity = AnchorEntity(.anchor(identifier: speaker.geoAnchor.identifier))
+        #endif
         anchorEntity.addChild(speakerEntity)
         
         return anchorEntity

@@ -24,9 +24,13 @@
 		22D4F50A2790899E00012377 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F5092790899E00012377 /* IntroView.swift */; };
 		22D4F50C27908B7200012377 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50B27908B7200012377 /* AppState.swift */; };
 		22D4F50E27908CFF00012377 /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D4F50D27908CFF00012377 /* ExperienceView.swift */; };
+		7213AC062E7883EA008756BE /* OnboardingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7213AC052E7883EA008756BE /* OnboardingViews.swift */; };
 		7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7255EC3E279EE84300B59670 /* GPXParser.swift */; };
 		7255EC46279F011C00B59670 /* speakers.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7255EC45279F011C00B59670 /* speakers.gpx */; };
 		7286F70D27A013960062B674 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7286F70C27A013960062B674 /* sounds */; };
+		729B81D22EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729B81D12EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift */; };
+		72BF2F252E8D996A00FA2979 /* CheckingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BF2F242E8D996A00FA2979 /* CheckingLocationView.swift */; };
+		72BF2F272E8DA51800FA2979 /* OrientationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BF2F262E8DA51800FA2979 /* OrientationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +53,13 @@
 		22D4F5092790899E00012377 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		22D4F50B27908B7200012377 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		22D4F50D27908CFF00012377 /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
+		7213AC052E7883EA008756BE /* OnboardingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViews.swift; sourceTree = "<group>"; };
 		7255EC3E279EE84300B59670 /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
 		7255EC45279F011C00B59670 /* speakers.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = speakers.gpx; sourceTree = "<group>"; };
 		7286F70C27A013960062B674 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
+		729B81D12EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARGeoTrackingBugTest.swift; sourceTree = "<group>"; };
+		72BF2F242E8D996A00FA2979 /* CheckingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckingLocationView.swift; sourceTree = "<group>"; };
+		72BF2F262E8DA51800FA2979 /* OrientationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +99,15 @@
 				22D4F50B27908B7200012377 /* AppState.swift */,
 				2209D63A27980E8E00329FD7 /* ARViewContainer.swift */,
 				222259C627A4133500BDA0F3 /* MessageView.swift */,
+				72BF2F242E8D996A00FA2979 /* CheckingLocationView.swift */,
+				729B81D12EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift */,
 				228EDA3B278F385200D2838A /* ContentView.swift */,
 				22BBBE6327A2BB2200A8DA11 /* CreditsView.swift */,
 				22D4F50D27908CFF00012377 /* ExperienceView.swift */,
 				7255EC3E279EE84300B59670 /* GPXParser.swift */,
 				22D4F5092790899E00012377 /* IntroView.swift */,
+				7213AC052E7883EA008756BE /* OnboardingViews.swift */,
+				72BF2F262E8DA51800FA2979 /* OrientationView.swift */,
 				228EDA39278F385200D2838A /* SituationistsWalkmanApp.swift */,
 				2209D64727983A3600329FD7 /* Speaker.swift */,
 				2209D6422798141E00329FD7 /* SpeakerPHASEPlayer.swift */,
@@ -145,7 +157,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					228EDA35278F385200D2838A = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -190,11 +202,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729B81D22EA7A8E000E12CEE /* ARGeoTrackingBugTest.swift in Sources */,
 				2246D0FD27984C57007EE896 /* SpeakerRealityKitPlayer.swift in Sources */,
+				7213AC062E7883EA008756BE /* OnboardingViews.swift in Sources */,
 				22BBBE6427A2BB2200A8DA11 /* CreditsView.swift in Sources */,
 				7255EC3F279EE84300B59670 /* GPXParser.swift in Sources */,
 				228EDA3C278F385200D2838A /* ContentView.swift in Sources */,
 				2209D63B27980E8E00329FD7 /* ARViewContainer.swift in Sources */,
+				72BF2F252E8D996A00FA2979 /* CheckingLocationView.swift in Sources */,
 				22BBBE6627A2BE0300A8DA11 /* UIHelpers.swift in Sources */,
 				22D4F50E27908CFF00012377 /* ExperienceView.swift in Sources */,
 				2209D6432798141E00329FD7 /* SpeakerPHASEPlayer.swift in Sources */,
@@ -205,6 +220,7 @@
 				228EDA3A278F385200D2838A /* SituationistsWalkmanApp.swift in Sources */,
 				222259C727A4133500BDA0F3 /* MessageView.swift in Sources */,
 				22D4F50A2790899E00012377 /* IntroView.swift in Sources */,
+				72BF2F272E8DA51800FA2979 /* OrientationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,8 +262,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7GYQ8KZ32R;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -307,8 +325,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7GYQ8KZ32R;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -333,23 +353,24 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"SituationistsWalkman/Preview Content\"";
 				DEVELOPMENT_TEAM = 2SU4NFSVXJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SituationistsWalkman/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "iphone-ipad-minimum-performance-a12, arkit";
+				INFOPLIST_KEY_CFBundleDisplayName = "The Situationists' Walkman";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
-				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to your device motion data to locate you within the experience";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to trigger audio content as you walk through Queen Elizabeth Olympic Park. For example, different sound pieces play automatically when you reach specific locations in the experience.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Motion and fitness data is used to track your movement through the walking experience. For example, your step activity helps determine your position and pace as you navigate between audio installations in the park.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "\"\"";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeRight;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -371,23 +392,24 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"SituationistsWalkman/Preview Content\"";
 				DEVELOPMENT_TEAM = 2SU4NFSVXJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SituationistsWalkman/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "iphone-ipad-minimum-performance-a12, arkit";
+				INFOPLIST_KEY_CFBundleDisplayName = "The Situationists' Walkman";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
-				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to your device motion data to locate you within the experience";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to trigger audio content as you walk through Queen Elizabeth Olympic Park. For example, different sound pieces play automatically when you reach specific locations in the experience.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Motion and fitness data is used to track your movement through the walking experience. For example, your step activity helps determine your position and pace as you navigate between audio installations in the park.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "\"\"";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationLandscapeRight;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

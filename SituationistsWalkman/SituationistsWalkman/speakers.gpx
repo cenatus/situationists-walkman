@@ -2,7 +2,7 @@
 <gpx xmlns="http://www.topografix.com/GPX/1/1" creator="Apple Inc.">
     <!-- START MSP test -->
     <wpt lat="51.52669723866872" lon="-0.07816211243112564">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>test ping</name>
         <audioFile>msp-cb</audioFile>
         <color>
@@ -17,9 +17,9 @@
     </wpt>
     <!-- END MSP test -->
     <!-- START Ruaridh -->
-    <wpt lat="51.52634" lon="-0.07708">
-        <ele>18</ele>
-        <name>ruaridh-1-50m</name>
+    <wpt lat="51.5479143" lon="-0.0115366">
+        <ele>10</ele>
+        <name>ruaridh-1-20m</name>
         <audioFile>1 ra</audioFile>
         <color>
             <r>1.0</r>
@@ -28,12 +28,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>50.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52713" lon="-0.07627">
-        <ele>18</ele>
-        <name>ruaridh-2-50m</name>
+    <wpt lat="51.5481806" lon="-0.0098732">
+        <ele>10</ele>
+        <name>ruaridh-2-15m</name>
         <audioFile>2 ai</audioFile>
         <color>
             <r>1.0</r>
@@ -42,11 +42,11 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>50.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52628" lon="-0.07533">
-        <ele>18</ele>
+    <wpt lat="51.5477282" lon="-0.0113115">
+        <ele>10</ele>
         <name>ruaridh-3-20m</name>
         <audioFile>3 fi1</audioFile>
         <color>
@@ -59,8 +59,8 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52642" lon="-0.07492">
-        <ele>18</ele>
+    <wpt lat="51.5476923" lon="-0.0108667">
+        <ele>10</ele>
         <name>ruaridh-4-20m</name>
         <audioFile>4 fi2</audioFile>
         <color>
@@ -73,8 +73,8 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52667" lon="-0.07484">
-        <ele>18</ele>
+    <wpt lat="51.5479359" lon="-0.0112172">
+        <ele>10</ele>
         <name>ruaridh-5-20m</name>
         <audioFile>5 tl</audioFile>
         <color>
@@ -87,8 +87,8 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52692" lon="-0.07501">
-        <ele>18</ele>
+    <wpt lat="51.5477199" lon="-0.0110734">
+        <ele>10</ele>
         <name>ruaridh-6-20m</name>
         <audioFile>6 bl</audioFile>
         <color>
@@ -101,9 +101,9 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52623" lon="-0.07606">
-        <ele>18</ele>
-        <name>ruaridh-7-30m</name>
+    <wpt lat="51.5484954" lon="-0.0101469">
+        <ele>10</ele>
+        <name>ruaridh-7-20m</name>
         <audioFile>7 bld</audioFile>
         <color>
             <r>1.0</r>
@@ -112,12 +112,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>30.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52664" lon="-0.07615">
-        <ele>18</ele>
-        <name>ruaridh-8-50m</name>
+    <wpt lat="51.5482827" lon="-0.0101388">
+        <ele>10</ele>
+        <name>ruaridh-8-10m</name>
         <audioFile>8 ma</audioFile>
         <color>
             <r>1.0</r>
@@ -126,13 +126,13 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>50.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
     <!-- END Ruaridh -->
     <!-- START Freya -->
-    <wpt lat="51.52624" lon="-0.07366">
-        <ele>18</ele>
+    <wpt lat="51.5462653" lon="-0.0112838">
+        <ele>10</ele>
         <name>freya-dog-6m</name>
         <audioFile>Dog Warper</audioFile>
         <color>
@@ -145,8 +145,8 @@
             <cullDistance>6.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52622" lon="-0.07352">
-        <ele>18</ele>
+    <wpt lat="51.5463839" lon="-0.0101529">
+        <ele>10</ele>
         <name>freya-earthworm-10m</name>
         <audioFile>Earthworm choir</audioFile>
         <color>
@@ -159,8 +159,8 @@
             <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52616" lon="-0.07364">
-        <ele>18</ele>
+    <wpt lat="51.546463" lon="-0.0115167">
+        <ele>10</ele>
         <name>freya-biohazard-20m</name>
         <audioFile>Bio-Haphazard</audioFile>
         <color>
@@ -173,8 +173,8 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52616" lon="-0.07364">
-        <ele>18</ele>
+    <wpt lat="51.5461816" lon="-0.0101947">
+        <ele>10</ele>
         <name>freya-shuffle-30m</name>
         <audioFile>Immersive Shuffle</audioFile>
         <color>
@@ -187,8 +187,8 @@
             <cullDistance>30.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52607" lon="-0.07362">
-        <ele>18</ele>
+    <wpt lat="51.5466546" lon="-0.0096031">
+        <ele>10</ele>
         <name>freya-duck-6m</name>
         <audioFile>Duck Wreck</audioFile>
         <color>
@@ -201,8 +201,8 @@
             <cullDistance>6.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52607" lon="-0.07375">
-        <ele>18</ele>
+    <wpt lat="51.5471785" lon="-0.0094726">
+        <ele>10</ele>
         <name>freya-drizzle-15m</name>
         <audioFile>Nerve Drizzle</audioFile>
         <color>
@@ -212,13 +212,13 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>15.0</cullDistance>
+            <cullDistance>12.0</cullDistance>
         </phaseAudio>
     </wpt>
     <!-- END Freya -->
     <!-- START Tim & Constanza -->
     <wpt lat="51.5254" lon="-0.07496">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>tim-constanza-soprano-1-25m</name>
         <audioFile>TIM_HTCA_VOX_SOPRANO_1_1</audioFile>
         <color>
@@ -233,7 +233,7 @@
         </phaseAudio>
     </wpt>
     <wpt lat="51.52517" lon="-0.07476">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>tim-constanza-soprano-2-18m</name>
         <audioFile>TIM_HTCA_VOX_SOPRANO_2_1</audioFile>
         <color>
@@ -248,7 +248,7 @@
         </phaseAudio>
     </wpt>
     <wpt lat="51.52529" lon="-0.07501">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>tim-constanza-alto-18m</name>
         <audioFile>TIM_HTCA_VOX_ALTO_1</audioFile>
         <color>
@@ -263,7 +263,7 @@
         </phaseAudio>
     </wpt>
     <wpt lat="51.52524" lon="-0.07489">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>tim-constanza-bass-8m</name>
         <audioFile>TIM_HTCA_BASS_DRONE_1</audioFile>
         <color>
@@ -278,7 +278,7 @@
         </phaseAudio>
     </wpt>
     <wpt lat="51.52524" lon="-0.07489">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>tim-constanza-static-fuzz-30m</name>
         <audioFile>TIM_HTCA_STATICKY_FUZZ_DRONE_1</audioFile>
         <color>
@@ -294,7 +294,7 @@
         </phaseAudio>
     </wpt>
     <wpt lat="51.52531" lon="-0.07495">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>tim-constanza-granular-10m</name>
         <audioFile>TIM_HTCA_GRANULES_1</audioFile>
         <color>
@@ -309,7 +309,7 @@
         </phaseAudio>
     </wpt>
     <wpt lat="51.52507" lon="-0.07499">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>tim-constanza-drone-18m</name>
         <audioFile>TIM_HTCA_DRONE_1</audioFile>
         <color>
@@ -324,7 +324,7 @@
         </phaseAudio>
     </wpt>
     <wpt lat="51.52507" lon="-0.07499">
-        <ele>18</ele>
+        <ele>10</ele>
         <name>tim-constanza-noisy-25m</name>
         <audioFile>TIM_HTCA_NOISY_1</audioFile>
         <color>
@@ -340,8 +340,8 @@
     </wpt>
     <!-- END Tim & Constanza -->
     <!-- START Mark -->
-    <wpt lat="51.52652" lon="-0.07444">
-        <ele>18</ele>
+    <wpt lat="51.5483665" lon="-0.0091958">
+        <ele>10</ele>
         <name>mark-stem1-ambience-20m</name>
         <audioFile>Stem 1 General Ambience</audioFile>
         <color>
@@ -354,8 +354,8 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52624" lon="-0.07444">
-        <ele>18</ele>
+    <wpt lat="51.5481103" lon="-0.008973">
+        <ele>10</ele>
         <name>mark-cars-10m</name>
         <audioFile>Stem 2 Cars</audioFile>
         <color>
@@ -365,11 +365,11 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>10.0</cullDistance>
+            <cullDistance>25.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52632" lon="-0.07425">
-        <ele>18</ele>
+    <wpt lat="51.5482952" lon="-0.0094631">
+        <ele>10</ele>
         <name>mark-other-transport-15m</name>
         <audioFile>Stem 3 Other transport</audioFile>
         <color>
@@ -382,8 +382,8 @@
             <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52666" lon="-0.07352">
-        <ele>18</ele>
+    <wpt lat="51.5476202" lon="-0.0104494">
+        <ele>10</ele>
         <name>mark-plane-5m</name>
         <audioFile>Stem 4 Plane</audioFile>
         <color>
@@ -393,11 +393,11 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>5.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52661" lon="-0.07442">
-        <ele>18</ele>
+    <wpt lat="51.5481379" lon="-0.0092886">
+        <ele>10</ele>
         <name>mark-animals-10m</name>
         <audioFile>Stem 5 Animals</audioFile>
         <color>
@@ -410,9 +410,9 @@
             <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52652" lon="-0.07398">
-        <ele>18</ele>
-        <name>mark-russian-10m</name>
+    <wpt lat="51.5484742" lon="-0.0088432">
+        <ele>10</ele>
+        <name>mark-russian-50m</name>
         <audioFile>Stem 6 Russian</audioFile>
         <color>
             <r>0.0</r>
@@ -421,11 +421,11 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>10.0</cullDistance>
+            <cullDistance>50.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52664" lon="-0.07372">
-        <ele>18</ele>
+    <wpt lat="51.5479677" lon="-0.0091553">
+        <ele>10</ele>
         <name>mark-stem7-additional-ambience-23m</name>
         <audioFile>Stem 7 Additional ambience</audioFile>
         <color>
@@ -438,9 +438,9 @@
             <cullDistance>23.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52667" lon="-0.07404">
-        <ele>18</ele>
-        <name>mark-stem8-music-20m</name>
+    <wpt lat="51.5482298" lon="-0.0088635">
+        <ele>10</ele>
+        <name>mark-stem8-music-50m</name>
         <audioFile>Stem 8 Music</audioFile>
         <color>
             <r>0.0</r>
@@ -449,14 +449,14 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>20.0</cullDistance>
+            <cullDistance>50.0</cullDistance>
         </phaseAudio>
     </wpt>
     <!-- END Mark -->
     <!-- START Matt -->
-    <wpt lat="51.52616" lon="-0.07474">
-        <ele>21</ele>
-        <name>matt-atlantis-15m</name>
+    <wpt lat="51.5475137" lon="-0.0094514">
+        <ele>10</ele>
+        <name>matt-atlantis-20m</name>
         <audioFile>situationists-walkman Atlantis</audioFile>
         <color>
             <r>0.7</r>
@@ -465,12 +465,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>15.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
             <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52603" lon="-0.07468">
-        <ele>21</ele>
+    <wpt lat="51.5473424" lon="-0.0100725">
+        <ele>10</ele>
         <name>matt-bela-20m</name>
         <audioFile>situationists-walkman Bela</audioFile>
         <color>
@@ -484,8 +484,8 @@
             <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52594" lon="-0.07489">
-        <ele>21</ele>
+    <wpt lat="51.5475414" lon="-0.0097337">
+        <ele>10</ele>
         <name>matt-es8-3-15m</name>
         <audioFile>situationists-walkman Es8-3</audioFile>
         <color>
@@ -499,8 +499,8 @@
             <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52601" lon="-0.07509">
-        <ele>21</ele>
+    <wpt lat="51.5476628" lon="-0.009783">
+        <ele>10</ele>
         <name>matt-noise-20m</name>
         <audioFile>situationists-walkman Noise ducked</audioFile>
         <color>
@@ -514,8 +514,8 @@
             <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52616" lon="-0.075">
-        <ele>21</ele>
+    <wpt lat="51.5474844" lon="-0.0101558">
+        <ele>10</ele>
         <name>matt-pad-23m</name>
         <audioFile>situationists-walkman Pad ducked</audioFile>
         <color>
@@ -529,9 +529,9 @@
             <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52605" lon="-0.07489">
-        <ele>21</ele>
-        <name>matt-sub-12m</name>
+    <wpt lat="51.5475703" lon="-0.009989">
+        <ele>10</ele>
+        <name>matt-sub-20m</name>
         <audioFile>situationists-walkman Sub</audioFile>
         <color>
             <r>0.7</r>
@@ -540,13 +540,13 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>12.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
             <referenceLevel>0.6</referenceLevel>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52606" lon="-0.0749">
-        <ele>21</ele>
-        <name>olly-chord-5m</name>
+    <wpt lat="51.5474362" lon="-0.0097606">
+        <ele>10</ele>
+        <name>olly-chord-12m</name>
         <audioFile>olly-chord</audioFile>
         <color>
             <r>0.7</r>
@@ -555,14 +555,14 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>5.0</cullDistance>
+            <cullDistance>12.0</cullDistance>
             <referenceLevel>0.3</referenceLevel>
         </phaseAudio>
     </wpt>
     <!-- END Matt -->
     <!-- START Nonument -->
-    <wpt lat="51.52589" lon="-0.07557">
-        <ele>18</ele>
+    <wpt lat="51.5471382" lon="-0.0110752">
+        <ele>7</ele>
         <name>non-no-swimming-10m</name>
         <audioFile>no swimming sign DDM Final Short</audioFile>
         <color>
@@ -572,11 +572,11 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>10.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52595" lon="-0.07587">
-        <ele>18</ele>
+    <wpt lat="51.5467928" lon="-0.0119495">
+        <ele>7</ele>
         <name>non-peace-mandm-10m</name>
         <audioFile>Peace mandm women in black</audioFile>
         <color>
@@ -589,8 +589,8 @@
             <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52579" lon="-0.07605">
-        <ele>18</ele>
+    <wpt lat="51.5466057" lon="-0.0116848">
+        <ele>7</ele>
         <name>non-pennies-fred1-8m</name>
         <audioFile>pennies Fred Shorts Final_1</audioFile>
         <color>
@@ -603,8 +603,8 @@
             <cullDistance>8.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52574" lon="-0.07643">
-        <ele>18</ele>
+    <wpt lat="51.5464325" lon="-0.0126039">
+        <ele>7</ele>
         <name>non-plaque-15m</name>
         <audioFile>plaque</audioFile>
         <color>
@@ -617,8 +617,8 @@
             <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52543" lon="-0.07652">
-        <ele>18</ele>
+    <wpt lat="51.5464239" lon="-0.0120536">
+        <ele>7</ele>
         <name>non-white-people-sign-20m</name>
         <audioFile>White people sign Meghan</audioFile>
         <color>
@@ -628,14 +628,14 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>20.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
     <!-- END Nonument -->
     <!-- START Nick -->
-    <wpt lat="51.52542" lon="-0.07364">
-        <ele>18</ele>
-        <name>nick-local-train-barrier-20m</name>
+    <wpt lat="51.5480258" lon="-0.0097582">
+        <ele>5</ele>
+        <name>nick-local-train-barrier-15m</name>
         <audioFile>Nick Luscombe Zoom H3 Recording  - Local Train Barrier -Mix</audioFile>
         <color>
             <r>0.5</r>
@@ -644,13 +644,13 @@
             <a>0.8</a>
         </color>
         <phaseAudio>
-            <cullDistance>20.0</cullDistance>
+            <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
     <!-- END Nick -->
     <!-- START Freya 2 -->
-    <wpt lat="51.52555" lon="-0.0756">
-        <ele>18</ele>
+    <wpt lat="51.5470357" lon="-0.0089349">
+        <ele>7</ele>
         <name>freya-synchonised-sinking-18m</name>
         <audioFile>synchonised sinking</audioFile>
         <color>
@@ -663,8 +663,8 @@
             <cullDistance>18.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52519" lon="-0.07554">
-        <ele>18</ele>
+    <wpt lat="51.5470863" lon="-0.0085767">
+        <ele>7</ele>
         <name>freya-syncopate-sound-20m</name>
         <audioFile>syncopate sound</audioFile>
         <color>
@@ -677,8 +677,8 @@
             <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52493" lon="-0.07565">
-        <ele>18</ele>
+    <wpt lat="51.5472071" lon="-0.0090434">
+        <ele>7</ele>
         <name>freya-digital-folk-20m</name>
         <audioFile>digital folk</audioFile>
         <color>
@@ -688,11 +688,11 @@
             <a>0.8</a>
         </color>
         <phaseAudio>
-            <cullDistance>20.0</cullDistance>
+            <cullDistance>12.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52531" lon="-0.07572">
-        <ele>18</ele>
+    <wpt lat="51.5472483" lon="-0.0087068">
+        <ele>7</ele>
         <name>face-plant-10m</name>
         <audioFile>face plant</audioFile>
         <color>
@@ -702,11 +702,11 @@
             <a>0.8</a>
         </color>
         <phaseAudio>
-            <cullDistance>10.0</cullDistance>
+            <cullDistance>13.0</cullDistance>
         </phaseAudio>
     </wpt>
-    <wpt lat="51.52507" lon="-0.0756">
-        <ele>18</ele>
+    <wpt lat="51.5470355" lon="-0.0094927">
+        <ele>7</ele>
         <name>silent-disco-8m</name>
         <audioFile>silent disco</audioFile>
         <color>
@@ -721,8 +721,8 @@
     </wpt>
     <!-- END Freya 2 -->
     <!-- START Sally -->
-    <wpt lat="51.52508" lon="-0.07628">
-        <ele>18</ele>
+    <wpt lat="51.5477611" lon="-0.0094745">
+        <ele>5</ele>
         <name>sally-leve-2018-40m</name>
         <audioFile>LEVE 2018_Sally</audioFile>
         <color>
@@ -732,15 +732,15 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>40.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
             <referenceLevel>0.8</referenceLevel>
         </phaseAudio>
     </wpt>
     <!-- END Sally -->
     <!-- START Perimeter markers -->
-    <wpt lat="51.5262797" lon="-0.0730004">
-        <ele>18</ele>
-        <name>perimeter-marker-brick-7m</name>
+    <wpt lat="51.5482148" lon="-0.0117982">
+        <ele>10</ele>
+        <name>perimeter-marker-logan-15m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -749,13 +749,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5253236" lon="-0.0727566">
-        <ele>18</ele>
-        <name>perimeter-marker-rhoda-7m</name>
+    <wpt lat="51.5462617" lon="-0.0130048">
+        <ele>10</ele>
+        <name>perimeter-marker-op-ave-15m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -764,13 +763,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5247835" lon="-0.0727399">
-        <ele>18</ele>
-        <name>perimeter-marker-swanfield-7m</name>
+    <wpt lat="51.5455622" lon="-0.0124261">
+        <ele>10</ele>
+        <name>perimeter-marker-anthems2-20m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -779,13 +777,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5247873" lon="-0.0743069">
-        <ele>18</ele>
-        <name>perimeter-marker-club-7m</name>
+    <wpt lat="51.5470379" lon="-0.0082224">
+        <ele>10</ele>
+        <name>perimeter-marker-celebration-13m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -794,73 +791,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>13.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5248619" lon="-0.0735242">
-        <ele>18</ele>
-        <name>perimeter-marker-turville-7m</name>
-        <audioFile>perimeter_alert</audioFile>
-        <color>
-            <r>0.2</r>
-            <g>0.2</g>
-            <b>0.2</b>
-            <a>0.7</a>
-        </color>
-        <phaseAudio>
-            <cullDistance>7.0</cullDistance>
-        </phaseAudio>
-    </wpt>
-
-    <wpt lat="51.5247239" lon="-0.0751979">
-        <ele>18</ele>
-        <name>perimeter-marker-chance-7m</name>
-        <audioFile>perimeter_alert</audioFile>
-        <color>
-            <r>0.2</r>
-            <g>0.2</g>
-            <b>0.2</b>
-            <a>0.7</a>
-        </color>
-        <phaseAudio>
-            <cullDistance>7.0</cullDistance>
-        </phaseAudio>
-    </wpt>
-
-    <wpt lat="51.5244802" lon="-0.076472">
-        <ele>18</ele>
-        <name>perimeter-marker-boundary-street-7m</name>
-        <audioFile>perimeter_alert</audioFile>
-        <color>
-            <r>0.2</r>
-            <g>0.2</g>
-            <b>0.2</b>
-            <a>0.7</a>
-        </color>
-        <phaseAudio>
-            <cullDistance>7.0</cullDistance>
-        </phaseAudio>
-    </wpt>
-
-    <wpt lat="51.5247166" lon="-0.0770456">
-        <ele>18</ele>
-        <name>perimeter-marker-boundary-passage-7m</name>
-        <audioFile>perimeter_alert</audioFile>
-        <color>
-            <r>0.2</r>
-            <g>0.2</g>
-            <b>0.2</b>
-            <a>0.7</a>
-        </color>
-        <phaseAudio>
-            <cullDistance>7.0</cullDistance>
-        </phaseAudio>
-    </wpt>
-
-    <wpt lat="51.5264716" lon="-0.0778417">
-        <ele>18</ele>
-        <name>perimeter-marker-calvert-10m</name>
+    <wpt lat="51.5460385" lon="-0.012662">
+        <ele>10</ele>
+        <name>perimeter-marker-glade-10m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -872,10 +808,9 @@
             <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5272673" lon="-0.0769912">
-        <ele>18</ele>
-        <name>perimeter-marker-austin-7m</name>
+    <wpt lat="51.5466774" lon="-0.0081266">
+        <ele>10</ele>
+        <name>perimeter-marker-celebration2-20m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -884,13 +819,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.527231" lon="-0.0754705">
-        <ele>18</ele>
-        <name>perimeter-marker-godfrey-7m</name>
+    <wpt lat="51.5487768" lon="-0.0107614">
+        <ele>10</ele>
+        <name>perimeter-marker-godfrey-12m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -899,13 +833,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>12.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5256007" lon="-0.0728215">
-        <ele>18</ele>
-        <name>perimeter-marker-rhoda-park-7m</name>
+    <wpt lat="51.54573" lon="-0.01125">
+        <ele>10</ele>
+        <name>perimeter-marker-anthems-20m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -914,13 +847,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5270381" lon="-0.0733813">
-        <ele>18</ele>
-        <name>perimeter-marker-chambord-7m</name>
+    <wpt lat="51.5489009" lon="-0.0089119">
+        <ele>10</ele>
+        <name>perimeter-marker-sunrise-20m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -929,13 +861,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>20.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5273649" lon="-0.073593">
-        <ele>18</ele>
-        <name>perimeter-marker-virginia-7m</name>
+    <wpt lat="51.5470971" lon="-0.0121454">
+        <ele>10</ele>
+        <name>perimeter-marker-scarlett-10m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -944,13 +875,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.52742" lon="-0.0740195">
-        <ele>18</ele>
-        <name>perimeter-marker-gascoigne-7m</name>
+    <wpt lat="51.5461805" lon="-0.0087043">
+        <ele>10</ele>
+        <name>perimeter-marker-celebration3-10m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -959,13 +889,12 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>10.0</cullDistance>
         </phaseAudio>
     </wpt>
-
-    <wpt lat="51.5272898" lon="-0.0750173">
-        <ele>18</ele>
-        <name>perimeter-marker-leopold-7m</name>
+    <wpt lat="51.5488419" lon="-0.0082329">
+        <ele>10</ele>
+        <name>perimeter-marker-celebration4-15m</name>
         <audioFile>perimeter_alert</audioFile>
         <color>
             <r>0.2</r>
@@ -974,7 +903,35 @@
             <a>0.7</a>
         </color>
         <phaseAudio>
-            <cullDistance>7.0</cullDistance>
+            <cullDistance>15.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.5482314" lon="-0.0081899">
+        <ele>10</ele>
+        <name>perimeter-marker-celebration5-15m</name>
+        <audioFile>perimeter_alert</audioFile>
+        <color>
+            <r>0.2</r>
+            <g>0.2</g>
+            <b>0.2</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>15.0</cullDistance>
+        </phaseAudio>
+    </wpt>
+    <wpt lat="51.5485258" lon="-0.00813">
+        <ele>10</ele>
+        <name>perimeter-marker-celebration6-15m</name>
+        <audioFile>perimeter_alert</audioFile>
+        <color>
+            <r>0.2</r>
+            <g>0.2</g>
+            <b>0.2</b>
+            <a>0.7</a>
+        </color>
+        <phaseAudio>
+            <cullDistance>15.0</cullDistance>
         </phaseAudio>
     </wpt>
     <!-- END Perimeter markers -->
