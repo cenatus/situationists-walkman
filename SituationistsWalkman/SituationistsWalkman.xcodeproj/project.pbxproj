@@ -362,8 +362,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "The Situationists' Walkman";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
-				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to your device motion data to locate you within the experience";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to trigger audio content as you walk through Queen Elizabeth Olympic Park. For example, different sound pieces play automatically when you reach specific locations in the experience.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Motion and fitness data is used to track your movement through the walking experience. For example, your step activity helps determine your position and pace as you navigate between audio installations in the park.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -401,8 +401,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "The Situationists' Walkman";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to locate you within the experience. Is this ok?";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location for this experience to work, is this ok?";
-				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to your device motion data to locate you within the experience";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to trigger audio content as you walk through Queen Elizabeth Olympic Park. For example, different sound pieces play automatically when you reach specific locations in the experience.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Motion and fitness data is used to track your movement through the walking experience. For example, your step activity helps determine your position and pace as you navigate between audio installations in the park.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;

@@ -9,7 +9,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>arkit</string>
-		<string>gps</string>
+		<string>location-services</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
