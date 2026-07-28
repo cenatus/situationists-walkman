@@ -380,20 +380,12 @@ struct ARViewContainer: UIViewRepresentable {
             locationTimer?.invalidate()
             locationTimer = nil
 
-            // Check if user is within play zone boundary
-            if ARViewContainer.isInsidePlayZone(location.coordinate) {
-                print("***** SituWalk: User is inside play zone - checking ARKit availability *****")
-                DispatchQueue.main.async {
-                    self.state.insidePlayZone = true
-                }
-                checkARKitAvailability()
-            } else {
-                print("***** SituWalk: User is outside play zone boundary *****")
-                DispatchQueue.main.async {
-                    self.state.insidePlayZone = false
-                    self.state.page = .outsideGeoTrackingArea
-                }
+            // TEMP: Skip play zone check — testing Malmö availability from London
+            print("***** SituWalk: Skipping play zone check — testing Malmö availability *****")
+            DispatchQueue.main.async {
+                self.state.insidePlayZone = true
             }
+            checkARKitAvailability()
         }
 
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -419,7 +411,10 @@ struct ARViewContainer: UIViewRepresentable {
         }
 
         private func checkARKitAvailability() {
-            ARGeoTrackingConfiguration.checkAvailability { (available, error) in
+            // TEMP: Check availability at multiple test locations
+            // TEMP: Malmömässan test
+            let malmoVenue = CLLocationCoordinate2D(latitude: 55.566998, longitude: 12.977422)
+            ARGeoTrackingConfiguration.checkAvailability(at: malmoVenue) { (available, error) in
                 DispatchQueue.main.async {
                     if !available {
                         print("***** SituWalk: ERROR - Geo tracking not available at this location *****")
